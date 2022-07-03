@@ -204,7 +204,7 @@ namespace euterpe {
         void log(Logger::ptr logger, LogLevel::Level level, LogEvent::ptr event) override;
     };
 
-    class FileLogAppender : public LogAppender {
+    class FileLogAppender:public LogAppender {
     public:
         typedef std::shared_ptr<FileLogAppender> ptr;
         FileLogAppender(const std::string& filename);
@@ -219,28 +219,6 @@ namespace euterpe {
         /// 上次重新打开时间
         uint64_t m_lastTime = 0;
     };
-
-    class LoggerManager {
-    public:
-
-        LoggerManager();
-
-        Logger::ptr getLogger(const std::string& name);
-
-
-        void init();
-
-        Logger::ptr getRoot() const { return m_root;}
-
-
-        std::string toYamlString();
-    private:
-        /// 日志器容器
-        std::map<std::string, Logger::ptr> m_loggers;
-        /// 主日志器
-        Logger::ptr m_root;
-    };
-
 
 }
 

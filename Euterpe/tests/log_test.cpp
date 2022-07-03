@@ -3,6 +3,8 @@
 
 int main() {
     euterpe::Logger::ptr logger(new euterpe::Logger);
+
+    /// logger在构造的时候就会有一个默认的格式
     logger->addAppender(euterpe::LogAppender::ptr(new euterpe::StdoutLogAppender));
 
 //    LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level

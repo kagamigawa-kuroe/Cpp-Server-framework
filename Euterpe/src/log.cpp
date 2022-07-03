@@ -12,6 +12,7 @@
 
 namespace euterpe {
 
+    /// 用于输出level的字符串
     const char* LogLevel::ToString(LogLevel::Level level) {
         switch(level) {
 #define XX(name) \
@@ -51,6 +52,7 @@ return LogLevel::level; \
 #undef XX
     }
 
+    /// 用于记录log event的内容(中发生了什么记录在m_ss中)
     void LogEvent::format(const char* fmt, ...) {
         va_list al;
         va_start(al, fmt);
@@ -58,6 +60,7 @@ return LogLevel::level; \
         va_end(al);
     }
 
+    /// 用于记录log event的内容(中发生了什么记录在m_ss中)
     void LogEvent::format(const char* fmt, va_list al) {
         char* buf = nullptr;
         int len = vasprintf(&buf, fmt, al);
@@ -67,6 +70,8 @@ return LogLevel::level; \
         }
     }
 
+    /// 修改LogAppender中的格式
+    /// 并且返回是否有被修改
     void LogAppender::setFormatter(LogFormatter::ptr val) {
         m_formatter = val;
         if(m_formatter) {
@@ -76,10 +81,14 @@ return LogLevel::level; \
         }
     }
 
+    /// 获取LogAppender中的Formatter
     LogFormatter::ptr LogAppender::getFormatter() {
         return m_formatter;
     }
 
+    ////////////////////////////////////////////////////////////////
+    ///////////////////// 这里是所有的item类 /////////////////////////
+    ////////////////////////////////////////////////////////////////
     class MessageFormatItem : public LogFormatter::FormatItem {
     public:
         MessageFormatItem(const std::string& str = "") {}
@@ -181,7 +190,6 @@ return LogLevel::level; \
         }
     };
 
-
     class StringFormatItem : public LogFormatter::FormatItem {
     public:
         StringFormatItem(const std::string& str)
@@ -202,7 +210,11 @@ return LogLevel::level; \
     private:
         std::string m_string;
     };
+    ////////////////////////////////////////////////////////////////
+    //////////////////////////////结束 //// /////////////////////////
+    ////////////////////////////////////////////////////////////////
 
+    /// logEvent的构造函数
     LogEvent::LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level
                        ,const char* file, int32_t line, uint32_t elapse
                        ,uint32_t thread_id, uint32_t fiber_id, uint64_t time
@@ -218,10 +230,12 @@ return LogLevel::level; \
                        ,m_level(level) {
     }
 
+    /// Logger的构造函数 有名字和等级 有默认记录值 需后续修改
     Logger::Logger(const std::string& name):m_name(name),m_level(LogLevel::DEBUG) {
         m_formatter.reset(new LogFormatter("%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"));
     }
 
+    /// 修改logger中的格式
     void Logger::setFormatter(LogFormatter::ptr val) {
         m_formatter = val;
 
@@ -232,6 +246,7 @@ return LogLevel::level; \
         }
     }
 
+    ///用字符串修改logger中的格式
     void Logger::setFormatter(const std::string& val) {
         std::cout << "---" << val << std::endl;
         euterpe::LogFormatter::ptr new_val(new euterpe::LogFormatter(val));
@@ -244,11 +259,12 @@ return LogLevel::level; \
         setFormatter(new_val);
     }
 
+    ///获取logger中的格式
     LogFormatter::ptr Logger::getFormatter() {
-
         return m_formatter;
     }
 
+    /// 为logger绑定一个输出地址类
     void Logger::addAppender(LogAppender::ptr appender) {
 
         if(!appender->getFormatter()) {
@@ -258,6 +274,7 @@ return LogLevel::level; \
         m_appenders.push_back(appender);
     }
 
+    /// 为logger删除一个地址类
     void Logger::delAppender(LogAppender::ptr appender) {
 
         for(auto it = m_appenders.begin();
@@ -269,6 +286,10 @@ return LogLevel::level; \
         }
     }
 
+    ///记录函数的入口
+    ///调用这个函数 log就会开始启动
+    ///把两个参数传给appender
+    ///appender的format类再进行解析并输出
     void Logger::log(LogLevel::Level level, LogEvent::ptr event) {
         if(level >= m_level) {
             auto self = shared_from_this();
@@ -282,10 +303,12 @@ return LogLevel::level; \
         }
     }
 
+    ///重新打开一个文件
     FileLogAppender::FileLogAppender(const std::string& filename):m_filename(filename) {
         reopen();
     }
 
+    /// logappender中的log函数 会调用类中的成员变量logformat进行格式解析 并输出
     void FileLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) {
         if(level >= m_level) {
             uint64_t now = event->getTime();
@@ -301,6 +324,7 @@ return LogLevel::level; \
         }
     }
 
+    ///重新打开函数
     bool FileLogAppender::reopen(){
         if(m_filestream){
             m_filestream.close();
@@ -309,16 +333,19 @@ return LogLevel::level; \
         return !!m_filestream;
     }
 
+    /// 和FileLogAppender::log一个道理
     void StdoutLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) {
         if(level >= m_level) {
             m_formatter->format(std::cout, logger, level, event);
         }
     }
 
+    /// LogFormatter构造函数
     LogFormatter::LogFormatter(const std::string& pattern):m_pattern(pattern) {
         init();
     }
 
+    /// 然后分别调用Item具体类的输出函数进行输出 这里是以字符串输出
     std::string LogFormatter::format(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) {
         std::stringstream ss;
         for(auto& i : m_items) {
@@ -327,6 +354,7 @@ return LogLevel::level; \
         return ss.str();
     }
 
+    /// 然后分别调用Item具体类的输出函数进行输出 这里是以流输出
     std::ostream& LogFormatter::format(std::ostream& ofs, std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) {
         for(auto& i : m_items) {
             i->format(ofs, logger, level, event);
@@ -334,6 +362,8 @@ return LogLevel::level; \
         return ofs;
     }
 
+    /// 在logformat构造时被执行
+    /// 创建所需的子类实例
     //%xxx %xxx{xxx} %%
     void LogFormatter::init() {
         //str, format, type
@@ -440,29 +470,4 @@ return LogLevel::level; \
             }
         }
     }
-
-    LoggerManager::LoggerManager() {
-        m_root.reset(new Logger);
-        m_root->addAppender(LogAppender::ptr(new StdoutLogAppender));
-
-        m_loggers[m_root->m_name] = m_root;
-
-        init();
-    }
-
-    Logger::ptr LoggerManager::getLogger(const std::string& name) {
-        auto it = m_loggers.find(name);
-        if(it != m_loggers.end()) {
-            return it->second;
-        }
-
-        Logger::ptr logger(new Logger(name));
-        logger->m_root = m_root;
-        m_loggers[name] = logger;
-        return logger;
-    }
-
-    void LoggerManager::init() {
-    }
-
 }
