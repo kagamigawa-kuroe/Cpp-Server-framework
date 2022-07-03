@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.20)
+project(Euterpe)
+
+set(CMAKE_CXX_STANDARD 20)
+
+add_executable(Euterpe tests/log_test.cpp src/log.cpp src/log.h)

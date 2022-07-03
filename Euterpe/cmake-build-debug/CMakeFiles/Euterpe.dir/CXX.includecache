@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/whz/learning/Cpp-Server-framework/euterpe/src/log.h
+string
+-
+stdint.h
+-
+memory
+-
+list
+-
+sstream
+-
+fstream
+-
+vector
+-
+stdarg.h
+-
+map
+-
+util.h
+/Users/whz/learning/Cpp-Server-framework/euterpe/src/util.h
+
+/Users/whz/learning/Cpp-Server-framework/euterpe/tests/log_test.cpp
+iostream
+-
+../src/log.h
+/Users/whz/learning/Cpp-Server-framework/euterpe/src/log.h
+
