@@ -16,6 +16,22 @@
 #include <map>
 #include "util.h"
 
+#define EUTERPE_LOG_LEVEL(logger, level) \
+    if(logger->getLevel() <= level) \
+         euterpe::LogEventWrap(euterpe::LogEvent::ptr(new euterpe::LogEvent(logger, level, \
+               __FILE__, __LINE__, 0, euterpe::GetThreadId(),\
+         euterpe::GetFiberId(), time(0), "test"))).getSS()
+
+#define EUTERPE_LOG_DEBUG(logger) EUTERPE_LOG_LEVEL(logger, euterpe::LogLevel::DEBUG)
+
+#define EUTERPE_LOG_INFO(logger) EUTERPE_LOG_LEVEL(logger, euterpe::LogLevel::INFO)
+
+#define EUTERPE_LOG_WARN(logger) EUTERPE_LOG_LEVEL(logger, euterpe::LogLevel::WARN)
+
+#define EUTERPE_LOG_ERROR(logger) EUTERPE_LOG_LEVEL(logger, euterpe::LogLevel::ERROR)
+
+#define EUTERPE_LOG_FATAL(logger) EUTERPE_LOG_LEVEL(logger, euterpe::LogLevel::FATAL)
+
 namespace euterpe {
 
     class Logger;
@@ -52,6 +68,7 @@ namespace euterpe {
                  ,uint32_t thread_id, uint32_t fiber_id, uint64_t time
                  ,const std::string& thread_name);
 
+        ~LogEvent();
 
         //返回文件名
         const char* getFile() const { return m_file;}
@@ -220,6 +237,15 @@ namespace euterpe {
         uint64_t m_lastTime = 0;
     };
 
+    class LogEventWrap{
+    public:
+        LogEventWrap(LogEvent::ptr e);
+        ~LogEventWrap();
+        std::stringstream& getSS();
+        LogEvent::ptr get_event(){return m_event;};
+    private:
+        LogEvent::ptr m_event;
+    };
 }
 
 #endif

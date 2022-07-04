@@ -4,6 +4,10 @@
 CMakeFiles/Euterpe.dir/src/log.cpp.o: \
  ../src/log.cpp \
  ../src/log.h
+CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o: \
+ ../src/utils/utils.cpp \
+ ../src/utils/utils.h
 CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: \
  ../src/log.h \
+ ../src/utils/utils.h \
  ../tests/log_test.cpp

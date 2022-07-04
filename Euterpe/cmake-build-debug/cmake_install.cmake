@@ -1,4 +1,4 @@
-# Install script for directory: /Users/whz/learning/Cpp-Server-framework/euterpe
+# Install script for directory: /Users/whz/learning/Cpp-Server-framework/Euterpe
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/whz/learning/Cpp-Server-framework/euterpe/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

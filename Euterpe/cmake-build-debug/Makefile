@@ -57,10 +57,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/whz/learning/Cpp-Server-framework/euterpe
+CMAKE_SOURCE_DIR = /Users/whz/learning/Cpp-Server-framework/Euterpe
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/whz/learning/Cpp-Server-framework/euterpe/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whz/learning/Cpp-Server-framework/euterpe/cmake-build-debug/CMakeFiles /Users/whz/learning/Cpp-Server-framework/euterpe/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles /Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whz/learning/Cpp-Server-framework/euterpe/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -153,6 +153,30 @@ src/log.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/log.cpp.s
 .PHONY : src/log.cpp.s
 
+src/utils/utils.o: src/utils/utils.cpp.o
+.PHONY : src/utils/utils.o
+
+# target to build an object file
+src/utils/utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o
+.PHONY : src/utils/utils.cpp.o
+
+src/utils/utils.i: src/utils/utils.cpp.i
+.PHONY : src/utils/utils.i
+
+# target to preprocess a source file
+src/utils/utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/utils/utils.cpp.i
+.PHONY : src/utils/utils.cpp.i
+
+src/utils/utils.s: src/utils/utils.cpp.s
+.PHONY : src/utils/utils.s
+
+# target to generate assembly for a file
+src/utils/utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/utils/utils.cpp.s
+.PHONY : src/utils/utils.cpp.s
+
 tests/log_test.o: tests/log_test.cpp.o
 .PHONY : tests/log_test.o
 
@@ -189,6 +213,9 @@ help:
 	@echo "... src/log.o"
 	@echo "... src/log.i"
 	@echo "... src/log.s"
+	@echo "... src/utils/utils.o"
+	@echo "... src/utils/utils.i"
+	@echo "... src/utils/utils.s"
 	@echo "... tests/log_test.o"
 	@echo "... tests/log_test.i"
 	@echo "... tests/log_test.s"

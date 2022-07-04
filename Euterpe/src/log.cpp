@@ -9,7 +9,6 @@
 #include <time.h>
 #include "util.h"
 
-
 namespace euterpe {
 
     /// 用于输出level的字符串
@@ -52,6 +51,8 @@ return LogLevel::level; \
 #undef XX
     }
 
+    LogEvent::~LogEvent() {}
+
     /// 用于记录log event的内容(中发生了什么记录在m_ss中)
     void LogEvent::format(const char* fmt, ...) {
         va_list al;
@@ -69,6 +70,18 @@ return LogLevel::level; \
             free(buf);
         }
     }
+
+    LogEventWrap::LogEventWrap(LogEvent::ptr e):m_event(e){
+
+    };
+
+    LogEventWrap::~LogEventWrap(){
+        m_event->getLogger()->log(m_event->getLevel(),m_event);
+    };
+
+    std::stringstream& LogEventWrap::getSS(){
+        return m_event->getSS();
+    };
 
     /// 修改LogAppender中的格式
     /// 并且返回是否有被修改
@@ -211,7 +224,7 @@ return LogLevel::level; \
         std::string m_string;
     };
     ////////////////////////////////////////////////////////////////
-    //////////////////////////////结束 //// /////////////////////////
+    //////////////////////////////结束 //////////////////////////////
     ////////////////////////////////////////////////////////////////
 
     /// logEvent的构造函数
