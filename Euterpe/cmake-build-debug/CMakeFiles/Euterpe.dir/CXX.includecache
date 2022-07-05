@@ -6,7 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/Users/whz/learning/Cpp-Server-framework/Euterpe/src/log.h
+/Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.cpp
+log.h
+/Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.h
+map
+-
+iostream
+-
+functional
+-
+time.h
+-
+util.h
+/Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/util.h
+
+/Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.h
 string
 -
 stdint.h
@@ -25,8 +39,14 @@ stdarg.h
 -
 map
 -
-util.h
-/Users/whz/learning/Cpp-Server-framework/Euterpe/src/util.h
+../utils/utils.h
+/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/utils.h
+../utils/singleton.h
+/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/singleton.h
+
+/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/singleton.h
+memory
+-
 
 /Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/utils.h
 pthread.h
@@ -43,6 +63,6 @@ vector
 -
 ../src/utils/utils.h
 /Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/utils.h
-../src/log.h
-/Users/whz/learning/Cpp-Server-framework/Euterpe/src/log.h
+../src/Log/log.h
+/Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.h
 

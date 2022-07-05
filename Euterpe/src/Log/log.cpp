@@ -483,4 +483,18 @@ return LogLevel::level; \
             }
         }
     }
+
+    LoggerManager::LoggerManager(){
+        m_root.reset(new Logger);
+        m_root->addAppender(LogAppender::ptr(new StdoutLogAppender()));
+    }
+
+    Logger::ptr LoggerManager::getLogger(const std::string& name){
+        auto it = m_logger.find(name);
+        return it == m_logger.end()?m_root:it->second;
+    };
+
+    void LoggerManager::init(){
+
+    };
 }

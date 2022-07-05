@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "../src/utils/utils.h"
-#include "../src/log.h"
+#include "../src/Log/log.h"
 
 int test_base_cout_put(){
     euterpe::Logger::ptr logger(new euterpe::Logger);
@@ -20,9 +20,21 @@ void test_macro_log_wrapper(){
     euterpe::Logger::ptr logger(new euterpe::Logger);
     logger->addAppender(euterpe::LogAppender::ptr(new euterpe::StdoutLogAppender));
     EUTERPE_LOG_ERROR(logger)<<"1234";
-
 }
 
-int main() {
-    test_macro_log_wrapper();
+void test_fmt_out_file(){
+    euterpe::Logger::ptr logger(new euterpe::Logger);
+    euterpe::FileLogAppender::ptr file_appender(new euterpe::FileLogAppender("/Users/whz/learning/Cpp-Server-framework/Euterpe/tests/log.txt"));
+    logger->addAppender(file_appender);
+    EUTERPE_LOG_DEBUG(logger)<<"1234";
+    EUTERPE_LOG_FMT_ERROR(logger,"test %s","helo");
+};
+
+void test_manager(){
+    auto l = euterpe::LoggerMgr::GetInstance()->getLogger("xx");
+    EUTERPE_LOG_DEBUG(l) << "loggernot find";
 }
+
+//int main() {
+//   test_manager();
+//}

@@ -79,18 +79,18 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Euterpe.dir/tests/log_test.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whz/learning/Cpp-Server-framework/Euterpe/tests/log_test.cpp -o CMakeFiles/Euterpe.dir/tests/log_test.cpp.s
 
-CMakeFiles/Euterpe.dir/src/log.cpp.o: CMakeFiles/Euterpe.dir/flags.make
-CMakeFiles/Euterpe.dir/src/log.cpp.o: ../src/log.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Euterpe.dir/src/log.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Euterpe.dir/src/log.cpp.o -c /Users/whz/learning/Cpp-Server-framework/Euterpe/src/log.cpp
+CMakeFiles/Euterpe.dir/src/Log/log.cpp.o: CMakeFiles/Euterpe.dir/flags.make
+CMakeFiles/Euterpe.dir/src/Log/log.cpp.o: ../src/Log/log.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Euterpe.dir/src/Log/log.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Euterpe.dir/src/Log/log.cpp.o -c /Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.cpp
 
-CMakeFiles/Euterpe.dir/src/log.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Euterpe.dir/src/log.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whz/learning/Cpp-Server-framework/Euterpe/src/log.cpp > CMakeFiles/Euterpe.dir/src/log.cpp.i
+CMakeFiles/Euterpe.dir/src/Log/log.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Euterpe.dir/src/Log/log.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.cpp > CMakeFiles/Euterpe.dir/src/Log/log.cpp.i
 
-CMakeFiles/Euterpe.dir/src/log.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Euterpe.dir/src/log.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whz/learning/Cpp-Server-framework/Euterpe/src/log.cpp -o CMakeFiles/Euterpe.dir/src/log.cpp.s
+CMakeFiles/Euterpe.dir/src/Log/log.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Euterpe.dir/src/Log/log.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.cpp -o CMakeFiles/Euterpe.dir/src/Log/log.cpp.s
 
 CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o: CMakeFiles/Euterpe.dir/flags.make
 CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o: ../src/utils/utils.cpp
@@ -108,14 +108,14 @@ CMakeFiles/Euterpe.dir/src/utils/utils.cpp.s: cmake_force
 # Object files for target Euterpe
 Euterpe_OBJECTS = \
 "CMakeFiles/Euterpe.dir/tests/log_test.cpp.o" \
-"CMakeFiles/Euterpe.dir/src/log.cpp.o" \
+"CMakeFiles/Euterpe.dir/src/Log/log.cpp.o" \
 "CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o"
 
 # External object files for target Euterpe
 Euterpe_EXTERNAL_OBJECTS =
 
 Euterpe: CMakeFiles/Euterpe.dir/tests/log_test.cpp.o
-Euterpe: CMakeFiles/Euterpe.dir/src/log.cpp.o
+Euterpe: CMakeFiles/Euterpe.dir/src/Log/log.cpp.o
 Euterpe: CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o
 Euterpe: CMakeFiles/Euterpe.dir/build.make
 Euterpe: CMakeFiles/Euterpe.dir/link.txt

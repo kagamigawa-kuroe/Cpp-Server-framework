@@ -14,7 +14,8 @@
 #include <vector>
 #include <stdarg.h>
 #include <map>
-#include "util.h"
+#include "../utils/utils.h"
+#include "../utils/singleton.h"
 
 #define EUTERPE_LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
@@ -31,6 +32,23 @@
 #define EUTERPE_LOG_ERROR(logger) EUTERPE_LOG_LEVEL(logger, euterpe::LogLevel::ERROR)
 
 #define EUTERPE_LOG_FATAL(logger) EUTERPE_LOG_LEVEL(logger, euterpe::LogLevel::FATAL)
+
+#define EUTERPE_LOG_FMT_LEVEL(logger, level, fmt, ...) \
+if(logger->getLevel() <= level) \
+    euterpe::LogEventWrap(euterpe::LogEvent::ptr(new euterpe::LogEvent(logger, level, \
+    __FILE__, __LINE__, 0, euterpe::GetThreadId(),\
+    euterpe::GetFiberId(), time(0), "test"))).getEvent()->format(fmt, __VA_ARGS__)
+
+#define EUTERPE_LOG_FMT_DEBUG(logger, fmt, ...) EUTERPE_LOG_FMT_LEVEL(logger, euterpe::LogLevel::DEBUG, fmt, __VA_ARGS__)
+
+#define EUTERPE_LOG_FMT_INFO(logger, fmt, ...)  EUTERPE_LOG_FMT_LEVEL(logger, euterpe::LogLevel::INFO, fmt, __VA_ARGS__)
+
+#define EUTERPE_LOG_FMT_WARN(logger, fmt, ...)  EUTERPE_LOG_FMT_LEVEL(logger, euterpe::LogLevel::WARN, fmt, __VA_ARGS__)
+
+#define EUTERPE_LOG_FMT_ERROR(logger, fmt, ...) EUTERPE_LOG_FMT_LEVEL(logger, euterpe::LogLevel::ERROR, fmt, __VA_ARGS__)
+
+#define EUTERPE_LOG_FMT_FATAL(logger, fmt, ...) EUTERPE_LOG_FMT_LEVEL(logger, euterpe::LogLevel::FATAL, fmt, __VA_ARGS__)
+
 
 namespace euterpe {
 
@@ -242,10 +260,22 @@ namespace euterpe {
         LogEventWrap(LogEvent::ptr e);
         ~LogEventWrap();
         std::stringstream& getSS();
-        LogEvent::ptr get_event(){return m_event;};
+        LogEvent::ptr getEvent(){return m_event;};
     private:
         LogEvent::ptr m_event;
     };
+
+    class LoggerManager{
+    public:
+        LoggerManager();
+        Logger::ptr getLogger(const std::string& name);
+        void init();
+    private:
+        std::map<std::string,Logger::ptr> m_logger;
+        Logger::ptr m_root;
+
+    };
+    typedef euterpe::Singleton<LoggerManager> LoggerMgr;
 }
 
 #endif

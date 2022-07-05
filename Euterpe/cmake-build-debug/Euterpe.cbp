@@ -78,10 +78,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/log.cpp">
+		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.cpp">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/log.h">
+		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.h">
+			<Option target="Euterpe"/>
+		</Unit>
+		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/singleton.h">
 			<Option target="Euterpe"/>
 		</Unit>
 		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/utils.cpp">

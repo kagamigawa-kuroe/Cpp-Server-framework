@@ -129,29 +129,29 @@ Euterpe/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/build
 .PHONY : Euterpe/fast
 
-src/log.o: src/log.cpp.o
-.PHONY : src/log.o
+src/Log/log.o: src/Log/log.cpp.o
+.PHONY : src/Log/log.o
 
 # target to build an object file
-src/log.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/log.cpp.o
-.PHONY : src/log.cpp.o
+src/Log/log.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/Log/log.cpp.o
+.PHONY : src/Log/log.cpp.o
 
-src/log.i: src/log.cpp.i
-.PHONY : src/log.i
+src/Log/log.i: src/Log/log.cpp.i
+.PHONY : src/Log/log.i
 
 # target to preprocess a source file
-src/log.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/log.cpp.i
-.PHONY : src/log.cpp.i
+src/Log/log.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/Log/log.cpp.i
+.PHONY : src/Log/log.cpp.i
 
-src/log.s: src/log.cpp.s
-.PHONY : src/log.s
+src/Log/log.s: src/Log/log.cpp.s
+.PHONY : src/Log/log.s
 
 # target to generate assembly for a file
-src/log.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/log.cpp.s
-.PHONY : src/log.cpp.s
+src/Log/log.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/Log/log.cpp.s
+.PHONY : src/Log/log.cpp.s
 
 src/utils/utils.o: src/utils/utils.cpp.o
 .PHONY : src/utils/utils.o
@@ -210,9 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Euterpe"
-	@echo "... src/log.o"
-	@echo "... src/log.i"
-	@echo "... src/log.s"
+	@echo "... src/Log/log.o"
+	@echo "... src/Log/log.i"
+	@echo "... src/Log/log.s"
 	@echo "... src/utils/utils.o"
 	@echo "... src/utils/utils.i"
 	@echo "... src/utils/utils.s"
