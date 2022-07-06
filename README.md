@@ -34,13 +34,15 @@
 
 IDEA Clion+vim
 
-平时写写就用vim 由于不太会Cmake 调试还是交给IDE吧
+平时写写就用vim 由于不太会gbd 调试还是交给IDE吧
 
 ---
 
 #### 目前项目结构
 
-Src - 源码
+Src 
+    -- log 日志框架
+    -- utils 工具类
 
 Bin - 可以执行文件
 
