@@ -2,6 +2,7 @@
 #include <vector>
 #include "../src/utils/utils.h"
 #include "../src/Log/log.h"
+#include "../src/config/config.h"
 
 int test_base_cout_put(){
     euterpe::Logger::ptr logger(new euterpe::Logger);
@@ -33,8 +34,11 @@ void test_fmt_out_file(){
 void test_manager(){
     auto l = euterpe::LoggerMgr::GetInstance()->getLogger("xx");
     EUTERPE_LOG_DEBUG(l) << "loggernot find";
+    auto l2 = EUTERPE_LOG_ROOT();
+    EUTERPE_LOG_DEBUG(l2)<<"1234";
 }
 
 //int main() {
 //   test_manager();
+//
 //}

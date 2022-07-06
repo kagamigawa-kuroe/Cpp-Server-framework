@@ -9,13 +9,16 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.cpp" "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir/src/Log/log.cpp.o"
+  "/Users/whz/learning/Cpp-Server-framework/Euterpe/src/config/config.cpp" "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir/src/config/config.cpp.o"
   "/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/utils.cpp" "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o"
+  "/Users/whz/learning/Cpp-Server-framework/Euterpe/tests/config_test.cpp" "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir/tests/config_test.cpp.o"
   "/Users/whz/learning/Cpp-Server-framework/Euterpe/tests/log_test.cpp" "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir/tests/log_test.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/opt/homebrew/include"
   )
 
 # The set of dependency files which are needed:

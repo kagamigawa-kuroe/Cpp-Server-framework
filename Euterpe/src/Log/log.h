@@ -49,6 +49,7 @@ if(logger->getLevel() <= level) \
 
 #define EUTERPE_LOG_FMT_FATAL(logger, fmt, ...) EUTERPE_LOG_FMT_LEVEL(logger, euterpe::LogLevel::FATAL, fmt, __VA_ARGS__)
 
+#define EUTERPE_LOG_ROOT() euterpe::LoggerMgr::GetInstance()->getRoot()
 
 namespace euterpe {
 
@@ -270,6 +271,7 @@ namespace euterpe {
         LoggerManager();
         Logger::ptr getLogger(const std::string& name);
         void init();
+        Logger::ptr getRoot() const { return m_root ;};
     private:
         std::map<std::string,Logger::ptr> m_logger;
         Logger::ptr m_root;

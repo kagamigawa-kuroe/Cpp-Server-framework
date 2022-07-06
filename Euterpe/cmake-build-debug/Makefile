@@ -153,6 +153,30 @@ src/Log/log.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/Log/log.cpp.s
 .PHONY : src/Log/log.cpp.s
 
+src/config/config.o: src/config/config.cpp.o
+.PHONY : src/config/config.o
+
+# target to build an object file
+src/config/config.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/config/config.cpp.o
+.PHONY : src/config/config.cpp.o
+
+src/config/config.i: src/config/config.cpp.i
+.PHONY : src/config/config.i
+
+# target to preprocess a source file
+src/config/config.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/config/config.cpp.i
+.PHONY : src/config/config.cpp.i
+
+src/config/config.s: src/config/config.cpp.s
+.PHONY : src/config/config.s
+
+# target to generate assembly for a file
+src/config/config.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/config/config.cpp.s
+.PHONY : src/config/config.cpp.s
+
 src/utils/utils.o: src/utils/utils.cpp.o
 .PHONY : src/utils/utils.o
 
@@ -176,6 +200,30 @@ src/utils/utils.s: src/utils/utils.cpp.s
 src/utils/utils.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/utils/utils.cpp.s
 .PHONY : src/utils/utils.cpp.s
+
+tests/config_test.o: tests/config_test.cpp.o
+.PHONY : tests/config_test.o
+
+# target to build an object file
+tests/config_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/tests/config_test.cpp.o
+.PHONY : tests/config_test.cpp.o
+
+tests/config_test.i: tests/config_test.cpp.i
+.PHONY : tests/config_test.i
+
+# target to preprocess a source file
+tests/config_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/tests/config_test.cpp.i
+.PHONY : tests/config_test.cpp.i
+
+tests/config_test.s: tests/config_test.cpp.s
+.PHONY : tests/config_test.s
+
+# target to generate assembly for a file
+tests/config_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/tests/config_test.cpp.s
+.PHONY : tests/config_test.cpp.s
 
 tests/log_test.o: tests/log_test.cpp.o
 .PHONY : tests/log_test.o
@@ -213,9 +261,15 @@ help:
 	@echo "... src/Log/log.o"
 	@echo "... src/Log/log.i"
 	@echo "... src/Log/log.s"
+	@echo "... src/config/config.o"
+	@echo "... src/config/config.i"
+	@echo "... src/config/config.s"
 	@echo "... src/utils/utils.o"
 	@echo "... src/utils/utils.i"
 	@echo "... src/utils/utils.s"
+	@echo "... tests/config_test.o"
+	@echo "... tests/config_test.i"
+	@echo "... tests/config_test.s"
 	@echo "... tests/log_test.o"
 	@echo "... tests/log_test.i"
 	@echo "... tests/log_test.s"
