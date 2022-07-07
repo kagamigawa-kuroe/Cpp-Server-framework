@@ -148,6 +148,7 @@ Euterpe: CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o
 Euterpe: CMakeFiles/Euterpe.dir/tests/config_test.cpp.o
 Euterpe: CMakeFiles/Euterpe.dir/src/config/config.cpp.o
 Euterpe: CMakeFiles/Euterpe.dir/build.make
+Euterpe: /usr/local/lib/libyaml-cpp.dylib
 Euterpe: CMakeFiles/Euterpe.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Euterpe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Euterpe.dir/link.txt --verbose=$(VERBOSE)

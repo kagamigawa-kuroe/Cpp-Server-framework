@@ -13,6 +13,7 @@
 #include <boost/lexical_cast.hpp>
 #include "../Log/log.h"
 #include "../utils/utils.h"
+#include <yaml-cpp/yaml.h>
 
 namespace euterpe {
 
@@ -21,8 +22,14 @@ namespace euterpe {
     public:
         typedef std::shared_ptr<ConfigVarBase> ptr;
 
-        ConfigVarBase(const std::string &name, const std::string &description = "")
-                : m_name(name), m_description(description) {};
+        ConfigVarBase(const std::string& name, const std::string& description = "")
+        :m_name(name)
+        ,m_description(description) {
+            std::transform(m_name.begin(), m_name.end(), m_name.begin(), ::tolower);
+        }
+        /// OutputIt transform( InputIt first1, InputIt last1, OutputIt d_first,
+        ///                     UnaryOperation unary_op );
+        /// transform函数 从第一个参数开始 到第二个参数结束 统一进行第四个参数的操作 放入第三个参数中
 
         virtual ~ConfigVarBase() {};
 
@@ -127,6 +134,10 @@ namespace euterpe {
             }
             return std::dynamic_pointer_cast<ConfigVar<T> >(it->second);
         }
+
+        static void LoadFromYaml(const YAML::Node& root);
+
+        static ConfigVarBase::ptr LookupBase(const std::string& name);
 
     private:
         /// 在static方法中 用了一个static变量

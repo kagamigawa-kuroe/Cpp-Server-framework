@@ -51,6 +51,8 @@ if(logger->getLevel() <= level) \
 
 #define EUTERPE_LOG_ROOT() euterpe::LoggerMgr::GetInstance()->getRoot()
 
+#define EUTERPE_LOG_NAME(name) euterpe::LoggerMgr::GetInstance()->getLogger(name)
+
 namespace euterpe {
 
     class Logger;

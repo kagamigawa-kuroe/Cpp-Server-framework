@@ -3,6 +3,9 @@ project(Euterpe)
 
 set(CMAKE_CXX_STANDARD 20)
 
-include_directories("/opt/homebrew/include/")
+include_directories("/opt/homebrew/include")
+include_directories("/usr/local/include")
 
 add_executable(Euterpe tests/log_test.cpp src/Log/log.cpp src/Log/log.h src/utils/utils.h src/utils/utils.cpp src/utils/singleton.h src/config/config.h tests/config_test.cpp src/config/config.cpp)
+
+target_link_libraries(Euterpe /usr/local/lib/libyaml-cpp.dylib)

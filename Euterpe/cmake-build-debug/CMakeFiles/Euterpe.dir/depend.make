@@ -573,7 +573,38 @@ CMakeFiles/Euterpe.dir/src/config/config.cpp.o: \
  /opt/homebrew/include/boost/utility/binary.hpp \
  /opt/homebrew/include/boost/utility/enable_if.hpp \
  /opt/homebrew/include/boost/utility/identity_type.hpp \
- /opt/homebrew/include/boost/version.hpp
+ /opt/homebrew/include/boost/version.hpp \
+ /usr/local/include/yaml-cpp/binary.h \
+ /usr/local/include/yaml-cpp/dll.h \
+ /usr/local/include/yaml-cpp/emitter.h \
+ /usr/local/include/yaml-cpp/emitterdef.h \
+ /usr/local/include/yaml-cpp/emittermanip.h \
+ /usr/local/include/yaml-cpp/emitterstyle.h \
+ /usr/local/include/yaml-cpp/exceptions.h \
+ /usr/local/include/yaml-cpp/mark.h \
+ /usr/local/include/yaml-cpp/node/convert.h \
+ /usr/local/include/yaml-cpp/node/detail/impl.h \
+ /usr/local/include/yaml-cpp/node/detail/iterator.h \
+ /usr/local/include/yaml-cpp/node/detail/iterator_fwd.h \
+ /usr/local/include/yaml-cpp/node/detail/memory.h \
+ /usr/local/include/yaml-cpp/node/detail/node.h \
+ /usr/local/include/yaml-cpp/node/detail/node_data.h \
+ /usr/local/include/yaml-cpp/node/detail/node_iterator.h \
+ /usr/local/include/yaml-cpp/node/detail/node_ref.h \
+ /usr/local/include/yaml-cpp/node/emit.h \
+ /usr/local/include/yaml-cpp/node/impl.h \
+ /usr/local/include/yaml-cpp/node/iterator.h \
+ /usr/local/include/yaml-cpp/node/node.h \
+ /usr/local/include/yaml-cpp/node/parse.h \
+ /usr/local/include/yaml-cpp/node/ptr.h \
+ /usr/local/include/yaml-cpp/node/type.h \
+ /usr/local/include/yaml-cpp/noexcept.h \
+ /usr/local/include/yaml-cpp/null.h \
+ /usr/local/include/yaml-cpp/ostream_wrapper.h \
+ /usr/local/include/yaml-cpp/parser.h \
+ /usr/local/include/yaml-cpp/stlemitter.h \
+ /usr/local/include/yaml-cpp/traits.h \
+ /usr/local/include/yaml-cpp/yaml.h
 CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o: \
  ../src/utils/utils.cpp \
  ../src/utils/utils.h
@@ -1144,7 +1175,38 @@ CMakeFiles/Euterpe.dir/tests/config_test.cpp.o: \
  /opt/homebrew/include/boost/utility/binary.hpp \
  /opt/homebrew/include/boost/utility/enable_if.hpp \
  /opt/homebrew/include/boost/utility/identity_type.hpp \
- /opt/homebrew/include/boost/version.hpp
+ /opt/homebrew/include/boost/version.hpp \
+ /usr/local/include/yaml-cpp/binary.h \
+ /usr/local/include/yaml-cpp/dll.h \
+ /usr/local/include/yaml-cpp/emitter.h \
+ /usr/local/include/yaml-cpp/emitterdef.h \
+ /usr/local/include/yaml-cpp/emittermanip.h \
+ /usr/local/include/yaml-cpp/emitterstyle.h \
+ /usr/local/include/yaml-cpp/exceptions.h \
+ /usr/local/include/yaml-cpp/mark.h \
+ /usr/local/include/yaml-cpp/node/convert.h \
+ /usr/local/include/yaml-cpp/node/detail/impl.h \
+ /usr/local/include/yaml-cpp/node/detail/iterator.h \
+ /usr/local/include/yaml-cpp/node/detail/iterator_fwd.h \
+ /usr/local/include/yaml-cpp/node/detail/memory.h \
+ /usr/local/include/yaml-cpp/node/detail/node.h \
+ /usr/local/include/yaml-cpp/node/detail/node_data.h \
+ /usr/local/include/yaml-cpp/node/detail/node_iterator.h \
+ /usr/local/include/yaml-cpp/node/detail/node_ref.h \
+ /usr/local/include/yaml-cpp/node/emit.h \
+ /usr/local/include/yaml-cpp/node/impl.h \
+ /usr/local/include/yaml-cpp/node/iterator.h \
+ /usr/local/include/yaml-cpp/node/node.h \
+ /usr/local/include/yaml-cpp/node/parse.h \
+ /usr/local/include/yaml-cpp/node/ptr.h \
+ /usr/local/include/yaml-cpp/node/type.h \
+ /usr/local/include/yaml-cpp/noexcept.h \
+ /usr/local/include/yaml-cpp/null.h \
+ /usr/local/include/yaml-cpp/ostream_wrapper.h \
+ /usr/local/include/yaml-cpp/parser.h \
+ /usr/local/include/yaml-cpp/stlemitter.h \
+ /usr/local/include/yaml-cpp/traits.h \
+ /usr/local/include/yaml-cpp/yaml.h
 CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: \
  ../src/Log/log.h \
  ../src/config/config.h \
@@ -1712,4 +1774,35 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: \
  /opt/homebrew/include/boost/utility/binary.hpp \
  /opt/homebrew/include/boost/utility/enable_if.hpp \
  /opt/homebrew/include/boost/utility/identity_type.hpp \
- /opt/homebrew/include/boost/version.hpp
+ /opt/homebrew/include/boost/version.hpp \
+ /usr/local/include/yaml-cpp/binary.h \
+ /usr/local/include/yaml-cpp/dll.h \
+ /usr/local/include/yaml-cpp/emitter.h \
+ /usr/local/include/yaml-cpp/emitterdef.h \
+ /usr/local/include/yaml-cpp/emittermanip.h \
+ /usr/local/include/yaml-cpp/emitterstyle.h \
+ /usr/local/include/yaml-cpp/exceptions.h \
+ /usr/local/include/yaml-cpp/mark.h \
+ /usr/local/include/yaml-cpp/node/convert.h \
+ /usr/local/include/yaml-cpp/node/detail/impl.h \
+ /usr/local/include/yaml-cpp/node/detail/iterator.h \
+ /usr/local/include/yaml-cpp/node/detail/iterator_fwd.h \
+ /usr/local/include/yaml-cpp/node/detail/memory.h \
+ /usr/local/include/yaml-cpp/node/detail/node.h \
+ /usr/local/include/yaml-cpp/node/detail/node_data.h \
+ /usr/local/include/yaml-cpp/node/detail/node_iterator.h \
+ /usr/local/include/yaml-cpp/node/detail/node_ref.h \
+ /usr/local/include/yaml-cpp/node/emit.h \
+ /usr/local/include/yaml-cpp/node/impl.h \
+ /usr/local/include/yaml-cpp/node/iterator.h \
+ /usr/local/include/yaml-cpp/node/node.h \
+ /usr/local/include/yaml-cpp/node/parse.h \
+ /usr/local/include/yaml-cpp/node/ptr.h \
+ /usr/local/include/yaml-cpp/node/type.h \
+ /usr/local/include/yaml-cpp/noexcept.h \
+ /usr/local/include/yaml-cpp/null.h \
+ /usr/local/include/yaml-cpp/ostream_wrapper.h \
+ /usr/local/include/yaml-cpp/parser.h \
+ /usr/local/include/yaml-cpp/stlemitter.h \
+ /usr/local/include/yaml-cpp/traits.h \
+ /usr/local/include/yaml-cpp/yaml.h
