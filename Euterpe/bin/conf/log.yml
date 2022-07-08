@@ -12,5 +12,9 @@ logs:
         file: /apps/logs/sylar/system.txt
       - type: StdoutLogAppender
 system:
-  - port: 8080
+    port: 8081
     name: nginx
+    v1:
+      - 10
+      - 30
+      - 50

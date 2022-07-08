@@ -14,6 +14,7 @@
 #include "../Log/log.h"
 #include "../utils/utils.h"
 #include <yaml-cpp/yaml.h>
+#include <unordered_set>
 
 namespace euterpe {
 
@@ -48,8 +49,213 @@ namespace euterpe {
         std::string m_description;
     };
 
-    //配置变量 T类型
+    /// 基础类型的转换
+    template<class F, class T>
+    class LexicalCast {
+    public:
+        /// 重载()运算符
+        /// 用法 例如一个LexicalCast的对象A
+        /// 就可以直接A(V)
+        /// 就会进入这个函数
+        T operator()(const F &v) {
+            return boost::lexical_cast<T>(v);
+        }
+    };
+
+    /// 除了基础类意外的所有其他类的模版特化
     template<class T>
+            class LexicalCast<std::string, std::vector<T> > {
+            public:
+                std::vector<T> operator()(const std::string& v) {
+                    YAML::Node node = YAML::Load(v);
+                    typename std::vector<T> vec;
+                    std::stringstream ss;
+                    for(size_t i = 0; i < node.size(); ++i) {
+                        ss.str("");
+                        ss << node[i];
+                        vec.push_back(LexicalCast<std::string, T>()(ss.str()));
+                    }
+                    return vec;
+                }
+            };
+
+    template<class T>
+            class LexicalCast<std::vector<T>, std::string> {
+            public:
+                std::string operator()(const std::vector<T>& v) {
+                    YAML::Node node(YAML::NodeType::Sequence);
+                    for(auto& i : v) {
+                        node.push_back(YAML::Load(LexicalCast<T, std::string>()(i)));
+                    }
+                    std::stringstream ss;
+                    ss << node;
+                    return ss.str();
+                }
+            };
+
+    template<class T>
+            class LexicalCast<std::string, std::list<T> > {
+            public:
+                std::list<T> operator()(const std::string& v) {
+                    YAML::Node node = YAML::Load(v);
+                    typename std::list<T> vec;
+                    std::stringstream ss;
+                    for(size_t i = 0; i < node.size(); ++i) {
+                        ss.str("");
+                        ss << node[i];
+                        vec.push_back(LexicalCast<std::string, T>()(ss.str()));
+                    }
+                    return vec;
+                }
+            };
+
+    template<class T>
+            class LexicalCast<std::list<T>, std::string> {
+            public:
+                std::string operator()(const std::list<T>& v) {
+                    YAML::Node node(YAML::NodeType::Sequence);
+                    for(auto& i : v) {
+                        node.push_back(YAML::Load(LexicalCast<T, std::string>()(i)));
+                    }
+                    std::stringstream ss;
+                    ss << node;
+                    return ss.str();
+                }
+            };
+
+    template<class T>
+            class LexicalCast<std::string, std::set<T> > {
+            public:
+                std::set<T> operator()(const std::string& v) {
+                    YAML::Node node = YAML::Load(v);
+                    typename std::set<T> vec;
+                    std::stringstream ss;
+                    for(size_t i = 0; i < node.size(); ++i) {
+                        ss.str("");
+                        ss << node[i];
+                        vec.insert(LexicalCast<std::string, T>()(ss.str()));
+                    }
+                    return vec;
+                }
+            };
+
+    template<class T>
+            class LexicalCast<std::set<T>, std::string> {
+            public:
+                std::string operator()(const std::set<T>& v) {
+                    YAML::Node node(YAML::NodeType::Sequence);
+                    for(auto& i : v) {
+                        node.push_back(YAML::Load(LexicalCast<T, std::string>()(i)));
+                    }
+                    std::stringstream ss;
+                    ss << node;
+                    return ss.str();
+                }
+            };
+
+    template<class T>
+            class LexicalCast<std::string, std::unordered_set<T>> {
+            public:
+                std::unordered_set<T> operator()(const std::string& v) {
+                    YAML::Node node = YAML::Load(v);
+                    typename std::unordered_set<T> vec;
+                    std::stringstream ss;
+                    for(size_t i = 0; i < node.size(); ++i) {
+                        ss.str("");
+                        ss << node[i];
+                        vec.insert(LexicalCast<std::string, T>()(ss.str()));
+                    }
+                    return vec;
+                }
+            };
+
+    template<class T>
+            class LexicalCast<std::unordered_set<T>, std::string> {
+            public:
+                std::string operator()(const std::unordered_set<T>& v) {
+                    YAML::Node node(YAML::NodeType::Sequence);
+                    for(auto& i : v) {
+                        node.push_back(YAML::Load(LexicalCast<T, std::string>()(i)));
+                    }
+                    std::stringstream ss;
+                    ss << node;
+                    return ss.str();
+                }
+            };
+
+    template<class T>
+            class LexicalCast<std::string, std::map<std::string, T> > {
+            public:
+                std::map<std::string, T> operator()(const std::string& v) {
+                    YAML::Node node = YAML::Load(v);
+                    typename std::map<std::string, T> vec;
+                    std::stringstream ss;
+                    for(auto it = node.begin();
+                    it != node.end(); ++it) {
+                        ss.str("");
+                        ss << it->second;
+                        vec.insert(std::make_pair(it->first.Scalar(),
+                                                  LexicalCast<std::string, T>()(ss.str())));
+                    }
+                    return vec;
+                }
+            };
+
+    template<class T>
+            class LexicalCast<std::map<std::string, T>, std::string> {
+            public:
+                std::string operator()(const std::map<std::string, T>& v) {
+                    YAML::Node node(YAML::NodeType::Map);
+                    for(auto& i : v) {
+                        node[i.first] = YAML::Load(LexicalCast<T, std::string>()(i.second));
+                    }
+                    std::stringstream ss;
+                    ss << node;
+                    return ss.str();
+                }
+            };
+
+    template<class T>
+            class LexicalCast<std::string, std::unordered_map<std::string, T> > {
+            public:
+                std::unordered_map<std::string, T> operator()(const std::string& v) {
+                    YAML::Node node = YAML::Load(v);
+                    typename std::unordered_map<std::string, T> vec;
+                    std::stringstream ss;
+                    for(auto it = node.begin();
+                    it != node.end(); ++it) {
+                        ss.str("");
+                        ss << it->second;
+                        vec.insert(std::make_pair(it->first.Scalar(),
+                                                  LexicalCast<std::string, T>()(ss.str())));
+                    }
+                    return vec;
+                }
+            };
+
+    template<class T>
+            class LexicalCast<std::unordered_map<std::string, T>, std::string> {
+            public:
+                std::string operator()(const std::unordered_map<std::string, T>& v) {
+                    YAML::Node node(YAML::NodeType::Map);
+                    for(auto& i : v) {
+                        node[i.first] = YAML::Load(LexicalCast<T, std::string>()(i.second));
+                    }
+                    std::stringstream ss;
+                    ss << node;
+                    return ss.str();
+                }
+            };
+
+    /// 配置变量 T类型
+    /// boost中的LexicalCast只支持简单类型tostring
+    /// 如map vector set list这种 都没法tostring
+    /// 为了让任意yaml文件中的类型都能进行输出
+    /// 我们直接提供两个类 Fromstr和tostr
+    /// 在构造ConfigVar变量的时候就传入这两个类
+    /// 可以针对不同的T类型 有不同的输出
+    template<class T,class FromStr = LexicalCast<std::string, T>
+            ,class ToStr = LexicalCast<T, std::string>>
     class ConfigVar : public ConfigVarBase {
     public:
         typedef std::shared_ptr<ConfigVar> ptr;
@@ -58,7 +264,7 @@ namespace euterpe {
 
         std::string toString() override {
             try {
-                return boost::lexical_cast<std::string>(m_val);
+                return ToStr()(m_val);;
             } catch (std::exception &e) {
                 EUTERPE_LOG_ERROR(EUTERPE_LOG_ROOT()) << "ConfigVar::tostring exception"
                                                       << e.what() << "convert from " << typeid(m_val).name()
@@ -72,7 +278,7 @@ namespace euterpe {
 
         bool fromString(const std::string &val) override {
             try {
-                m_val = boost::lexical_cast<T>(val);
+                setValue(FromStr()(val));
             } catch (std::exception &e) {
                 EUTERPE_LOG_ERROR(EUTERPE_LOG_ROOT()) << "ConfigVar::tostring exception"
                                                       << e.what() << "convert from string to" << typeid(m_val).name();

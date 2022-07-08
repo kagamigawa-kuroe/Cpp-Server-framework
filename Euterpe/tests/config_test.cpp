@@ -18,7 +18,7 @@
 /// logs 为根变量 是一个数组
 /// 数组的第一个和第二个元素分别是一个map
 /// 然后每个元素的map都有 name level appenders 三个key
-/// name和level对应的value是纯良Scaler
+/// name和level对应的value是纯良Scaler–
 /// appeders又是一个数组
 /// 数组的第一个变量还是数组，有type和file两个类型
 /// 数组的第二个变量也是数组 只有一个变量是type
@@ -54,16 +54,23 @@ void base_test(){
 }
 
 void yaml_read_test(){
-    YAML::Node root = YAML::LoadFile("/Users/whz/learning/Cpp-Server-framework/Euterpe/bin/conf/log.yml");
-    print_yaml(root,0);
+    // YAML::Node root = YAML::LoadFile("/Users/whz/learning/Cpp-Server-framework/Euterpe/bin/conf/log.yml");
+    // print_yaml(root,0);
 }
 
-euterpe::ConfigVar<int>::ptr port = euterpe::Config::Lookup("port",(int)8080,"port");
-euterpe::ConfigVar<std::string>::ptr name = euterpe::Config::Lookup("name",std::string("tomcat"),"server");
+// euterpe::ConfigVar<int>::ptr port = euterpe::Config::Lookup("port",(int)8080,"port");
+// euterpe::ConfigVar<std::string>::ptr name = euterpe::Config::Lookup("name",std::string("tomcat"),"server");
 void yaml_read_test_2(){
+    std::vector<int> temp = {1,2,3};
+
+    euterpe::ConfigVar<int>::ptr port = euterpe::Config::Lookup("system.port",(int)8080,"port");
     std::cout<<"-----------------------------------------------------------"<<std::endl;
+
     EUTERPE_LOG_INFO(EUTERPE_LOG_ROOT()) << port->getValue();
-    EUTERPE_LOG_INFO(EUTERPE_LOG_ROOT()) << name->toString();
+    YAML::Node root1 = YAML::LoadFile("/Users/whz/learning/Cpp-Server-framework/Euterpe/bin/conf/log.yml");
+    euterpe::Config::LoadFromYaml(root1);
+
+    EUTERPE_LOG_INFO(EUTERPE_LOG_ROOT()) << port->getValue();
     std::cout<<"-----------------------------------------------------------"<<std::endl;
 }
 
