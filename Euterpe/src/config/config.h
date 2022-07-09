@@ -309,7 +309,8 @@ namespace euterpe {
                                                  const T &default_value, const std::string &description = "") {
             auto it = GetDatas().find(name);
             if (it != GetDatas().end()) {
-                auto tmp = std::dynamic_pointer_cast<ConfigVar<T> >(it->second);
+                /// 把一个对象转换成该对象类型的只能指针
+                auto tmp = std::dynamic_pointer_cast<ConfigVar<T>>(it->second);
                 if (tmp) {
                     EUTERPE_LOG_INFO(EUTERPE_LOG_ROOT()) << "Lookup name=" << name << " exists";
                     return tmp;
@@ -344,6 +345,10 @@ namespace euterpe {
         static void LoadFromYaml(const YAML::Node& root);
 
         static ConfigVarBase::ptr LookupBase(const std::string& name);
+
+        static void Visit(std::function<void(ConfigVarBase::ptr)> cb);
+
+        static void LoadFromConfDir(const std::string& path, bool force = false);
 
     private:
         /// 在static方法中 用了一个static变量

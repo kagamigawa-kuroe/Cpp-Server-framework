@@ -18,3 +18,9 @@ system:
       - 10
       - 30
       - 50
+    l1: [10,20,30]
+class:
+    person:
+        name: hongzhe
+        age: 22
+        sex: true

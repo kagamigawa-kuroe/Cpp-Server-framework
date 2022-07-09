@@ -24,6 +24,7 @@
 /// 要先把它写入config类中才行
 /// 使用Lookup函数创建一个ConfigVar到config类中 并且赋予默认值
 /// 然后再读取yaml配置文件
+
 namespace euterpe{
 
     static euterpe::Logger::ptr g_logger = EUTERPE_LOG_NAME("system");
@@ -75,4 +76,14 @@ namespace euterpe{
             }
         }
     }
+
+    void Config::Visit(std::function<void(ConfigVarBase::ptr)> cb) {
+        ConfigVarMap& m = GetDatas();
+        for(auto it = m.begin();
+        it != m.end(); ++it) {
+            cb(it->second);
+        }
+
+    }
+
 }
