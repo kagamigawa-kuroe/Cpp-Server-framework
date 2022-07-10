@@ -8,6 +8,7 @@
 #include <functional>
 #include <time.h>
 #include "util.h"
+#include "../config/config.h"
 
 namespace euterpe {
 
@@ -251,7 +252,6 @@ return LogLevel::level; \
     /// 修改logger中的格式
     void Logger::setFormatter(LogFormatter::ptr val) {
         m_formatter = val;
-
         for(auto& i : m_appenders) {
             if(!i->m_hasFormatter) {
                 i->m_formatter = m_formatter;
@@ -491,8 +491,148 @@ return LogLevel::level; \
 
     Logger::ptr LoggerManager::getLogger(const std::string& name){
         auto it = m_logger.find(name);
-        return it == m_logger.end()?m_root:it->second;
+        if(it != m_logger.end()) {
+            return it->second;
+        }
+
+        Logger::ptr logger(new Logger(name));
+        logger->m_root = m_root;
+        m_logger[name] = logger;
+        return logger;
     };
+
+    void Logger::clearAppenders() {
+        m_appenders.clear();
+    }
+
+    euterpe::ConfigVar<std::set<LogDefine> >::ptr g_log_defines =
+            euterpe::Config::Lookup("logs", std::set<LogDefine>(), "logs config");
+
+    struct LogIniter {
+        LogIniter() {
+            g_log_defines->addListener([](const std::set<LogDefine>& old_value,
+                    const std::set<LogDefine>& new_value){
+                EUTERPE_LOG_INFO(EUTERPE_LOG_ROOT()) << "on_logger_conf_changed";
+                for(auto& i : new_value) {
+                    auto it = old_value.find(i);
+                    euterpe::Logger::ptr logger;
+                    if(it == old_value.end()) {
+                        //新增logger
+
+                        //会去 loggermanager getlogger
+                        //更新其中logger的信息的值
+                        logger = EUTERPE_LOG_NAME(i.name);
+                    } else {
+                        if(!(i == *it)) {
+                            //修改的logger
+                            logger = EUTERPE_LOG_NAME(i.name);
+                        } else {
+                            continue;
+                        }
+                    }
+                    logger->setLevel(i.level);
+                    //std::cout << "** " << i.name << " level=" << i.level
+                    //<< "  " << logger << std::endl;
+                    if(!i.formatter.empty()) {
+                        logger->setFormatter(i.formatter);
+                    }
+
+                    logger->clearAppenders();
+                    for(auto& a : i.appenders) {
+                        euterpe::LogAppender::ptr ap;
+                        if(a.type == 1) {
+                            ap.reset(new FileLogAppender(a.file));
+                        } else if(a.type == 2) {
+                            ap.reset(new StdoutLogAppender);
+                        }
+                        ap->setLevel(a.level);
+                        if(!a.formatter.empty()) {
+                            LogFormatter::ptr fmt(new LogFormatter(a.formatter));
+                            if(!fmt->isError()) {
+                                ap->setFormatter(fmt);
+                            } else {
+                                std::cout << "log.name=" << i.name << " appender type=" << a.type
+                                << " formatter=" << a.formatter << " is invalid" << std::endl;
+                            }
+                        }
+                        logger->addAppender(ap);
+                    }
+                }
+
+                for(auto& i : old_value) {
+                    auto it = new_value.find(i);
+                    if(it == new_value.end()) {
+                        //删除logger
+                        auto logger = EUTERPE_LOG_NAME(i.name);
+                        logger->setLevel((LogLevel::Level)0);
+                        logger->clearAppenders();
+                    }
+                }
+            });
+        }
+    };
+
+    /// 在main函数之前执行 可以利用全局静态对象创建一个类 在该类的构造函数中写东西
+
+    static LogIniter __log_init;
+
+    std::string LoggerManager::toYamlString() {
+        YAML::Node node;
+        for(auto& i : m_logger) {
+            node.push_back(YAML::Load(i.second->toYamlString()));
+        }
+        std::stringstream ss;
+        ss << node;
+        return ss.str();
+    }
+
+    std::string Logger::toYamlString() {
+        YAML::Node node;
+        node["name"] = m_name;
+        if(m_level != LogLevel::UNKNOW) {
+            node["level"] = LogLevel::ToString(m_level);
+        }
+        if(m_formatter) {
+            node["formatter"] = m_formatter->getPattern();
+        }
+
+        for(auto& i : m_appenders) {
+            node["appenders"].push_back(YAML::Load(i->toYamlString()));
+        }
+        std::stringstream ss;
+        ss << node;
+        return ss.str();
+    }
+
+    std::string FileLogAppender::toYamlString() {
+        YAML::Node node;
+        node["type"] = "FileLogAppender";
+        node["file"] = m_filename;
+        if(m_level != LogLevel::UNKNOW) {
+            node["level"] = LogLevel::ToString(m_level);
+        }
+        if(m_hasFormatter && m_formatter) {
+            node["formatter"] = m_formatter->getPattern();
+        }
+        std::stringstream ss;
+        ss << node;
+        return ss.str();
+    }
+
+    std::string StdoutLogAppender::toYamlString() {
+        YAML::Node node;
+        node["type"] = "StdoutLogAppender";
+        if(m_level != LogLevel::UNKNOW) {
+            node["level"] = LogLevel::ToString(m_level);
+        }
+        if(m_hasFormatter && m_formatter) {
+            node["formatter"] = m_formatter->getPattern();
+        }
+        std::stringstream ss;
+        ss << node;
+        return ss.str();
+    }
+
 
     void LoggerManager::init(){
 

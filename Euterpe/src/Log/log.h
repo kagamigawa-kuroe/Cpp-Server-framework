@@ -17,6 +17,12 @@
 #include "../utils/utils.h"
 #include "../utils/singleton.h"
 
+/// 使用方法
+/// 创建一个logger类
+/// 为logger方法设置appender类
+/// 放进loggermgr中
+/// 调用get方法获取搭配logger 然后直接用宏EUTERPE_LOG_XX(logger) << "xxx"输出
+
 #define EUTERPE_LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
          euterpe::LogEventWrap(euterpe::LogEvent::ptr(new euterpe::LogEvent(logger, level, \
@@ -176,6 +182,7 @@ namespace euterpe {
     public:
         typedef std::shared_ptr<LogAppender> ptr;
         virtual ~LogAppender() {}
+        virtual std::string toYamlString() = 0;
         virtual void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) = 0;
 
         void setFormatter(LogFormatter::ptr val);
@@ -239,6 +246,7 @@ namespace euterpe {
     class StdoutLogAppender : public LogAppender {
     public:
         typedef std::shared_ptr<StdoutLogAppender> ptr;
+        virtual std::string toYamlString() override;
         void log(Logger::ptr logger, LogLevel::Level level, LogEvent::ptr event) override;
     };
 
@@ -246,8 +254,8 @@ namespace euterpe {
     public:
         typedef std::shared_ptr<FileLogAppender> ptr;
         FileLogAppender(const std::string& filename);
+        virtual std::string toYamlString() override;
         void log(Logger::ptr logger, LogLevel::Level level, LogEvent::ptr event) override;
-
         bool reopen();
     private:
         /// 文件路径
@@ -274,12 +282,50 @@ namespace euterpe {
         Logger::ptr getLogger(const std::string& name);
         void init();
         Logger::ptr getRoot() const { return m_root ;};
+        std::string toYamlString();
     private:
         std::map<std::string,Logger::ptr> m_logger;
         Logger::ptr m_root;
 
     };
+
     typedef euterpe::Singleton<LoggerManager> LoggerMgr;
+
+    struct LogAppenderDefine {
+        int type = 0; //1 File, 2 Stdout
+        LogLevel::Level level = LogLevel::UNKNOW;
+        std::string formatter;
+        std::string file;
+
+        bool operator==(const LogAppenderDefine& oth) const {
+            return type == oth.type
+            && level == oth.level
+            && formatter == oth.formatter
+            && file == oth.file;
+        }
+    };
+
+    struct LogDefine {
+        std::string name;
+        LogLevel::Level level = LogLevel::UNKNOW;
+        std::string formatter;
+        std::vector<LogAppenderDefine> appenders;
+
+        bool operator==(const LogDefine& oth) const {
+            return name == oth.name
+            && level == oth.level
+            && formatter == oth.formatter
+            && appenders == appenders;
+        }
+
+        bool operator<(const LogDefine& oth) const {
+            return name < oth.name;
+        }
+
+        bool isValid() const {
+            return !name.empty();
+        }
+    };
 }
 
 #endif

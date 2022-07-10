@@ -65,6 +65,11 @@ namespace euterpe{
             std::transform(key.begin(), key.end(), key.begin(), ::tolower);
             ConfigVarBase::ptr var = LookupBase(key);
 
+            /// 从yaml文件中读取的流程为
+            /// 从yaml文件中读到字符串
+            /// 然后调用fromstring函数 在调用fromstr转换类
+            /// 根据var中模版T的类型 将这个str转成你想要的类型
+            /// 不同类型都被模版特化了
             if(var) {
                 if(i.second.IsScalar()) {
                     var->fromString(i.second.Scalar());

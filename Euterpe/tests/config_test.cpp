@@ -8,6 +8,7 @@
 #include <yaml-cpp/yaml.h>
 #include <vector>
 #include <list>
+#include <set>
 
 /// 类型的0 1 2 3 4 分别对应
 /// Undefined, Null, Scaler, Sequence, Map
@@ -20,7 +21,7 @@
 /// logs 为根变量 是一个数组
 /// 数组的第一个和第二个元素分别是一个map
 /// 然后每个元素的map都有 name level appenders 三个key
-/// name和level对应的value是纯良Scaler–
+/// name和level对应的value是纯量scaler–
 /// appeders又是一个数组
 /// 数组的第一个变量还是数组，有type和file两个类型
 /// 数组的第二个变量也是数组 只有一个变量是type
@@ -102,10 +103,9 @@ namespace euterpe {
         }
     }
 
-    euterpe::ConfigVar<int>::ptr int_value_1 = euterpe::Config::Lookup("systemport",(int)8080,"ststemport");
-    void base_test(){
-        EUTERPE_LOG_INFO(EUTERPE_LOG_ROOT()) << int_value_1->getValue();
-    }
+// //   void base_test(){
+//        EUTERPE_LOG_INFO(EUTERPE_LOG_ROOT()) << int_value_1->getValue();
+//    }
 
     void yaml_read_test(){
         // YAML::Node root = YAML::LoadFile("/Users/whz/learning/Cpp-Server-framework/Euterpe/bin/conf/log.yml");
@@ -142,6 +142,15 @@ namespace euterpe {
         EUTERPE_LOG_INFO(EUTERPE_LOG_ROOT()) << "before: " << g_person->getValue().toString() << " - " << g_person->toString();
     }
 
+    void test(){
+         YAML::Node root = YAML::LoadFile("/Users/whz/learning/Cpp-Server-framework/Euterpe/bin/conf/log.yml");
+         euterpe::Config::LoadFromYaml(root);
+         std::set<euterpe::LogDefine> temp = {};
+         euterpe::ConfigVar<std::set<euterpe::LogDefine>>::ptr a = euterpe::Config::Lookup("logs", temp, "system person");
+         // EUTERPE_LOG_INFO(EUTERPE_LOG_ROOT()) << ((a->getValue()).begin()->appenders)[0].file << " - " << a->toString();
+         auto l = euterpe::LoggerMgr::GetInstance()->getLogger("root");
+         EUTERPE_LOG_INFO(l) << "loggernot find";
+    }
     int main(){
-        test_person();
+        test();
     }

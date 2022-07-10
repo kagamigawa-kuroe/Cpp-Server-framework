@@ -8,6 +8,7 @@
 #include <memory>
 #include <string>
 #include <sstream>
+#include <iostream>
 #include <unordered_map>
 /// boost中的一个类型转换库 可以把string变成int
 #include <boost/lexical_cast.hpp>
@@ -15,6 +16,7 @@
 #include "../utils/utils.h"
 #include <yaml-cpp/yaml.h>
 #include <unordered_set>
+#include "../log/log.h"
 
 namespace euterpe {
 
@@ -247,6 +249,100 @@ namespace euterpe {
                 }
             };
 
+    template<>
+    class LexicalCast<std::string, LogDefine> {
+    public:
+        LogDefine operator()(const std::string& v) {
+            YAML::Node n = YAML::Load(v);
+            LogDefine ld;
+            if(!n["name"].IsDefined()) {
+                std::cout << "log config error: name is null, " << n
+                << std::endl;
+                throw std::logic_error("log config name is null");
+            }
+            ld.name = n["name"].as<std::string>();
+            ld.level = LogLevel::FromString(n["level"].IsDefined() ? n["level"].as<std::string>() : "");
+            if(n["formatter"].IsDefined()) {
+                ld.formatter = n["formatter"].as<std::string>();
+            }
+
+            if(n["appenders"].IsDefined()) {
+                //std::cout << "==" << ld.name << " = " << n["appenders"].size() << std::endl;
+                for(size_t x = 0; x < n["appenders"].size(); ++x) {
+                    auto a = n["appenders"][x];
+                    if(!a["type"].IsDefined()) {
+                        std::cout << "log config error: appender type is null, " << a
+                        << std::endl;
+                        continue;
+                    }
+                    std::string type = a["type"].as<std::string>();
+                    LogAppenderDefine lad;
+                    if(type == "FileLogAppender") {
+                        lad.type = 1;
+                        if(!a["file"].IsDefined()) {
+                            std::cout << "log config error: fileappender file is null, " << a
+                            << std::endl;
+                            continue;
+                        }
+                        lad.file = a["file"].as<std::string>();
+                        if(a["formatter"].IsDefined()) {
+                            lad.formatter = a["formatter"].as<std::string>();
+                        }
+                    } else if(type == "StdoutLogAppender") {
+                        lad.type = 2;
+                        if(a["formatter"].IsDefined()) {
+                            lad.formatter = a["formatter"].as<std::string>();
+                        }
+                    } else {
+                        std::cout << "log config error: appender type is invalid, " << a
+                        << std::endl;
+                        continue;
+                    }
+
+                    ld.appenders.push_back(lad);
+                }
+            }
+            return ld;
+        }
+    };
+
+    template<>
+    class LexicalCast<LogDefine, std::string> {
+    public:
+        std::string operator()(const LogDefine& i) {
+            YAML::Node n;
+            n["name"] = i.name;
+            if(i.level != LogLevel::UNKNOW) {
+                n["level"] = LogLevel::ToString(i.level);
+            }
+            if(!i.formatter.empty()) {
+                n["formatter"] = i.formatter;
+            }
+
+            for(auto& a : i.appenders) {
+                YAML::Node na;
+                if(a.type == 1) {
+                    na["type"] = "FileLogAppender";
+                    na["file"] = a.file;
+                } else if(a.type == 2) {
+                    na["type"] = "StdoutLogAppender";
+                }
+                if(a.level != LogLevel::UNKNOW) {
+                    na["level"] = LogLevel::ToString(a.level);
+                }
+
+                if(!a.formatter.empty()) {
+                    na["formatter"] = a.formatter;
+                }
+
+                n["appenders"].push_back(na);
+            }
+            std::stringstream ss;
+            ss << n;
+            return ss.str();
+        }
+    };
+
     /// 配置变量 T类型
     /// boost中的LexicalCast只支持简单类型tostring
     /// 如map vector set list这种 都没法tostring
@@ -259,6 +355,7 @@ namespace euterpe {
     class ConfigVar : public ConfigVarBase {
     public:
         typedef std::shared_ptr<ConfigVar> ptr;
+        typedef std::function<void (const T& old_value, const T& new_value)> on_change_cb;
         ConfigVar(const std::string &name, const T &default_value, const std::string &description = "")
                 : ConfigVarBase(name, description), m_val(default_value) {};
 
@@ -288,12 +385,43 @@ namespace euterpe {
 
         T getValue() { return m_val; }
 
-        void setValue(T mVal) { m_val = mVal; }
+        void setValue(const T& v) {
+            {
+                if(v == m_val) {
+                    return;
+                }
+                for(auto& i : m_cbs) {
+                    i.second(m_val, v);
+                }
+            }
+            m_val = v;
+        }
 
         std::string getTypeName() const override { return TypeToName<T>(); }
 
+        uint64_t addListener(on_change_cb cb) {
+            static uint64_t s_fun_id = 0;
+            ++s_fun_id;
+            m_cbs[s_fun_id] = cb;
+            return s_fun_id;
+        }
+
+        void delListener(uint64_t key) {
+            m_cbs.erase(key);
+        }
+
+        on_change_cb getListener(uint64_t key) {
+            auto it = m_cbs.find(key);
+            return it == m_cbs.end() ? nullptr : it->second;
+        }
+
+        void clearListener() {
+            m_cbs.clear();
+        }
+
     private:
         T m_val;
+        std::map<uint64_t, on_change_cb> m_cbs;
     };
 
     class Config {
