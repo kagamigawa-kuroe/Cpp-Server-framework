@@ -52,6 +52,7 @@ namespace euterpe{
         }
     }
 
+    /// 会讲yaml文件中的所有对象都封装到config类中
     void Config::LoadFromYaml(const YAML::Node& root) {
         std::list<std::pair<std::string, const YAML::Node> > all_nodes;
         ListAllMember("", root, all_nodes);
@@ -63,6 +64,8 @@ namespace euterpe{
             }
 
             std::transform(key.begin(), key.end(), key.begin(), ::tolower);
+
+            /// lookupbase 在发现没有的时候会新建
             ConfigVarBase::ptr var = LookupBase(key);
 
             /// 从yaml文件中读取的流程为

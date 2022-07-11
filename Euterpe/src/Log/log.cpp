@@ -505,9 +505,31 @@ return LogLevel::level; \
         m_appenders.clear();
     }
 
+    void Logger::debug(LogEvent::ptr event) {
+        log(LogLevel::DEBUG, event);
+    }
+
+    void Logger::info(LogEvent::ptr event) {
+        log(LogLevel::INFO, event);
+    }
+
+    void Logger::warn(LogEvent::ptr event) {
+        log(LogLevel::WARN, event);
+    }
+
+    void Logger::error(LogEvent::ptr event) {
+        log(LogLevel::ERROR, event);
+    }
+
+    void Logger::fatal(LogEvent::ptr event) {
+        log(LogLevel::FATAL, event);
+    }
+
+    /// 全局变量 用来存储yaml文件中 logs对应的所有logger
     euterpe::ConfigVar<std::set<LogDefine> >::ptr g_log_defines =
             euterpe::Config::Lookup("logs", std::set<LogDefine>(), "logs config");
 
+    /// sss
     struct LogIniter {
         LogIniter() {
             g_log_defines->addListener([](const std::set<LogDefine>& old_value,

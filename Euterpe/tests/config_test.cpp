@@ -145,10 +145,11 @@ namespace euterpe {
     void test(){
          YAML::Node root = YAML::LoadFile("/Users/whz/learning/Cpp-Server-framework/Euterpe/bin/conf/log.yml");
          euterpe::Config::LoadFromYaml(root);
-         std::set<euterpe::LogDefine> temp = {};
-         euterpe::ConfigVar<std::set<euterpe::LogDefine>>::ptr a = euterpe::Config::Lookup("logs", temp, "system person");
+         // std::set<euterpe::LogDefine> temp = {};
+         // euterpe::ConfigVar<std::set<euterpe::LogDefine>>::ptr a = euterpe::Config::Lookup("logs", temp, "system person");
          // EUTERPE_LOG_INFO(EUTERPE_LOG_ROOT()) << ((a->getValue()).begin()->appenders)[0].file << " - " << a->toString();
          auto l = euterpe::LoggerMgr::GetInstance()->getLogger("root");
+         auto l2 = euterpe::LoggerMgr::GetInstance()->getLogger("system");
          EUTERPE_LOG_INFO(l) << "loggernot find";
     }
     int main(){
