@@ -94,6 +94,18 @@
 		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/config/config.h">
 			<Option target="Euterpe"/>
 		</Unit>
+		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/euterpe.h">
+			<Option target="Euterpe"/>
+		</Unit>
+		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.cpp">
+			<Option target="Euterpe"/>
+		</Unit>
+		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.h">
+			<Option target="Euterpe"/>
+		</Unit>
+		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/noncopyable.h">
+			<Option target="Euterpe"/>
+		</Unit>
 		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/singleton.h">
 			<Option target="Euterpe"/>
 		</Unit>
@@ -107,6 +119,9 @@
 			<Option target="Euterpe"/>
 		</Unit>
 		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/tests/log_test.cpp">
+			<Option target="Euterpe"/>
+		</Unit>
+		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/tests/thread_test.cpp">
 			<Option target="Euterpe"/>
 		</Unit>
 		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/CMakeLists.txt">

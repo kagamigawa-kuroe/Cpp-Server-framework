@@ -131,13 +131,41 @@ CMakeFiles/Euterpe.dir/src/config/config.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Euterpe.dir/src/config/config.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whz/learning/Cpp-Server-framework/Euterpe/src/config/config.cpp -o CMakeFiles/Euterpe.dir/src/config/config.cpp.s
 
+CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: CMakeFiles/Euterpe.dir/flags.make
+CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o -c /Users/whz/learning/Cpp-Server-framework/Euterpe/tests/thread_test.cpp
+
+CMakeFiles/Euterpe.dir/tests/thread_test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Euterpe.dir/tests/thread_test.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whz/learning/Cpp-Server-framework/Euterpe/tests/thread_test.cpp > CMakeFiles/Euterpe.dir/tests/thread_test.cpp.i
+
+CMakeFiles/Euterpe.dir/tests/thread_test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Euterpe.dir/tests/thread_test.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whz/learning/Cpp-Server-framework/Euterpe/tests/thread_test.cpp -o CMakeFiles/Euterpe.dir/tests/thread_test.cpp.s
+
+CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o: CMakeFiles/Euterpe.dir/flags.make
+CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o: ../src/thread/euterpe_thread.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o -c /Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.cpp
+
+CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.cpp > CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.i
+
+CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.cpp -o CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.s
+
 # Object files for target Euterpe
 Euterpe_OBJECTS = \
 "CMakeFiles/Euterpe.dir/tests/log_test.cpp.o" \
 "CMakeFiles/Euterpe.dir/src/Log/log.cpp.o" \
 "CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o" \
 "CMakeFiles/Euterpe.dir/tests/config_test.cpp.o" \
-"CMakeFiles/Euterpe.dir/src/config/config.cpp.o"
+"CMakeFiles/Euterpe.dir/src/config/config.cpp.o" \
+"CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o" \
+"CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o"
 
 # External object files for target Euterpe
 Euterpe_EXTERNAL_OBJECTS =
@@ -147,10 +175,12 @@ Euterpe: CMakeFiles/Euterpe.dir/src/Log/log.cpp.o
 Euterpe: CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o
 Euterpe: CMakeFiles/Euterpe.dir/tests/config_test.cpp.o
 Euterpe: CMakeFiles/Euterpe.dir/src/config/config.cpp.o
+Euterpe: CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o
+Euterpe: CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o
 Euterpe: CMakeFiles/Euterpe.dir/build.make
 Euterpe: /usr/local/lib/libyaml-cpp.dylib
 Euterpe: CMakeFiles/Euterpe.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Euterpe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable Euterpe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Euterpe.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

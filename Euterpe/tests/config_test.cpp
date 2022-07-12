@@ -152,6 +152,6 @@ namespace euterpe {
          auto l2 = euterpe::LoggerMgr::GetInstance()->getLogger("system");
          EUTERPE_LOG_INFO(l) << "loggernot find";
     }
-    int main(){
-        test();
-    }
+//    int main(){
+//        test();
+//    }

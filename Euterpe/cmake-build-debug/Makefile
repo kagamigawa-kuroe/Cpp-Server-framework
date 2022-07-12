@@ -177,6 +177,30 @@ src/config/config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/config/config.cpp.s
 .PHONY : src/config/config.cpp.s
 
+src/thread/euterpe_thread.o: src/thread/euterpe_thread.cpp.o
+.PHONY : src/thread/euterpe_thread.o
+
+# target to build an object file
+src/thread/euterpe_thread.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o
+.PHONY : src/thread/euterpe_thread.cpp.o
+
+src/thread/euterpe_thread.i: src/thread/euterpe_thread.cpp.i
+.PHONY : src/thread/euterpe_thread.i
+
+# target to preprocess a source file
+src/thread/euterpe_thread.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.i
+.PHONY : src/thread/euterpe_thread.cpp.i
+
+src/thread/euterpe_thread.s: src/thread/euterpe_thread.cpp.s
+.PHONY : src/thread/euterpe_thread.s
+
+# target to generate assembly for a file
+src/thread/euterpe_thread.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.s
+.PHONY : src/thread/euterpe_thread.cpp.s
+
 src/utils/utils.o: src/utils/utils.cpp.o
 .PHONY : src/utils/utils.o
 
@@ -249,6 +273,30 @@ tests/log_test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/tests/log_test.cpp.s
 .PHONY : tests/log_test.cpp.s
 
+tests/thread_test.o: tests/thread_test.cpp.o
+.PHONY : tests/thread_test.o
+
+# target to build an object file
+tests/thread_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o
+.PHONY : tests/thread_test.cpp.o
+
+tests/thread_test.i: tests/thread_test.cpp.i
+.PHONY : tests/thread_test.i
+
+# target to preprocess a source file
+tests/thread_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/tests/thread_test.cpp.i
+.PHONY : tests/thread_test.cpp.i
+
+tests/thread_test.s: tests/thread_test.cpp.s
+.PHONY : tests/thread_test.s
+
+# target to generate assembly for a file
+tests/thread_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/tests/thread_test.cpp.s
+.PHONY : tests/thread_test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -264,6 +312,9 @@ help:
 	@echo "... src/config/config.o"
 	@echo "... src/config/config.i"
 	@echo "... src/config/config.s"
+	@echo "... src/thread/euterpe_thread.o"
+	@echo "... src/thread/euterpe_thread.i"
+	@echo "... src/thread/euterpe_thread.s"
 	@echo "... src/utils/utils.o"
 	@echo "... src/utils/utils.i"
 	@echo "... src/utils/utils.s"
@@ -273,6 +324,9 @@ help:
 	@echo "... tests/log_test.o"
 	@echo "... tests/log_test.i"
 	@echo "... tests/log_test.s"
+	@echo "... tests/thread_test.o"
+	@echo "... tests/thread_test.i"
+	@echo "... tests/thread_test.s"
 .PHONY : help
 
 
