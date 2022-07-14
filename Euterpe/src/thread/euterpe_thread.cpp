@@ -3,7 +3,6 @@
 //
 #include "euterpe_thread.h"
 #include "../Log/log.h"
-#include "../utils/utils.h"
 #include <iostream>
 namespace euterpe{
 
@@ -15,6 +14,7 @@ namespace euterpe{
     /// 唯有声明为 thread_local 的对象拥有此存储期
     static thread_local Thread* t_thread = nullptr;
     static thread_local std::string t_thread_name = "UNKNOW";
+
     static auto g_logger = EUTERPE_LOG_NAME("system");
 
     void  Thread::test(){
@@ -35,6 +35,7 @@ namespace euterpe{
             EUTERPE_LOG_ERROR(g_logger) << "pThread_create error" << rt << "name = " << name;
             throw std::logic_error("pthread_create error");
         }
+        m_semaphore.wait();
     };
 
     Thread::~Thread(){
@@ -43,7 +44,11 @@ namespace euterpe{
         }
     };
 
-    void*  Thread::run(void* arg){
+    void* Thread::run(void* arg){
+        /// 将thread本身作为变量传入
+        /// 然后给两个static类型的变量赋值
+        /// 换句话说 这两个变量只有在join后才能有值
+        /// 包括my_id也是在join之后才有值
         Thread* thread = (Thread*)arg;
         t_thread = thread;
         t_thread_name = thread->m_name;
@@ -53,14 +58,16 @@ namespace euterpe{
         ///防止函数中有智能指针 引用不被释放
         std::function<void()> cb;
         cb.swap(thread->m_cb);
+        thread->m_semaphore.notify();
         cb();
         return 0;
     };
 
     void Thread::join() {
         if(m_thread) {
-            std::cout << m_thread <<std::endl;
+            /// std::cout << m_thread <<std::endl;
             int rt = pthread_join(m_thread, nullptr);
+            /// 成功执行完 返回0
             if(rt) {
                 EUTERPE_LOG_ERROR(g_logger) << "pthread_join thread fail, rt=" << rt
                 << " name=" << m_name;

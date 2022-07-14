@@ -201,6 +201,30 @@ src/thread/euterpe_thread.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.s
 .PHONY : src/thread/euterpe_thread.cpp.s
 
+src/thread/mutex.o: src/thread/mutex.cpp.o
+.PHONY : src/thread/mutex.o
+
+# target to build an object file
+src/thread/mutex.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/thread/mutex.cpp.o
+.PHONY : src/thread/mutex.cpp.o
+
+src/thread/mutex.i: src/thread/mutex.cpp.i
+.PHONY : src/thread/mutex.i
+
+# target to preprocess a source file
+src/thread/mutex.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/thread/mutex.cpp.i
+.PHONY : src/thread/mutex.cpp.i
+
+src/thread/mutex.s: src/thread/mutex.cpp.s
+.PHONY : src/thread/mutex.s
+
+# target to generate assembly for a file
+src/thread/mutex.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/thread/mutex.cpp.s
+.PHONY : src/thread/mutex.cpp.s
+
 src/utils/utils.o: src/utils/utils.cpp.o
 .PHONY : src/utils/utils.o
 
@@ -315,6 +339,9 @@ help:
 	@echo "... src/thread/euterpe_thread.o"
 	@echo "... src/thread/euterpe_thread.i"
 	@echo "... src/thread/euterpe_thread.s"
+	@echo "... src/thread/mutex.o"
+	@echo "... src/thread/mutex.i"
+	@echo "... src/thread/mutex.s"
 	@echo "... src/utils/utils.o"
 	@echo "... src/utils/utils.i"
 	@echo "... src/utils/utils.s"

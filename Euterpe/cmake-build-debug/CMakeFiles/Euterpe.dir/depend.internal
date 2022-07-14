@@ -1205,6 +1205,7 @@ CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.h
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.cpp
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.h
+ /Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/mutex.h
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/noncopyable.h
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/singleton.h
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/utils.h
@@ -1275,6 +1276,10 @@ CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o
  /opt/homebrew/include/boost/config/user.hpp
  /opt/homebrew/include/boost/core/noncopyable.hpp
  /opt/homebrew/include/boost/noncopyable.hpp
+CMakeFiles/Euterpe.dir/src/thread/mutex.cpp.o
+ /Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/mutex.cpp
+ /Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/mutex.h
+ /Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/noncopyable.h
 CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/utils.cpp
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/utils.h
@@ -2484,6 +2489,7 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/euterpe.h
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/log/log.h
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.h
+ /Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/mutex.h
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/noncopyable.h
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/singleton.h
  /Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/utils.h

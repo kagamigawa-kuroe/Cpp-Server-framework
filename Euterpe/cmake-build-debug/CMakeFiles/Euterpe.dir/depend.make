@@ -1205,6 +1205,7 @@ CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o: \
  ../src/Log/log.h \
  ../src/thread/euterpe_thread.cpp \
  ../src/thread/euterpe_thread.h \
+ ../src/thread/mutex.h \
  ../src/utils/noncopyable.h \
  ../src/utils/singleton.h \
  ../src/utils/utils.h \
@@ -1275,6 +1276,10 @@ CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o: \
  /opt/homebrew/include/boost/config/user.hpp \
  /opt/homebrew/include/boost/core/noncopyable.hpp \
  /opt/homebrew/include/boost/noncopyable.hpp
+CMakeFiles/Euterpe.dir/src/thread/mutex.cpp.o: \
+ ../src/thread/mutex.cpp \
+ ../src/thread/mutex.h \
+ ../src/utils/noncopyable.h
 CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o: \
  ../src/utils/utils.cpp \
  ../src/utils/utils.h
@@ -2484,6 +2489,7 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: \
  ../src/euterpe.h \
  ../src/log/log.h \
  ../src/thread/euterpe_thread.h \
+ ../src/thread/mutex.h \
  ../src/utils/noncopyable.h \
  ../src/utils/singleton.h \
  ../src/utils/utils.h \

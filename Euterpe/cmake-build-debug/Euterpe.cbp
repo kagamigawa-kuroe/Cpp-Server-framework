@@ -103,6 +103,12 @@
 		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.h">
 			<Option target="Euterpe"/>
 		</Unit>
+		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/mutex.cpp">
+			<Option target="Euterpe"/>
+		</Unit>
+		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/mutex.h">
+			<Option target="Euterpe"/>
+		</Unit>
 		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/noncopyable.h">
 			<Option target="Euterpe"/>
 		</Unit>
