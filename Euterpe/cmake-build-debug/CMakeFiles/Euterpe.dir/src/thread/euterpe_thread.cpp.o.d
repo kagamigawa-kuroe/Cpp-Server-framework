@@ -248,4 +248,6 @@ CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o: \
  /usr/include/c++/11/cxxabi.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h \
  /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/thread/../Log/../utils/singleton.h \
+ /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/thread/../Log/../thread/euterpe_thread.h \
+ /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/thread/../Log/../thread/mutex.h \
  /usr/include/c++/11/iostream

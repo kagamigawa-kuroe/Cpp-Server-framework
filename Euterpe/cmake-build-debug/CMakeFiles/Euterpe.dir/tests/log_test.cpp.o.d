@@ -220,12 +220,23 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: \
  /usr/include/c++/11/bits/erase_if.h \
  /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/../src/Log/../utils/utils.h \
  /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/../src/Log/../utils/singleton.h \
- /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/../src/config/config.h \
+ /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/../src/Log/../thread/euterpe_thread.h \
+ /usr/include/c++/11/thread /usr/include/c++/11/stop_token \
+ /usr/include/c++/11/atomic /usr/include/c++/11/bits/std_thread.h \
+ /usr/include/c++/11/semaphore /usr/include/c++/11/bits/semaphore_base.h \
+ /usr/include/c++/11/bits/atomic_timed_wait.h \
+ /usr/include/c++/11/bits/this_thread_sleep.h /usr/include/c++/11/chrono \
+ /usr/include/c++/11/ratio /usr/include/c++/11/limits \
+ /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/semaphore.h \
+ /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+ /usr/include/c++/11/functional /usr/include/c++/11/bits/std_function.h \
  /usr/include/c++/11/unordered_map /usr/include/c++/11/bits/hashtable.h \
  /usr/include/c++/11/bits/hashtable_policy.h \
  /usr/include/c++/11/bits/enable_special_members.h \
  /usr/include/c++/11/bits/unordered_map.h \
- /usr/include/boost/lexical_cast.hpp /usr/include/boost/config.hpp \
+ /usr/include/boost/noncopyable.hpp \
+ /usr/include/boost/core/noncopyable.hpp /usr/include/boost/config.hpp \
  /usr/include/boost/config/user.hpp \
  /usr/include/boost/config/detail/select_compiler_config.hpp \
  /usr/include/boost/config/compiler/gcc.hpp /usr/include/c++/11/cstddef \
@@ -237,6 +248,11 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: \
  /usr/include/boost/config/detail/posix_features.hpp \
  /usr/include/boost/config/detail/suffix.hpp \
  /usr/include/boost/config/helper_macros.hpp \
+ /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/../src/Log/../thread/../utils/noncopyable.h \
+ /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/../src/Log/../thread/mutex.h \
+ /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/../src/Log/../thread/mutex.h \
+ /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/../src/config/config.h \
+ /usr/include/boost/lexical_cast.hpp \
  /usr/include/boost/range/iterator_range_core.hpp \
  /usr/include/boost/detail/workaround.hpp \
  /usr/include/boost/config/workaround.hpp /usr/include/boost/assert.hpp \
@@ -466,11 +482,10 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: \
  /usr/include/boost/preprocessor/seq/enum.hpp \
  /usr/include/boost/concept/detail/concept_undef.hpp \
  /usr/include/boost/iterator/iterator_concepts.hpp \
- /usr/include/boost/limits.hpp /usr/include/c++/11/limits \
- /usr/include/c++/11/algorithm /usr/include/c++/11/bits/ranges_algo.h \
+ /usr/include/boost/limits.hpp /usr/include/c++/11/algorithm \
+ /usr/include/c++/11/bits/ranges_algo.h \
  /usr/include/c++/11/bits/ranges_util.h \
  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
- /usr/include/c++/11/functional /usr/include/c++/11/bits/std_function.h \
  /usr/include/boost/range/value_type.hpp \
  /usr/include/boost/range/detail/misc_concept.hpp \
  /usr/include/boost/type_traits/make_unsigned.hpp \
@@ -494,7 +509,6 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: \
  /usr/include/boost/utility/identity_type.hpp \
  /usr/include/boost/type_traits/function_traits.hpp \
  /usr/include/boost/core/checked_delete.hpp \
- /usr/include/boost/core/noncopyable.hpp \
  /usr/include/boost/range/distance.hpp \
  /usr/include/boost/iterator/distance.hpp \
  /usr/include/boost/range/empty.hpp /usr/include/boost/range/rbegin.hpp \
@@ -598,14 +612,13 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: \
  /usr/include/boost/move/detail/std_ns_end.hpp \
  /usr/include/boost/lexical_cast/detail/converter_lexical_streams.hpp \
  /usr/include/c++/11/cstring /usr/include/c++/11/locale \
- /usr/include/c++/11/bits/locale_facets_nonio.h /usr/include/c++/11/ctime \
+ /usr/include/c++/11/bits/locale_facets_nonio.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
  /usr/include/libintl.h /usr/include/c++/11/bits/locale_facets_nonio.tcc \
  /usr/include/c++/11/bits/locale_conv.h \
  /usr/include/boost/lexical_cast/detail/lcast_char_constants.hpp \
  /usr/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp \
- /usr/include/boost/noncopyable.hpp \
  /usr/include/boost/lexical_cast/detail/inf_nan.hpp \
  /usr/include/boost/math/special_functions/sign.hpp \
  /usr/include/boost/math/tools/config.hpp \
@@ -795,9 +808,11 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: \
  /usr/local/include/yaml-cpp/node/detail/node_iterator.h \
  /usr/local/include/yaml-cpp/node/iterator.h \
  /usr/local/include/yaml-cpp/node/detail/iterator.h \
- /usr/include/c++/11/atomic /usr/local/include/yaml-cpp/node/convert.h \
+ /usr/local/include/yaml-cpp/node/convert.h \
  /usr/local/include/yaml-cpp/node/detail/impl.h \
  /usr/local/include/yaml-cpp/node/parse.h \
  /usr/local/include/yaml-cpp/node/emit.h \
  /usr/include/c++/11/unordered_set \
- /usr/include/c++/11/bits/unordered_set.h
+ /usr/include/c++/11/bits/unordered_set.h \
+ /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/../src/config/../thread/euterpe_thread.h \
+ /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/../src/config/../thread/mutex.h

@@ -271,7 +271,23 @@ CMakeFiles/Euterpe.dir/src/Log/log.cpp.o: ../src/Log/log.cpp \
   /usr/include/c++/11/cxxabi.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h \
   ../src/utils/singleton.h \
-  /usr/include/c++/11/iostream \
+  ../src/thread/euterpe_thread.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/stop_token \
+  /usr/include/c++/11/atomic \
+  /usr/include/c++/11/bits/std_thread.h \
+  /usr/include/c++/11/semaphore \
+  /usr/include/c++/11/bits/semaphore_base.h \
+  /usr/include/c++/11/bits/atomic_timed_wait.h \
+  /usr/include/c++/11/bits/this_thread_sleep.h \
+  /usr/include/c++/11/chrono \
+  /usr/include/c++/11/ratio \
+  /usr/include/c++/11/limits \
+  /usr/include/c++/11/ctime \
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/include/x86_64-linux-gnu/sys/time.h \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
   /usr/include/c++/11/functional \
   /usr/include/c++/11/bits/std_function.h \
   /usr/include/c++/11/unordered_map \
@@ -279,11 +295,8 @@ CMakeFiles/Euterpe.dir/src/Log/log.cpp.o: ../src/Log/log.cpp \
   /usr/include/c++/11/bits/hashtable_policy.h \
   /usr/include/c++/11/bits/enable_special_members.h \
   /usr/include/c++/11/bits/unordered_map.h \
-  /usr/include/c++/11/set \
-  /usr/include/c++/11/bits/stl_set.h \
-  /usr/include/c++/11/bits/stl_multiset.h \
-  ../src/config/config.h \
-  /usr/include/boost/lexical_cast.hpp \
+  /usr/include/boost/noncopyable.hpp \
+  /usr/include/boost/core/noncopyable.hpp \
   /usr/include/boost/config.hpp \
   /usr/include/boost/config/user.hpp \
   /usr/include/boost/config/detail/select_compiler_config.hpp \
@@ -297,6 +310,15 @@ CMakeFiles/Euterpe.dir/src/Log/log.cpp.o: ../src/Log/log.cpp \
   /usr/include/boost/config/detail/posix_features.hpp \
   /usr/include/boost/config/detail/suffix.hpp \
   /usr/include/boost/config/helper_macros.hpp \
+  ../src/utils/noncopyable.h \
+  ../src/thread/mutex.h \
+  ../src/thread/mutex.h \
+  /usr/include/c++/11/iostream \
+  /usr/include/c++/11/set \
+  /usr/include/c++/11/bits/stl_set.h \
+  /usr/include/c++/11/bits/stl_multiset.h \
+  ../src/config/config.h \
+  /usr/include/boost/lexical_cast.hpp \
   /usr/include/boost/range/iterator_range_core.hpp \
   /usr/include/boost/detail/workaround.hpp \
   /usr/include/boost/config/workaround.hpp \
@@ -543,7 +565,6 @@ CMakeFiles/Euterpe.dir/src/Log/log.cpp.o: ../src/Log/log.cpp \
   /usr/include/boost/concept/detail/concept_undef.hpp \
   /usr/include/boost/iterator/iterator_concepts.hpp \
   /usr/include/boost/limits.hpp \
-  /usr/include/c++/11/limits \
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/bits/ranges_algo.h \
   /usr/include/c++/11/bits/ranges_util.h \
@@ -572,7 +593,6 @@ CMakeFiles/Euterpe.dir/src/Log/log.cpp.o: ../src/Log/log.cpp \
   /usr/include/boost/utility/identity_type.hpp \
   /usr/include/boost/type_traits/function_traits.hpp \
   /usr/include/boost/core/checked_delete.hpp \
-  /usr/include/boost/core/noncopyable.hpp \
   /usr/include/boost/range/distance.hpp \
   /usr/include/boost/iterator/distance.hpp \
   /usr/include/boost/range/empty.hpp \
@@ -685,7 +705,6 @@ CMakeFiles/Euterpe.dir/src/Log/log.cpp.o: ../src/Log/log.cpp \
   /usr/include/c++/11/cstring \
   /usr/include/c++/11/locale \
   /usr/include/c++/11/bits/locale_facets_nonio.h \
-  /usr/include/c++/11/ctime \
   /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
   /usr/include/libintl.h \
@@ -693,7 +712,6 @@ CMakeFiles/Euterpe.dir/src/Log/log.cpp.o: ../src/Log/log.cpp \
   /usr/include/c++/11/bits/locale_conv.h \
   /usr/include/boost/lexical_cast/detail/lcast_char_constants.hpp \
   /usr/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp \
-  /usr/include/boost/noncopyable.hpp \
   /usr/include/boost/lexical_cast/detail/inf_nan.hpp \
   /usr/include/boost/math/special_functions/sign.hpp \
   /usr/include/boost/math/tools/config.hpp \
@@ -899,13 +917,14 @@ CMakeFiles/Euterpe.dir/src/Log/log.cpp.o: ../src/Log/log.cpp \
   /usr/local/include/yaml-cpp/node/detail/node_iterator.h \
   /usr/local/include/yaml-cpp/node/iterator.h \
   /usr/local/include/yaml-cpp/node/detail/iterator.h \
-  /usr/include/c++/11/atomic \
   /usr/local/include/yaml-cpp/node/convert.h \
   /usr/local/include/yaml-cpp/node/detail/impl.h \
   /usr/local/include/yaml-cpp/node/parse.h \
   /usr/local/include/yaml-cpp/node/emit.h \
   /usr/include/c++/11/unordered_set \
-  /usr/include/c++/11/bits/unordered_set.h
+  /usr/include/c++/11/bits/unordered_set.h \
+  ../src/thread/euterpe_thread.h \
+  ../src/thread/mutex.h
 
 CMakeFiles/Euterpe.dir/src/config/config.cpp.o: ../src/config/config.cpp \
   /usr/include/stdc-predef.h \
@@ -1773,6 +1792,24 @@ CMakeFiles/Euterpe.dir/src/config/config.cpp.o: ../src/config/config.cpp \
   /usr/include/c++/11/cxxabi.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h \
   ../src/utils/singleton.h \
+  ../src/thread/euterpe_thread.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/stop_token \
+  /usr/include/c++/11/atomic \
+  /usr/include/c++/11/bits/std_thread.h \
+  /usr/include/c++/11/semaphore \
+  /usr/include/c++/11/bits/semaphore_base.h \
+  /usr/include/c++/11/bits/atomic_timed_wait.h \
+  /usr/include/c++/11/bits/this_thread_sleep.h \
+  /usr/include/c++/11/chrono \
+  /usr/include/c++/11/ratio \
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/include/x86_64-linux-gnu/sys/time.h \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  ../src/utils/noncopyable.h \
+  ../src/thread/mutex.h \
+  ../src/thread/mutex.h \
   ../src/utils/utils.h \
   /usr/local/include/yaml-cpp/yaml.h \
   /usr/local/include/yaml-cpp/parser.h \
@@ -1804,13 +1841,14 @@ CMakeFiles/Euterpe.dir/src/config/config.cpp.o: ../src/config/config.cpp \
   /usr/local/include/yaml-cpp/node/detail/node_iterator.h \
   /usr/local/include/yaml-cpp/node/iterator.h \
   /usr/local/include/yaml-cpp/node/detail/iterator.h \
-  /usr/include/c++/11/atomic \
   /usr/local/include/yaml-cpp/node/convert.h \
   /usr/local/include/yaml-cpp/node/detail/impl.h \
   /usr/local/include/yaml-cpp/node/parse.h \
   /usr/local/include/yaml-cpp/node/emit.h \
   /usr/include/c++/11/unordered_set \
-  /usr/include/c++/11/bits/unordered_set.h
+  /usr/include/c++/11/bits/unordered_set.h \
+  ../src/thread/euterpe_thread.h \
+  ../src/thread/mutex.h
 
 CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o: ../src/thread/euterpe_thread.cpp \
   /usr/include/stdc-predef.h \
@@ -2123,6 +2161,8 @@ CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o: ../src/thread/euterpe_th
   /usr/include/c++/11/cxxabi.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h \
   ../src/utils/singleton.h \
+  ../src/thread/euterpe_thread.h \
+  ../src/thread/mutex.h \
   /usr/include/c++/11/iostream
 
 CMakeFiles/Euterpe.dir/src/thread/mutex.cpp.o: ../src/thread/mutex.cpp \
@@ -3480,6 +3520,24 @@ CMakeFiles/Euterpe.dir/tests/config_test.cpp.o: ../tests/config_test.cpp \
   /usr/include/c++/11/cxxabi.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h \
   ../src/utils/singleton.h \
+  ../src/thread/euterpe_thread.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/stop_token \
+  /usr/include/c++/11/atomic \
+  /usr/include/c++/11/bits/std_thread.h \
+  /usr/include/c++/11/semaphore \
+  /usr/include/c++/11/bits/semaphore_base.h \
+  /usr/include/c++/11/bits/atomic_timed_wait.h \
+  /usr/include/c++/11/bits/this_thread_sleep.h \
+  /usr/include/c++/11/chrono \
+  /usr/include/c++/11/ratio \
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/include/x86_64-linux-gnu/sys/time.h \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  ../src/utils/noncopyable.h \
+  ../src/thread/mutex.h \
+  ../src/thread/mutex.h \
   ../src/utils/utils.h \
   /usr/local/include/yaml-cpp/yaml.h \
   /usr/local/include/yaml-cpp/parser.h \
@@ -3511,13 +3569,14 @@ CMakeFiles/Euterpe.dir/tests/config_test.cpp.o: ../tests/config_test.cpp \
   /usr/local/include/yaml-cpp/node/detail/node_iterator.h \
   /usr/local/include/yaml-cpp/node/iterator.h \
   /usr/local/include/yaml-cpp/node/detail/iterator.h \
-  /usr/include/c++/11/atomic \
   /usr/local/include/yaml-cpp/node/convert.h \
   /usr/local/include/yaml-cpp/node/detail/impl.h \
   /usr/local/include/yaml-cpp/node/parse.h \
   /usr/local/include/yaml-cpp/node/emit.h \
   /usr/include/c++/11/unordered_set \
   /usr/include/c++/11/bits/unordered_set.h \
+  ../src/thread/euterpe_thread.h \
+  ../src/thread/mutex.h \
   ../src/Log/log.h
 
 CMakeFiles/Euterpe.dir/tests/lock_test.cpp.o: ../tests/lock_test.cpp \
@@ -4387,6 +4446,24 @@ CMakeFiles/Euterpe.dir/tests/lock_test.cpp.o: ../tests/lock_test.cpp \
   /usr/include/c++/11/cxxabi.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h \
   ../src/utils/singleton.h \
+  ../src/thread/euterpe_thread.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/stop_token \
+  /usr/include/c++/11/atomic \
+  /usr/include/c++/11/bits/std_thread.h \
+  /usr/include/c++/11/semaphore \
+  /usr/include/c++/11/bits/semaphore_base.h \
+  /usr/include/c++/11/bits/atomic_timed_wait.h \
+  /usr/include/c++/11/bits/this_thread_sleep.h \
+  /usr/include/c++/11/chrono \
+  /usr/include/c++/11/ratio \
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/include/x86_64-linux-gnu/sys/time.h \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  ../src/utils/noncopyable.h \
+  ../src/thread/mutex.h \
+  ../src/thread/mutex.h \
   ../src/utils/utils.h \
   /usr/local/include/yaml-cpp/yaml.h \
   /usr/local/include/yaml-cpp/parser.h \
@@ -4418,7 +4495,6 @@ CMakeFiles/Euterpe.dir/tests/lock_test.cpp.o: ../tests/lock_test.cpp \
   /usr/local/include/yaml-cpp/node/detail/node_iterator.h \
   /usr/local/include/yaml-cpp/node/iterator.h \
   /usr/local/include/yaml-cpp/node/detail/iterator.h \
-  /usr/include/c++/11/atomic \
   /usr/local/include/yaml-cpp/node/convert.h \
   /usr/local/include/yaml-cpp/node/detail/impl.h \
   /usr/local/include/yaml-cpp/node/parse.h \
@@ -4426,21 +4502,8 @@ CMakeFiles/Euterpe.dir/tests/lock_test.cpp.o: ../tests/lock_test.cpp \
   /usr/include/c++/11/unordered_set \
   /usr/include/c++/11/bits/unordered_set.h \
   ../src/thread/euterpe_thread.h \
-  /usr/include/c++/11/thread \
-  /usr/include/c++/11/stop_token \
-  /usr/include/c++/11/bits/std_thread.h \
-  /usr/include/c++/11/semaphore \
-  /usr/include/c++/11/bits/semaphore_base.h \
-  /usr/include/c++/11/bits/atomic_timed_wait.h \
-  /usr/include/c++/11/bits/this_thread_sleep.h \
-  /usr/include/c++/11/chrono \
-  /usr/include/c++/11/ratio \
-  /usr/include/c++/11/bits/parse_numbers.h \
-  /usr/include/x86_64-linux-gnu/sys/time.h \
-  /usr/include/semaphore.h \
-  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
-  ../src/utils/noncopyable.h \
   ../src/thread/mutex.h \
+  ../src/thread/euterpe_thread.h \
   ../src/utils/utils.h \
   ../src/utils/singleton.h \
   ../src/utils/noncopyable.h \
@@ -4719,13 +4782,32 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: ../tests/log_test.cpp \
   /usr/include/c++/11/bits/erase_if.h \
   ../src/utils/utils.h \
   ../src/utils/singleton.h \
-  ../src/config/config.h \
+  ../src/thread/euterpe_thread.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/stop_token \
+  /usr/include/c++/11/atomic \
+  /usr/include/c++/11/bits/std_thread.h \
+  /usr/include/c++/11/semaphore \
+  /usr/include/c++/11/bits/semaphore_base.h \
+  /usr/include/c++/11/bits/atomic_timed_wait.h \
+  /usr/include/c++/11/bits/this_thread_sleep.h \
+  /usr/include/c++/11/chrono \
+  /usr/include/c++/11/ratio \
+  /usr/include/c++/11/limits \
+  /usr/include/c++/11/ctime \
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/include/x86_64-linux-gnu/sys/time.h \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/std_function.h \
   /usr/include/c++/11/unordered_map \
   /usr/include/c++/11/bits/hashtable.h \
   /usr/include/c++/11/bits/hashtable_policy.h \
   /usr/include/c++/11/bits/enable_special_members.h \
   /usr/include/c++/11/bits/unordered_map.h \
-  /usr/include/boost/lexical_cast.hpp \
+  /usr/include/boost/noncopyable.hpp \
+  /usr/include/boost/core/noncopyable.hpp \
   /usr/include/boost/config.hpp \
   /usr/include/boost/config/user.hpp \
   /usr/include/boost/config/detail/select_compiler_config.hpp \
@@ -4739,6 +4821,11 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: ../tests/log_test.cpp \
   /usr/include/boost/config/detail/posix_features.hpp \
   /usr/include/boost/config/detail/suffix.hpp \
   /usr/include/boost/config/helper_macros.hpp \
+  ../src/utils/noncopyable.h \
+  ../src/thread/mutex.h \
+  ../src/thread/mutex.h \
+  ../src/config/config.h \
+  /usr/include/boost/lexical_cast.hpp \
   /usr/include/boost/range/iterator_range_core.hpp \
   /usr/include/boost/detail/workaround.hpp \
   /usr/include/boost/config/workaround.hpp \
@@ -4985,13 +5072,10 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: ../tests/log_test.cpp \
   /usr/include/boost/concept/detail/concept_undef.hpp \
   /usr/include/boost/iterator/iterator_concepts.hpp \
   /usr/include/boost/limits.hpp \
-  /usr/include/c++/11/limits \
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/bits/ranges_algo.h \
   /usr/include/c++/11/bits/ranges_util.h \
   /usr/include/c++/11/pstl/glue_algorithm_defs.h \
-  /usr/include/c++/11/functional \
-  /usr/include/c++/11/bits/std_function.h \
   /usr/include/boost/range/value_type.hpp \
   /usr/include/boost/range/detail/misc_concept.hpp \
   /usr/include/boost/type_traits/make_unsigned.hpp \
@@ -5016,7 +5100,6 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: ../tests/log_test.cpp \
   /usr/include/boost/utility/identity_type.hpp \
   /usr/include/boost/type_traits/function_traits.hpp \
   /usr/include/boost/core/checked_delete.hpp \
-  /usr/include/boost/core/noncopyable.hpp \
   /usr/include/boost/range/distance.hpp \
   /usr/include/boost/iterator/distance.hpp \
   /usr/include/boost/range/empty.hpp \
@@ -5129,7 +5212,6 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: ../tests/log_test.cpp \
   /usr/include/c++/11/cstring \
   /usr/include/c++/11/locale \
   /usr/include/c++/11/bits/locale_facets_nonio.h \
-  /usr/include/c++/11/ctime \
   /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
   /usr/include/libintl.h \
@@ -5137,7 +5219,6 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: ../tests/log_test.cpp \
   /usr/include/c++/11/bits/locale_conv.h \
   /usr/include/boost/lexical_cast/detail/lcast_char_constants.hpp \
   /usr/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp \
-  /usr/include/boost/noncopyable.hpp \
   /usr/include/boost/lexical_cast/detail/inf_nan.hpp \
   /usr/include/boost/math/special_functions/sign.hpp \
   /usr/include/boost/math/tools/config.hpp \
@@ -5346,13 +5427,14 @@ CMakeFiles/Euterpe.dir/tests/log_test.cpp.o: ../tests/log_test.cpp \
   /usr/local/include/yaml-cpp/node/detail/node_iterator.h \
   /usr/local/include/yaml-cpp/node/iterator.h \
   /usr/local/include/yaml-cpp/node/detail/iterator.h \
-  /usr/include/c++/11/atomic \
   /usr/local/include/yaml-cpp/node/convert.h \
   /usr/local/include/yaml-cpp/node/detail/impl.h \
   /usr/local/include/yaml-cpp/node/parse.h \
   /usr/local/include/yaml-cpp/node/emit.h \
   /usr/include/c++/11/unordered_set \
-  /usr/include/c++/11/bits/unordered_set.h
+  /usr/include/c++/11/bits/unordered_set.h \
+  ../src/thread/euterpe_thread.h \
+  ../src/thread/mutex.h
 
 CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
   /usr/include/stdc-predef.h \
@@ -6221,6 +6303,24 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
   /usr/include/c++/11/cxxabi.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h \
   ../src/utils/singleton.h \
+  ../src/thread/euterpe_thread.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/stop_token \
+  /usr/include/c++/11/atomic \
+  /usr/include/c++/11/bits/std_thread.h \
+  /usr/include/c++/11/semaphore \
+  /usr/include/c++/11/bits/semaphore_base.h \
+  /usr/include/c++/11/bits/atomic_timed_wait.h \
+  /usr/include/c++/11/bits/this_thread_sleep.h \
+  /usr/include/c++/11/chrono \
+  /usr/include/c++/11/ratio \
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/include/x86_64-linux-gnu/sys/time.h \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  ../src/utils/noncopyable.h \
+  ../src/thread/mutex.h \
+  ../src/thread/mutex.h \
   ../src/utils/utils.h \
   /usr/local/include/yaml-cpp/yaml.h \
   /usr/local/include/yaml-cpp/parser.h \
@@ -6252,7 +6352,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
   /usr/local/include/yaml-cpp/node/detail/node_iterator.h \
   /usr/local/include/yaml-cpp/node/iterator.h \
   /usr/local/include/yaml-cpp/node/detail/iterator.h \
-  /usr/include/c++/11/atomic \
   /usr/local/include/yaml-cpp/node/convert.h \
   /usr/local/include/yaml-cpp/node/detail/impl.h \
   /usr/local/include/yaml-cpp/node/parse.h \
@@ -6260,21 +6359,8 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
   /usr/include/c++/11/unordered_set \
   /usr/include/c++/11/bits/unordered_set.h \
   ../src/thread/euterpe_thread.h \
-  /usr/include/c++/11/thread \
-  /usr/include/c++/11/stop_token \
-  /usr/include/c++/11/bits/std_thread.h \
-  /usr/include/c++/11/semaphore \
-  /usr/include/c++/11/bits/semaphore_base.h \
-  /usr/include/c++/11/bits/atomic_timed_wait.h \
-  /usr/include/c++/11/bits/this_thread_sleep.h \
-  /usr/include/c++/11/chrono \
-  /usr/include/c++/11/ratio \
-  /usr/include/c++/11/bits/parse_numbers.h \
-  /usr/include/x86_64-linux-gnu/sys/time.h \
-  /usr/include/semaphore.h \
-  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
-  ../src/utils/noncopyable.h \
   ../src/thread/mutex.h \
+  ../src/thread/euterpe_thread.h \
   ../src/utils/utils.h \
   ../src/utils/singleton.h \
   ../src/utils/noncopyable.h \
@@ -6295,26 +6381,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 ../src/thread/mutex.cpp:
 
-../src/utils/noncopyable.h:
-
-/usr/include/x86_64-linux-gnu/bits/semaphore.h:
-
-/usr/include/semaphore.h:
-
-/usr/include/x86_64-linux-gnu/sys/time.h:
-
-/usr/include/c++/11/bits/parse_numbers.h:
-
-/usr/include/c++/11/ratio:
-
-/usr/include/c++/11/bits/this_thread_sleep.h:
-
-/usr/include/c++/11/bits/semaphore_base.h:
-
-/usr/include/c++/11/stop_token:
-
-/usr/include/c++/11/thread:
-
 ../src/config/config.cpp:
 
 /usr/local/include/yaml-cpp/node/emit.h:
@@ -6322,8 +6388,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/local/include/yaml-cpp/node/parse.h:
 
 /usr/local/include/yaml-cpp/node/detail/impl.h:
-
-/usr/include/c++/11/atomic:
 
 /usr/local/include/yaml-cpp/node/detail/iterator.h:
 
@@ -6437,37 +6501,39 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/boost/mpl/advance.hpp:
 
-/usr/local/include/yaml-cpp/stlemitter.h:
+/usr/include/boost/mpl/aux_/at_impl.hpp:
 
-/usr/include/boost/static_assert.hpp:
+/usr/include/boost/mpl/aux_/preprocessed/gcc/vector.hpp:
 
-/usr/include/boost/type_traits/detail/is_function_cxx_11.hpp:
+/usr/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector20.hpp:
 
-/usr/include/boost/utility/base_from_member.hpp:
+/usr/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector10.hpp:
 
-/usr/include/boost/type_traits/is_rvalue_reference.hpp:
+/usr/include/boost/mpl/vector/aux_/include_preprocessed.hpp:
 
-/usr/include/c++/11/bits/exception_defines.h:
+/usr/include/boost/mpl/vector/aux_/begin_end.hpp:
 
-/usr/include/boost/mpl/and.hpp:
+/usr/include/boost/mpl/vector/aux_/empty.hpp:
 
-/usr/include/boost/mpl/list/aux_/preprocessed/plain/list20.hpp:
+/usr/include/boost/mpl/vector/aux_/size.hpp:
 
-/usr/include/boost/type_traits/add_rvalue_reference.hpp:
+/usr/include/boost/mpl/vector/aux_/O1_size.hpp:
 
-/usr/include/boost/mpl/aux_/has_apply.hpp:
+/usr/include/boost/mpl/distance_fwd.hpp:
 
-/usr/include/boost/type_traits/integral_constant.hpp:
+/usr/include/boost/mpl/advance_fwd.hpp:
 
-/usr/include/boost/lexical_cast/detail/widest_char.hpp:
+/usr/include/boost/mpl/aux_/preprocessed/gcc/minus.hpp:
 
-/usr/include/c++/11/semaphore:
+/usr/include/boost/mpl/aux_/preprocessed/gcc/plus.hpp:
 
-/usr/include/boost/mpl/aux_/config/msvc_typename.hpp:
+/usr/include/boost/mpl/plus.hpp:
 
 /usr/include/boost/preprocessor/identity.hpp:
 
 /usr/include/boost/mpl/aux_/lambda_support.hpp:
+
+/usr/include/c++/11/ratio:
 
 /usr/include/c++/11/tr1/poly_hermite.tcc:
 
@@ -6513,21 +6579,27 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/c++/11/tuple:
 
-/usr/include/boost/concept/detail/concept_undef.hpp:
-
 /usr/include/boost/mpl/at.hpp:
+
+/usr/include/boost/concept/detail/concept_undef.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessor/enum.hpp:
 
+/usr/include/c++/11/bits/parse_numbers.h:
+
 /usr/include/boost/type_traits/is_array.hpp:
+
+/usr/local/include/yaml-cpp/stlemitter.h:
+
+/usr/include/boost/static_assert.hpp:
 
 /usr/include/boost/preprocessor/facilities/empty.hpp:
 
 /usr/include/boost/mpl/vector/aux_/back.hpp:
 
-/usr/include/boost/mpl/times.hpp:
-
 /usr/include/boost/preprocessor/control/if.hpp:
+
+/usr/include/x86_64-linux-gnu/sys/time.h:
 
 /usr/include/c++/11/bits/stl_bvector.h:
 
@@ -6563,12 +6635,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/c++/11/bits/locale_facets_nonio.tcc:
 
-/usr/include/boost/mpl/aux_/na_spec.hpp:
-
-/usr/include/c++/11/bits/stl_function.h:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/list.hpp:
-
 /usr/include/boost/mpl/aux_/config/use_preprocessed.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/quote.hpp:
@@ -6580,8 +6646,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/include/boost/mpl/aux_/config/msvc.hpp:
 
 /usr/include/boost/mpl/aux_/config/adl.hpp:
-
-/usr/include/boost/type_traits/detail/yes_no_type.hpp:
 
 /usr/include/boost/mpl/aux_/adl_barrier.hpp:
 
@@ -6601,6 +6665,10 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/boost/mpl/aux_/preprocessor/default_params.hpp:
 
+/usr/include/c++/11/iostream:
+
+/usr/include/boost/type_traits/add_volatile.hpp:
+
 /usr/include/c++/11/ext/numeric_traits.h:
 
 /usr/include/boost/mpl/O1_size_fwd.hpp:
@@ -6610,10 +6678,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/include/boost/config/stdlib/libstdcpp3.hpp:
 
 /usr/include/c++/11/version:
-
-/usr/include/boost/preprocessor/list/reverse.hpp:
-
-/usr/include/boost/config/compiler/gcc.hpp:
 
 /usr/include/boost/mpl/greater_equal.hpp:
 
@@ -6625,9 +6689,17 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/boost/mpl/vector/aux_/tag.hpp:
 
-/usr/include/boost/type_traits/is_lvalue_reference.hpp:
+/usr/include/boost/mpl/aux_/na_spec.hpp:
 
-/usr/include/boost/predef/detail/test.h:
+/usr/include/c++/11/bits/stl_function.h:
+
+/usr/include/boost/mpl/aux_/preprocessed/gcc/list.hpp:
+
+/usr/include/boost/noncopyable.hpp:
+
+/usr/include/boost/core/swap.hpp:
+
+/usr/include/boost/mpl/list/aux_/push_front.hpp:
 
 /usr/include/c++/11/bits/unordered_map.h:
 
@@ -6641,9 +6713,19 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/c++/11/functional:
 
-/usr/include/c++/11/iostream:
+/usr/include/c++/11/bits/istream.tcc:
 
-/usr/include/boost/type_traits/add_volatile.hpp:
+../src/utils/noncopyable.h:
+
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+/usr/include/boost/preprocessor/list/reverse.hpp:
+
+/usr/include/boost/config/compiler/gcc.hpp:
+
+/usr/include/c++/11/atomic:
+
+/usr/include/c++/11/typeinfo:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h:
 
@@ -6699,10 +6781,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/c++/11/bits/stl_vector.h:
 
-/usr/include/boost/type_traits/is_function.hpp:
-
-/usr/include/c++/11/ext/type_traits.h:
-
 /usr/include/x86_64-linux-gnu/asm/unistd_64.h:
 
 /usr/include/boost/mpl/limits/arity.hpp:
@@ -6721,15 +6799,9 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/boost/mpl/aux_/config/eti.hpp:
 
-/usr/include/boost/type_traits/detail/is_member_function_pointer_cxx_11.hpp:
-
-/usr/include/boost/concept_check.hpp:
-
 /usr/include/c++/11/bits/uses_allocator_args.h:
 
 /usr/include/boost/mpl/same_as.hpp:
-
-/usr/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector20.hpp:
 
 /usr/include/linux/limits.h:
 
@@ -6752,12 +6824,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/include/c++/11/bits/locale_classes.h:
 
 /usr/include/boost/mpl/aux_/fold_impl.hpp:
-
-/usr/include/boost/preprocessor/stringize.hpp:
-
-/usr/include/boost/config/detail/select_stdlib_config.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
 
 /usr/include/boost/preprocessor/inc.hpp:
 
@@ -6787,19 +6853,13 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/c++/11/list:
 
-/usr/include/boost/type_traits/intrinsics.hpp:
-
 /usr/include/c++/11/istream:
 
 /usr/include/boost/range/iterator_range_core.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
-/usr/include/boost/mpl/aux_/preprocessed/gcc/or.hpp:
-
-/usr/include/c++/11/bits/ranges_cmp.h:
-
-/usr/include/boost/mpl/aux_/config/pp_counter.hpp:
+/usr/include/semaphore.h:
 
 /usr/include/c++/11/bits/functional_hash.h:
 
@@ -6824,6 +6884,8 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/include/c++/11/bits/stl_algo.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
+/usr/include/c++/11/limits:
 
 /usr/include/c++/11/bits/stl_tree.h:
 
@@ -6879,6 +6941,8 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/c++/11/bits/locale_facets.h:
 
+/usr/include/c++/11/stop_token:
+
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
 
 /usr/include/c++/11/pstl/glue_memory_defs.h:
@@ -6897,6 +6961,8 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
+/usr/include/x86_64-linux-gnu/bits/semaphore.h:
+
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
 /usr/include/boost/mpl/iter_fold.hpp:
@@ -6913,21 +6979,33 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/c++/11/bits/locale_classes.tcc:
 
+/usr/include/boost/mpl/minus.hpp:
+
+/usr/include/boost/mpl/iter_fold_if.hpp:
+
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
 /usr/include/boost/mpl/empty_fwd.hpp:
 
-/usr/include/c++/11/bits/std_thread.h:
-
-/usr/include/c++/11/bits/ranges_algobase.h:
-
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
 /usr/include/boost/cstdint.hpp:
 
 /usr/include/c++/11/bits/stl_relops.h:
+
+/usr/include/c++/11/bits/exception_defines.h:
+
+/usr/include/boost/type_traits/is_rvalue_reference.hpp:
+
+/usr/include/boost/mpl/and.hpp:
+
+/usr/include/boost/concept_check.hpp:
+
+/usr/include/boost/type_traits/detail/is_member_function_pointer_cxx_11.hpp:
+
+/usr/include/boost/mpl/list/aux_/preprocessed/plain/list20.hpp:
 
 /usr/include/unistd.h:
 
@@ -6951,7 +7029,21 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/c++/11/bits/memoryfwd.h:
 
+/usr/include/boost/mpl/aux_/advance_backward.hpp:
+
+/usr/include/c++/11/ctime:
+
+/usr/include/boost/mpl/list/aux_/pop_front.hpp:
+
+/usr/include/c++/11/thread:
+
 /usr/include/c++/11/bits/postypes.h:
+
+/usr/include/c++/11/pstl/pstl_config.h:
+
+/usr/include/boost/numeric/conversion/detail/numeric_cast_traits.hpp:
+
+/usr/include/boost/numeric/conversion/conversion_traits.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
@@ -7013,13 +7105,15 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/c++/11/bits/allocator.h:
 
-/usr/include/boost/version.hpp:
-
-/usr/include/c++/11/debug/assertions.h:
-
 ../src/Log/log.cpp:
 
 /usr/include/boost/numeric/conversion/int_float_mixture_enum.hpp:
+
+/usr/include/c++/11/bits/ranges_cmp.h:
+
+/usr/include/boost/mpl/aux_/preprocessed/gcc/or.hpp:
+
+/usr/include/boost/mpl/aux_/config/pp_counter.hpp:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
 
@@ -7039,31 +7133,11 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/boost/container/detail/std_fwd.hpp:
 
-/usr/include/boost/type_traits/is_convertible.hpp:
-
-/usr/include/locale.h:
-
-/usr/include/boost/numeric/conversion/detail/numeric_cast_traits.hpp:
-
-/usr/include/boost/numeric/conversion/conversion_traits.hpp:
-
-/usr/include/c++/11/pstl/pstl_config.h:
-
-/usr/include/c++/11/bits/istream.tcc:
-
-/usr/include/boost/mpl/aux_/advance_backward.hpp:
-
-/usr/include/boost/mpl/list/aux_/pop_front.hpp:
-
-/usr/include/c++/11/ctime:
-
 /usr/include/c++/11/compare:
 
 /usr/include/c++/11/bits/max_size_type.h:
 
 /usr/include/boost/preprocessor/detail/is_binary.hpp:
-
-/usr/include/c++/11/typeinfo:
 
 /usr/include/features.h:
 
@@ -7149,7 +7223,15 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/c++/11/iosfwd:
 
+/usr/include/c++/11/bits/semaphore_base.h:
+
+/usr/include/c++/11/tr1/poly_laguerre.tcc:
+
 /usr/include/c++/11/bits/node_handle.h:
+
+/usr/include/c++/11/debug/assertions.h:
+
+/usr/include/boost/version.hpp:
 
 /usr/include/assert.h:
 
@@ -7179,8 +7261,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/boost/mpl/aux_/begin_end_impl.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
-
 /usr/include/c++/11/bits/concept_check.h:
 
 /usr/include/boost/type_traits/is_const.hpp:
@@ -7205,10 +7285,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
-/usr/include/boost/mpl/iter_fold_if.hpp:
-
-/usr/include/boost/mpl/minus.hpp:
-
 /usr/local/include/yaml-cpp/node/detail/node_data.h:
 
 /usr/include/c++/11/bits/ptr_traits.h:
@@ -7216,8 +7292,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/include/c++/11/bits/basic_string.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
-
-/usr/include/boost/mpl/aux_/config/ctps.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
@@ -7267,9 +7341,13 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/boost/preprocessor/punctuation/comma.hpp:
 
+/usr/include/boost/mpl/aux_/config/ctps.hpp:
+
 /usr/include/c++/11/bits/move.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
+
+/usr/include/c++/11/bits/this_thread_sleep.h:
 
 /usr/include/boost/type_traits/detail/has_binary_operator.hpp:
 
@@ -7287,11 +7365,13 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/c++/11/bits/basic_string.h:
 
+/usr/include/c++/11/bits/string_view.tcc:
+
+/usr/include/c++/11/bits/nested_exception.h:
+
 /usr/include/boost/range/begin.hpp:
 
 /usr/include/time.h:
-
-/usr/include/boost/mpl/plus.hpp:
 
 /usr/include/c++/11/stdlib.h:
 
@@ -7339,15 +7419,7 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/c++/11/bits/shared_ptr_base.h:
 
-/usr/include/c++/11/bits/nested_exception.h:
-
-/usr/include/c++/11/bits/string_view.tcc:
-
 /usr/include/c++/11/bits/charconv.h:
-
-/usr/include/boost/type_traits/is_void.hpp:
-
-/usr/include/boost/mpl/list/aux_/O1_size.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
@@ -7366,14 +7438,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/include/c++/11/bits/list.tcc:
 
 /usr/include/c++/11/bits/functexcept.h:
-
-/usr/include/boost/mpl/aux_/config/compiler.hpp:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
-
-/usr/include/c++/11/ext/alloc_traits.h:
-
-/usr/include/boost/type_traits/add_lvalue_reference.hpp:
 
 /usr/include/c++/11/initializer_list:
 
@@ -7405,8 +7469,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
-/usr/include/boost/mpl/aux_/at_impl.hpp:
-
 /usr/include/c++/11/bits/fstream.tcc:
 
 /usr/include/boost/mpl/aux_/na_assert.hpp:
@@ -7434,10 +7496,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/include/boost/config/helper_macros.hpp:
 
 /usr/include/boost/preprocessor/array/size.hpp:
-
-/usr/include/boost/type_traits/conditional.hpp:
-
-/usr/include/boost/mpl/aux_/clear_impl.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
@@ -7485,15 +7543,77 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/wctype.h:
 
+/usr/include/c++/11/bits/ranges_algobase.h:
+
+/usr/include/c++/11/bits/std_thread.h:
+
+/usr/include/boost/lexical_cast/detail/inf_nan.hpp:
+
+/usr/include/boost/range/has_range_iterator.hpp:
+
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
 
 /usr/include/boost/mpl/multiplies.hpp:
 
-/usr/include/boost/type_traits/is_arithmetic.hpp:
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
 
-/usr/include/boost/mpl/vector/aux_/empty.hpp:
+/usr/include/c++/11/ext/alloc_traits.h:
+
+/usr/include/boost/type_traits/add_lvalue_reference.hpp:
+
+/usr/include/boost/mpl/aux_/config/compiler.hpp:
+
+/usr/include/boost/config/detail/select_stdlib_config.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/boost/preprocessor/stringize.hpp:
+
+/usr/include/boost/mpl/times.hpp:
+
+/usr/include/locale.h:
+
+/usr/include/boost/type_traits/is_convertible.hpp:
+
+/usr/include/c++/11/semaphore:
+
+/usr/include/boost/mpl/aux_/config/msvc_typename.hpp:
+
+/usr/include/boost/type_traits/intrinsics.hpp:
+
+/usr/include/boost/type_traits/integral_constant.hpp:
+
+/usr/include/boost/lexical_cast/detail/widest_char.hpp:
+
+/usr/include/boost/mpl/aux_/has_apply.hpp:
+
+/usr/include/boost/mpl/aux_/clear_impl.hpp:
+
+/usr/include/boost/type_traits/conditional.hpp:
+
+/usr/include/boost/type_traits/add_rvalue_reference.hpp:
+
+/usr/include/boost/type_traits/is_void.hpp:
+
+/usr/include/boost/mpl/list/aux_/O1_size.hpp:
+
+/usr/include/boost/type_traits/is_lvalue_reference.hpp:
+
+/usr/include/boost/predef/detail/test.h:
+
+/usr/include/c++/11/ext/type_traits.h:
+
+/usr/include/boost/type_traits/is_function.hpp:
+
+/usr/include/boost/type_traits/detail/is_function_cxx_11.hpp:
+
+/usr/include/boost/utility/base_from_member.hpp:
+
+/usr/include/boost/type_traits/detail/yes_no_type.hpp:
+
+/usr/include/boost/type_traits/is_arithmetic.hpp:
 
 /usr/include/asm-generic/errno.h:
 
@@ -7563,8 +7683,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/and.hpp:
 
-/usr/include/boost/mpl/distance_fwd.hpp:
-
 /usr/include/boost/type_traits/is_same.hpp:
 
 /usr/include/boost/preprocessor/tuple/detail/is_single_return.hpp:
@@ -7615,8 +7733,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/boost/preprocessor/array/elem.hpp:
 
-/usr/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector10.hpp:
-
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
 /usr/include/boost/preprocessor/repetition/enum_params.hpp:
@@ -7632,8 +7748,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp:
 
 /usr/include/boost/mpl/list/aux_/item.hpp:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/vector.hpp:
 
 /usr/include/boost/mpl/bind.hpp:
 
@@ -7665,11 +7779,13 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/boost/mpl/quote.hpp:
 
-/usr/include/boost/mpl/vector/aux_/begin_end.hpp:
-
 /usr/include/boost/preprocessor/arithmetic/add.hpp:
 
 /usr/include/boost/mpl/aux_/template_arity.hpp:
+
+/usr/include/boost/type.hpp:
+
+/usr/include/boost/lexical_cast/detail/converter_lexical_streams.hpp:
 
 /usr/include/c++/11/bits/atomic_timed_wait.h:
 
@@ -7710,10 +7826,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/include/boost/mpl/aux_/config/overload_resolution.hpp:
 
 /usr/include/boost/range/difference_type.hpp:
-
-/usr/include/boost/lexical_cast/detail/inf_nan.hpp:
-
-/usr/include/boost/range/has_range_iterator.hpp:
 
 /usr/include/boost/utility/enable_if.hpp:
 
@@ -7760,8 +7872,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/include/boost/array.hpp:
 
 /usr/include/boost/preprocessor/seq/enum.hpp:
-
-/usr/include/c++/11/limits:
 
 /usr/include/c++/11/algorithm:
 
@@ -7849,10 +7959,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/boost/math/special_functions/detail/round_fwd.hpp:
 
-/usr/include/boost/lexical_cast/detail/converter_lexical_streams.hpp:
-
-/usr/include/boost/type.hpp:
-
 /usr/include/boost/numeric/conversion/detail/conversion_traits.hpp:
 
 /usr/include/boost/mpl/equal_to.hpp:
@@ -7927,8 +8033,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/c++/11/tr1/legendre_function.tcc:
 
-/usr/include/c++/11/tr1/poly_laguerre.tcc:
-
 /usr/include/boost/preprocessor/logical/and.hpp:
 
 /usr/include/boost/numeric/conversion/detail/bounds.hpp:
@@ -7939,17 +8043,11 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/include/boost/type_traits/has_left_shift.hpp:
 
-/usr/include/boost/preprocessor/tuple/eat.hpp:
-
 /usr/include/boost/mpl/prior.hpp:
 
+/usr/include/boost/preprocessor/tuple/eat.hpp:
+
 /usr/include/boost/type_traits/has_right_shift.hpp:
-
-/usr/include/boost/core/swap.hpp:
-
-/usr/include/boost/noncopyable.hpp:
-
-/usr/include/boost/mpl/list/aux_/push_front.hpp:
 
 /usr/include/boost/predef/os/bsd/dragonfly.h:
 
@@ -7967,9 +8065,9 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 
 /usr/local/include/yaml-cpp/traits.h:
 
-/usr/include/boost/type_traits/declval.hpp:
-
 /usr/include/boost/preprocessor/seq/elem.hpp:
+
+/usr/include/boost/type_traits/declval.hpp:
 
 /usr/include/c++/11/bits/locale_facets_nonio.h:
 
@@ -7978,8 +8076,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp:
 
 /usr/include/boost/math/special_functions/sign.hpp:
-
-/usr/include/boost/mpl/vector/aux_/size.hpp:
 
 /usr/include/boost/predef/architecture/x86/32.h:
 
@@ -8016,8 +8112,6 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/include/boost/mpl/clear_fwd.hpp:
 
 /usr/include/boost/mpl/size_fwd.hpp:
-
-/usr/include/boost/mpl/vector/aux_/include_preprocessed.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/less_equal.hpp:
 
@@ -8130,11 +8224,3 @@ CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o: ../tests/thread_test.cpp \
 /usr/include/boost/numeric/conversion/detail/meta.hpp:
 
 /usr/include/boost/mpl/vector/aux_/iterator.hpp:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/plus.hpp:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/minus.hpp:
-
-/usr/include/boost/mpl/advance_fwd.hpp:
-
-/usr/include/boost/mpl/vector/aux_/O1_size.hpp:

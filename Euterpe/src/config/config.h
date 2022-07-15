@@ -18,6 +18,8 @@
 #include <unordered_set>
 #include <functional>
 #include <set>
+#include "../thread/euterpe_thread.h"
+#include "../thread/mutex.h"
 
 namespace euterpe {
 

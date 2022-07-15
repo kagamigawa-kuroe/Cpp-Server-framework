@@ -16,6 +16,8 @@
 #include <map>
 #include "../utils/utils.h"
 #include "../utils/singleton.h"
+#include "../thread/euterpe_thread.h"
+#include "../thread/mutex.h"
 
 /// 使用方法
 /// 创建一个logger类
@@ -181,6 +183,7 @@ namespace euterpe {
         friend class Logger;
     public:
         typedef std::shared_ptr<LogAppender> ptr;
+        typedef Spinlock MutexType;
         virtual ~LogAppender() {}
         virtual std::string toYamlString() = 0;
         virtual void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) = 0;
@@ -197,16 +200,17 @@ namespace euterpe {
         LogLevel::Level m_level = LogLevel::DEBUG;
         /// 是否有自己的日志格式器
         bool m_hasFormatter = false;
-
         /// 日志格式器
         LogFormatter::ptr m_formatter;
+
+        MutexType m_mutex;
     };
 
     class Logger : public std::enable_shared_from_this<Logger> {
         friend class LoggerManager;
     public:
         typedef std::shared_ptr<Logger> ptr;
-
+        typedef Spinlock MutexType;
         Logger(const std::string& name = "root");
 
         void log(LogLevel::Level level, LogEvent::ptr event);
@@ -241,6 +245,7 @@ namespace euterpe {
         LogFormatter::ptr m_formatter;
         /// 主日志器
         Logger::ptr m_root;
+        MutexType m_mutex;
     };
 
     class StdoutLogAppender : public LogAppender {
@@ -278,6 +283,7 @@ namespace euterpe {
 
     class LoggerManager{
     public:
+        typedef Spinlock MutexType;
         LoggerManager();
         Logger::ptr getLogger(const std::string& name);
         void init();
@@ -286,7 +292,7 @@ namespace euterpe {
     private:
         std::map<std::string,Logger::ptr> m_logger;
         Logger::ptr m_root;
-
+        MutexType m_mutex;
     };
 
     typedef euterpe::Singleton<LoggerManager> LoggerMgr;
