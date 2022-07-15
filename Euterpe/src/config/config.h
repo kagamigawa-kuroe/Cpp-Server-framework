@@ -16,7 +16,8 @@
 #include "../utils/utils.h"
 #include <yaml-cpp/yaml.h>
 #include <unordered_set>
-#include "../log/log.h"
+#include <functional>
+#include <set>
 
 namespace euterpe {
 

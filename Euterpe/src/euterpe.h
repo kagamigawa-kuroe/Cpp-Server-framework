@@ -11,5 +11,7 @@
 #include "utils/singleton.h"
 #include "utils/noncopyable.h"
 #include "Log/log.h"
+#include "thread/euterpe_thread.h"
+#include "thread/mutex.h"
 
 #endif //EUTERPE_EUTERPE_H

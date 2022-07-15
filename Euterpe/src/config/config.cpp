@@ -4,6 +4,7 @@
 
 #include "config.h"
 #include <yaml-cpp/yaml.h>
+#include <functional>
 
 /// 首先 为了储存一个个配置文件参数 我们有一个类叫做 ConfigVar 封装了一个个参数变量
 /// 还有一个叫config的类，维护了一个map，包含了所有的ConfigVar对象

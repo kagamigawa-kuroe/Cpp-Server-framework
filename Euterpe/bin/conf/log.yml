@@ -3,13 +3,13 @@ logs:
     level: info
     appenders:
       - type: FileLogAppender
-        file: /Users/whz/learning/Cpp-Server-framework/Euterpe/tests/root.log
+        file: /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/root.log
       - type: StdoutLogAppender
   - name: system
     level: info
     appenders:
       - type: FileLogAppender
-        file: /Users/whz/learning/Cpp-Server-framework/Euterpe/tests/system.log
+        file: /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/system.log
       - type: StdoutLogAppender
 system:
     port: 8081

@@ -8,129 +8,134 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug"/>
+				<Option working_dir="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Euterpe">
-				<Option output="/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Euterpe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug"/>
+				<Option output="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Euterpe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/opt/homebrew/include"/>
+					<Add directory="/usr/local/lib"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.1.6/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 Euterpe"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 Euterpe"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Euterpe/fast">
-				<Option output="/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Euterpe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug"/>
+				<Option output="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Euterpe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/opt/homebrew/include"/>
+					<Add directory="/usr/local/lib"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.1.6/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 Euterpe/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 Euterpe/fast"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.cpp">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/Log/log.cpp">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.h">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/Log/log.h">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/config/config.cpp">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/config/config.cpp">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/config/config.h">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/config/config.h">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/euterpe.h">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/euterpe.h">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.cpp">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.cpp">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.h">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.h">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/mutex.cpp">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/thread/mutex.cpp">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/mutex.h">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/thread/mutex.h">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/noncopyable.h">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/utils/noncopyable.h">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/singleton.h">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/utils/singleton.h">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/utils.cpp">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/utils/utils.cpp">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/utils.h">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/utils/utils.h">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/tests/config_test.cpp">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/config_test.cpp">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/tests/log_test.cpp">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/lock_test.cpp">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/tests/thread_test.cpp">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/log_test.cpp">
 			<Option target="Euterpe"/>
 		</Unit>
-		<Unit filename="/Users/whz/learning/Cpp-Server-framework/Euterpe/CMakeLists.txt">
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/thread_test.cpp">
+			<Option target="Euterpe"/>
+		</Unit>
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -11,11 +11,11 @@
 namespace euterpe{
     pid_t GetThreadId(){
         /// 只在linux环境下可用
-        /// pid_t tid = syscall(SYS_gettid);
+        pid_t tid = syscall(SYS_gettid);
 
         /// 由于测试环境在mac 使用pthread替代
-        uint64_t tid;
-        pthread_threadid_np(NULL, &tid);
+        /// uint64_t tid;
+        /// pthread_threadid_np(NULL, &tid);
         return tid;
     };
     uint32_t GetFiberId(){

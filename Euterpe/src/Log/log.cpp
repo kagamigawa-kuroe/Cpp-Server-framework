@@ -7,7 +7,8 @@
 #include <iostream>
 #include <functional>
 #include <time.h>
-#include "util.h"
+#include <set>
+#include "../utils/utils.h"
 #include "../config/config.h"
 
 namespace euterpe {

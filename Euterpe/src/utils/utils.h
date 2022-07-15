@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include <typeinfo>
 #include <cxxabi.h>
+#include <cstdint>
 
 namespace euterpe{
     pid_t GetThreadId();

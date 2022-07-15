@@ -4,29 +4,19 @@ set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
 
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "CXX"
-  )
-# The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/whz/learning/Cpp-Server-framework/Euterpe/src/Log/log.cpp" "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir/src/Log/log.cpp.o"
-  "/Users/whz/learning/Cpp-Server-framework/Euterpe/src/config/config.cpp" "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir/src/config/config.cpp.o"
-  "/Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.cpp" "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o"
-  "/Users/whz/learning/Cpp-Server-framework/Euterpe/src/thread/mutex.cpp" "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir/src/thread/mutex.cpp.o"
-  "/Users/whz/learning/Cpp-Server-framework/Euterpe/src/utils/utils.cpp" "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o"
-  "/Users/whz/learning/Cpp-Server-framework/Euterpe/tests/config_test.cpp" "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir/tests/config_test.cpp.o"
-  "/Users/whz/learning/Cpp-Server-framework/Euterpe/tests/log_test.cpp" "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir/tests/log_test.cpp.o"
-  "/Users/whz/learning/Cpp-Server-framework/Euterpe/tests/thread_test.cpp" "/Users/whz/learning/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o"
-  )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
-
-# The include file search paths:
-set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/opt/homebrew/include"
-  "/usr/local/include"
   )
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/Log/log.cpp" "CMakeFiles/Euterpe.dir/src/Log/log.cpp.o" "gcc" "CMakeFiles/Euterpe.dir/src/Log/log.cpp.o.d"
+  "/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/config/config.cpp" "CMakeFiles/Euterpe.dir/src/config/config.cpp.o" "gcc" "CMakeFiles/Euterpe.dir/src/config/config.cpp.o.d"
+  "/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/thread/euterpe_thread.cpp" "CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o" "gcc" "CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o.d"
+  "/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/thread/mutex.cpp" "CMakeFiles/Euterpe.dir/src/thread/mutex.cpp.o" "gcc" "CMakeFiles/Euterpe.dir/src/thread/mutex.cpp.o.d"
+  "/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/utils/utils.cpp" "CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o" "gcc" "CMakeFiles/Euterpe.dir/src/utils/utils.cpp.o.d"
+  "/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/config_test.cpp" "CMakeFiles/Euterpe.dir/tests/config_test.cpp.o" "gcc" "CMakeFiles/Euterpe.dir/tests/config_test.cpp.o.d"
+  "/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/lock_test.cpp" "CMakeFiles/Euterpe.dir/tests/lock_test.cpp.o" "gcc" "CMakeFiles/Euterpe.dir/tests/lock_test.cpp.o.d"
+  "/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/log_test.cpp" "CMakeFiles/Euterpe.dir/tests/log_test.cpp.o" "gcc" "CMakeFiles/Euterpe.dir/tests/log_test.cpp.o.d"
+  "/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/thread_test.cpp" "CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o" "gcc" "CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o.d"
   )
 
 # Targets to which this target links.
