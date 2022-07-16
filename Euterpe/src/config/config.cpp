@@ -30,7 +30,11 @@ namespace euterpe{
 
     static euterpe::Logger::ptr g_logger = EUTERPE_LOG_NAME("system");
 
+    static std::map<std::string, uint64_t> s_file2modifytime;
+    static euterpe::Mutex s_mutex;
+
     ConfigVarBase::ptr  Config::LookupBase(const std::string& name){
+        RWMutexType::ReadLock lock(GetMutex());
         auto it = GetDatas().find(name);
         return it == GetDatas().end() ? nullptr : it->second;
     };
@@ -87,6 +91,7 @@ namespace euterpe{
     }
 
     void Config::Visit(std::function<void(ConfigVarBase::ptr)> cb) {
+        RWMutexType::ReadLock lock(GetMutex());
         ConfigVarMap& m = GetDatas();
         for(auto it = m.begin();
         it != m.end(); ++it) {

@@ -357,6 +357,7 @@ namespace euterpe {
             ,class ToStr = LexicalCast<T, std::string>>
     class ConfigVar : public ConfigVarBase {
     public:
+        typedef RWMutex RWMutexType;
         typedef std::shared_ptr<ConfigVar> ptr;
         typedef std::function<void (const T& old_value, const T& new_value)> on_change_cb;
         ConfigVar(const std::string &name, const T &default_value, const std::string &description = "")
@@ -364,6 +365,7 @@ namespace euterpe {
 
         std::string toString() override {
             try {
+                RWMutexType::ReadLock lock(m_mutex);
                 return ToStr()(m_val);;
             } catch (std::exception &e) {
                 EUTERPE_LOG_ERROR(EUTERPE_LOG_ROOT()) << "ConfigVar::tostring exception"
@@ -386,10 +388,11 @@ namespace euterpe {
             return false;
         }
 
-        T getValue() { return m_val; }
+        T getValue() { RWMutexType::ReadLock lock(m_mutex); return m_val; }
 
         void setValue(const T& v) {
             {
+                RWMutexType::ReadLock lock(m_mutex);
                 if(v == m_val) {
                     return;
                 }
@@ -397,12 +400,14 @@ namespace euterpe {
                     i.second(m_val, v);
                 }
             }
+            RWMutexType::WriteLock lock(m_mutex);
             m_val = v;
         }
 
         std::string getTypeName() const override { return TypeToName<T>(); }
 
         uint64_t addListener(on_change_cb cb) {
+            RWMutexType::WriteLock lock(m_mutex);
             static uint64_t s_fun_id = 0;
             ++s_fun_id;
             m_cbs[s_fun_id] = cb;
@@ -410,25 +415,30 @@ namespace euterpe {
         }
 
         void delListener(uint64_t key) {
+            RWMutexType::WriteLock lock(m_mutex);
             m_cbs.erase(key);
         }
 
         on_change_cb getListener(uint64_t key) {
+            RWMutexType::WriteLock lock(m_mutex);
             auto it = m_cbs.find(key);
             return it == m_cbs.end() ? nullptr : it->second;
         }
 
         void clearListener() {
+            RWMutexType::WriteLock lock(m_mutex);
             m_cbs.clear();
         }
 
     private:
+        RWMutexType m_mutex;
         T m_val;
         std::map<uint64_t, on_change_cb> m_cbs;
     };
 
     class Config {
     public:
+        typedef RWMutex RWMutexType;
         /// 存储的是yaml文件中读取的每一个 变量名 和 对应的变量
         typedef std::unordered_map<std::string, ConfigVarBase::ptr> ConfigVarMap;
 
@@ -438,6 +448,7 @@ namespace euterpe {
         template<class T>
         static typename ConfigVar<T>::ptr Lookup(const std::string &name,
                                                  const T &default_value, const std::string &description = "") {
+            RWMutexType::WriteLock lock(GetMutex());
             auto it = GetDatas().find(name);
             if (it != GetDatas().end()) {
                 /// 把一个对象转换成该对象类型的只能指针
@@ -466,6 +477,7 @@ namespace euterpe {
 
         template<class T>
         static typename ConfigVar<T>::ptr Lookup(const std::string &name) {
+            RWMutexType::ReadLock lock(GetMutex());
             auto it = GetDatas().find(name);
             if (it == GetDatas().end()) {
                 return nullptr;
@@ -487,6 +499,11 @@ namespace euterpe {
         static ConfigVarMap &GetDatas() {
             static ConfigVarMap s_datas;
             return s_datas;
+        }
+
+        static RWMutexType& GetMutex() {
+            static RWMutexType s_mutex;
+            return s_mutex;
         }
     };
 }
