@@ -1,3 +1,0 @@
-/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/Euterpe.dir
-/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles/rebuild_cache.dir

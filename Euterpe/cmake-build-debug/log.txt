@@ -1,2 +1,0 @@
-2022-07-05 15:43:12	4294967295	test	0	[DEBUG]	[root]	/Users/whz/learning/Cpp-Server-framework/Euterpe/tests/log_test.cpp:29	1234
-2022-07-05 15:43:12	4294967295	test	0	[ERROR]	[root]	/Users/whz/learning/Cpp-Server-framework/Euterpe/tests/log_test.cpp:30	test helo
