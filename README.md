@@ -13,13 +13,15 @@
 - [x] 仿照log4j的日志系统 
   - 模块化输出程序运行日志
   - 自定义输出格式
-
-- [ ] 线程模块（WIP）
+- [x] 线程模块
   - 从零封装pthread 实现类似c++11的thread库
   - 锁的封装 线程安全的实现
-  - 线程池
-- [ ] 协程框架
-  - c++20的新特性 本人也还不是特别清楚 只在go里面看到过一点 估计需要很久
+  - 线程池( 还未完成 等到协作完成后再加入 )
+- [ ] 协程框架（WIP）
+  - ~~c++20的新特性 本人也还不是特别清楚 只在go里面看到过一点 估计需要很久~~
+  - 在对比了几个主流框架后 觉得c++20的协程api不是很方便  ~~真不是人写的啊c++~~ 于是打算从底层开始写一个
+  - 采用linux原生ucontext.h库 采用上下文切换的形式 封装了一套协程框架
+  - 以及协程调度的相关支持
 - [x] 配置框架
   - 用类似spring框架的配置文件模式 
   - 用yaml配置文件来实现各个模块的配置
@@ -42,20 +44,32 @@ IDEA Clion+vim
 
 #### 目前项目结构
 
-Src      
-&nbsp; &nbsp; &nbsp; &nbsp; -- log 日志框架     
-&nbsp; &nbsp; &nbsp; &nbsp; -- utils 工具类  
+./Euterpe/src
+├── config
+│   ├── config.cpp
+│   ├── config.h
+│   └── config.md
+├── coroutines
+│   ├── fiber.h
+│   └── fuber.cpp
+├── euterpe.h
+├── image
+│   └── Log_usgae.jpg
+├── Log
+│   ├── log.cpp
+│   ├── log.h
+│   └── Log_note.md
+├── thread
+│   ├── euterpe_thread.cpp
+│   ├── euterpe_thread.h
+│   ├── mutex.cpp
+│   ├── mutex.h
+│   ├── Thread.md
+│   └── 锁的封装.md
+└── utils
+    ├── macro.h
+    ├── noncopyable.h
+    ├── singleton.h
+    ├── utils.cpp
+    └── utils.h
 
-​               -- utils.h 工具类
-
-​               -- singleton.h 单例实现接口
-
-​               -- noncopyable.h 禁用类拷贝和复制的接口
-
-​        -- Config 配置框架
-
-​        -- thread 线程框架
-
-Bin - 可以执行文件
-
-tests - 测试

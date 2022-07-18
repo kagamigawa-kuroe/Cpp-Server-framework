@@ -96,6 +96,12 @@
 		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/config/config.h">
 			<Option target="Euterpe"/>
 		</Unit>
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/coroutines/fiber.h">
+			<Option target="Euterpe"/>
+		</Unit>
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/coroutines/fuber.cpp">
+			<Option target="Euterpe"/>
+		</Unit>
 		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/euterpe.h">
 			<Option target="Euterpe"/>
 		</Unit>
@@ -109,6 +115,9 @@
 			<Option target="Euterpe"/>
 		</Unit>
 		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/thread/mutex.h">
+			<Option target="Euterpe"/>
+		</Unit>
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/utils/macro.h">
 			<Option target="Euterpe"/>
 		</Unit>
 		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/utils/noncopyable.h">
@@ -130,6 +139,9 @@
 			<Option target="Euterpe"/>
 		</Unit>
 		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/log_test.cpp">
+			<Option target="Euterpe"/>
+		</Unit>
+		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/test_assert.cpp">
 			<Option target="Euterpe"/>
 		</Unit>
 		<Unit filename="/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/thread_test.cpp">

@@ -195,6 +195,34 @@ CMakeFiles/Euterpe.dir/tests/lock_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Euterpe.dir/tests/lock_test.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/lock_test.cpp -o CMakeFiles/Euterpe.dir/tests/lock_test.cpp.s
 
+CMakeFiles/Euterpe.dir/tests/test_assert.cpp.o: CMakeFiles/Euterpe.dir/flags.make
+CMakeFiles/Euterpe.dir/tests/test_assert.cpp.o: ../tests/test_assert.cpp
+CMakeFiles/Euterpe.dir/tests/test_assert.cpp.o: CMakeFiles/Euterpe.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Euterpe.dir/tests/test_assert.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Euterpe.dir/tests/test_assert.cpp.o -MF CMakeFiles/Euterpe.dir/tests/test_assert.cpp.o.d -o CMakeFiles/Euterpe.dir/tests/test_assert.cpp.o -c /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/test_assert.cpp
+
+CMakeFiles/Euterpe.dir/tests/test_assert.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Euterpe.dir/tests/test_assert.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/test_assert.cpp > CMakeFiles/Euterpe.dir/tests/test_assert.cpp.i
+
+CMakeFiles/Euterpe.dir/tests/test_assert.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Euterpe.dir/tests/test_assert.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/test_assert.cpp -o CMakeFiles/Euterpe.dir/tests/test_assert.cpp.s
+
+CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.o: CMakeFiles/Euterpe.dir/flags.make
+CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.o: ../src/coroutines/fuber.cpp
+CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.o: CMakeFiles/Euterpe.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.o -MF CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.o.d -o CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.o -c /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/coroutines/fuber.cpp
+
+CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/coroutines/fuber.cpp > CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.i
+
+CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/src/coroutines/fuber.cpp -o CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.s
+
 # Object files for target Euterpe
 Euterpe_OBJECTS = \
 "CMakeFiles/Euterpe.dir/tests/log_test.cpp.o" \
@@ -205,7 +233,9 @@ Euterpe_OBJECTS = \
 "CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o" \
 "CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o" \
 "CMakeFiles/Euterpe.dir/src/thread/mutex.cpp.o" \
-"CMakeFiles/Euterpe.dir/tests/lock_test.cpp.o"
+"CMakeFiles/Euterpe.dir/tests/lock_test.cpp.o" \
+"CMakeFiles/Euterpe.dir/tests/test_assert.cpp.o" \
+"CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.o"
 
 # External object files for target Euterpe
 Euterpe_EXTERNAL_OBJECTS =
@@ -219,10 +249,12 @@ Euterpe: CMakeFiles/Euterpe.dir/tests/thread_test.cpp.o
 Euterpe: CMakeFiles/Euterpe.dir/src/thread/euterpe_thread.cpp.o
 Euterpe: CMakeFiles/Euterpe.dir/src/thread/mutex.cpp.o
 Euterpe: CMakeFiles/Euterpe.dir/tests/lock_test.cpp.o
+Euterpe: CMakeFiles/Euterpe.dir/tests/test_assert.cpp.o
+Euterpe: CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.o
 Euterpe: CMakeFiles/Euterpe.dir/build.make
 Euterpe: /usr/local/lib/libyaml-cpp.so
 Euterpe: CMakeFiles/Euterpe.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable Euterpe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable Euterpe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Euterpe.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

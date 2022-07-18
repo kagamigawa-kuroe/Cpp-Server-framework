@@ -1,5 +1,5 @@
-CMakeFiles/Euterpe.dir/tests/lock_test.cpp.o: \
- /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/lock_test.cpp \
+CMakeFiles/Euterpe.dir/tests/test_assert.cpp.o: \
+ /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/test_assert.cpp \
  /usr/include/stdc-predef.h \
  /home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/tests/../src/euterpe.h \
  /usr/include/c++/11/iostream \

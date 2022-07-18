@@ -22,16 +22,16 @@ void fun1(){
         sleep(1);
     }
 }
-\
-int main(){
-    std::vector<euterpe::Thread::ptr> thrs;
-    for(int i = 0; i < 5; ++i) {
-        euterpe::Thread::ptr thr(new euterpe::Thread(&fun22, "name_" + std::to_string(i * 2)));
-        thrs.push_back(thr);
-    }
-
-    for(size_t i = 0; i < thrs.size(); ++i) {
-        thrs[i]->join();
-    }
-
-}
+//\
+//int main(){
+//    std::vector<euterpe::Thread::ptr> thrs;
+//    for(int i = 0; i < 5; ++i) {
+//        euterpe::Thread::ptr thr(new euterpe::Thread(&fun22, "name_" + std::to_string(i * 2)));
+//        thrs.push_back(thr);
+//    }
+//
+//    for(size_t i = 0; i < thrs.size(); ++i) {
+//        thrs[i]->join();
+//    }
+//
+//}

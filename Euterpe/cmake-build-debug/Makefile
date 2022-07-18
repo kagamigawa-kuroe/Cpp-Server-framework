@@ -177,6 +177,30 @@ src/config/config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/config/config.cpp.s
 .PHONY : src/config/config.cpp.s
 
+src/coroutines/fuber.o: src/coroutines/fuber.cpp.o
+.PHONY : src/coroutines/fuber.o
+
+# target to build an object file
+src/coroutines/fuber.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.o
+.PHONY : src/coroutines/fuber.cpp.o
+
+src/coroutines/fuber.i: src/coroutines/fuber.cpp.i
+.PHONY : src/coroutines/fuber.i
+
+# target to preprocess a source file
+src/coroutines/fuber.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.i
+.PHONY : src/coroutines/fuber.cpp.i
+
+src/coroutines/fuber.s: src/coroutines/fuber.cpp.s
+.PHONY : src/coroutines/fuber.s
+
+# target to generate assembly for a file
+src/coroutines/fuber.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/src/coroutines/fuber.cpp.s
+.PHONY : src/coroutines/fuber.cpp.s
+
 src/thread/euterpe_thread.o: src/thread/euterpe_thread.cpp.o
 .PHONY : src/thread/euterpe_thread.o
 
@@ -321,6 +345,30 @@ tests/log_test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/tests/log_test.cpp.s
 .PHONY : tests/log_test.cpp.s
 
+tests/test_assert.o: tests/test_assert.cpp.o
+.PHONY : tests/test_assert.o
+
+# target to build an object file
+tests/test_assert.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/tests/test_assert.cpp.o
+.PHONY : tests/test_assert.cpp.o
+
+tests/test_assert.i: tests/test_assert.cpp.i
+.PHONY : tests/test_assert.i
+
+# target to preprocess a source file
+tests/test_assert.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/tests/test_assert.cpp.i
+.PHONY : tests/test_assert.cpp.i
+
+tests/test_assert.s: tests/test_assert.cpp.s
+.PHONY : tests/test_assert.s
+
+# target to generate assembly for a file
+tests/test_assert.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Euterpe.dir/build.make CMakeFiles/Euterpe.dir/tests/test_assert.cpp.s
+.PHONY : tests/test_assert.cpp.s
+
 tests/thread_test.o: tests/thread_test.cpp.o
 .PHONY : tests/thread_test.o
 
@@ -360,6 +408,9 @@ help:
 	@echo "... src/config/config.o"
 	@echo "... src/config/config.i"
 	@echo "... src/config/config.s"
+	@echo "... src/coroutines/fuber.o"
+	@echo "... src/coroutines/fuber.i"
+	@echo "... src/coroutines/fuber.s"
 	@echo "... src/thread/euterpe_thread.o"
 	@echo "... src/thread/euterpe_thread.i"
 	@echo "... src/thread/euterpe_thread.s"
@@ -378,6 +429,9 @@ help:
 	@echo "... tests/log_test.o"
 	@echo "... tests/log_test.i"
 	@echo "... tests/log_test.s"
+	@echo "... tests/test_assert.o"
+	@echo "... tests/test_assert.i"
+	@echo "... tests/test_assert.s"
 	@echo "... tests/thread_test.o"
 	@echo "... tests/thread_test.i"
 	@echo "... tests/thread_test.s"

@@ -12,11 +12,13 @@
 #include <typeinfo>
 #include <cxxabi.h>
 #include <cstdint>
-
+#include <string>
 namespace euterpe{
     pid_t GetThreadId();
 
     uint32_t GetFiberId();
+
+    std::string BacktraceToString(int size = 64, int skip = 2, const std::string& prefix = "");
 
     /// 可以返回完整的类名
     /// 直接用typeid().name() 当类名过长时无法返回正确类名

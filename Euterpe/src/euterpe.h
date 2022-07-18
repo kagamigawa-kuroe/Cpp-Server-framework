@@ -5,6 +5,7 @@
 #ifndef EUTERPE_EUTERPE_H
 #define EUTERPE_EUTERPE_H
 
+#include <iostream>
 #include "config/config.h"
 #include "thread/euterpe_thread.h"
 #include "utils/utils.h"
@@ -13,5 +14,6 @@
 #include "Log/log.h"
 #include "thread/euterpe_thread.h"
 #include "thread/mutex.h"
+#include "utils/macro.h"
 
 #endif //EUTERPE_EUTERPE_H
