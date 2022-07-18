@@ -1,2 +1,4 @@
 *.make linguist-language=C++
 *.cpp linguist-language=C++
+Makefile linguist-language=C++
+
