@@ -14,6 +14,8 @@ namespace euterpe{
     static std::atomic<uint64_t> s_fiber_count {0};
 
     static thread_local Fiber* t_fiber = nullptr;
+
+    /// main fiber
     static thread_local Fiber::ptr t_threadFiber = nullptr;
 
     static ConfigVar<uint32_t>::ptr g_fiber_stack_size =
@@ -41,9 +43,10 @@ namespace euterpe{
         ++s_fiber_count;
     };
 
-    void Fiber::SetThis(Fiber* f){
-
-    };
+    /// 设置当前协程
+    void Fiber::SetThis(Fiber* f) {
+        t_fiber = f;
+    }
 
     Fiber::Fiber(std::function<void()> cb, size_t stacksize):m_id(++s_fiber_id)
     ,m_cb(cb){
@@ -110,30 +113,85 @@ namespace euterpe{
         m_state = EXEC;
 
         /// swap context
+        if(swapcontext(&t_threadFiber->m_ctx,&m_ctx)){
+            EUTERPE_ASSERT2(false, "swapcontext");
+        }
     };
 
     void Fiber::swapOut(){
+        SetThis(t_threadFiber.get());
+        if(swapcontext(&m_ctx,&t_threadFiber->m_ctx)){
+            EUTERPE_ASSERT2(false, "swapcontext");
+        }
 
     };
 
     /// 返回当前协程
-    Fiber::ptr Fiber::GetThis(){};
+    Fiber::ptr Fiber::GetThis() {
+        if(t_fiber) {
+            return t_fiber->shared_from_this();
+        }
+        Fiber::ptr main_fiber(new Fiber);
+        EUTERPE_ASSERT(t_fiber == main_fiber.get());
+        t_threadFiber = main_fiber;
+        return t_fiber->shared_from_this();
+    }
 
 
-    /// 协程切换到后台并且切换状态
-    void Fiber::YieldToReady(){};
+    //协程切换到后台，并且设置为Ready状态
+    void Fiber::YieldToReady() {
+        Fiber::ptr cur = GetThis();
+        // EUTERPE_ASSERT(cur->m_state == EXEC);
+        cur->m_state = READY;
+        cur->swapOut();
+    }
 
-    void Fiber::YieldToHold(){
+//协程切换到后台，并且设置为Hold状态
+    void Fiber::YieldToHold() {
+        Fiber::ptr cur = GetThis();
 
-    };
+        cur->m_state = HOLD;
+        cur->swapOut();
+    }
 
-    /// 获取总携程数
-    uint64_t Fiber::TotalFibers(){
-
-    };
+//总协程数
+    uint64_t Fiber::TotalFibers() {
+        return s_fiber_count;
+    }
 
     /// 协程执行函数 执行完成返回到线程主协程
     void Fiber::MainFunc(){
+        Fiber::ptr cur = GetThis();
+        EUTERPE_ASSERT(cur);
+        try {
+            cur->m_cb();
+            cur->m_cb = nullptr;
+            cur->m_state = TERM;
+        } catch (std::exception& ex) {
+            cur->m_state = EXCEPT;
+            EUTERPE_LOG_ERROR(g_logger) << "Fiber Except: " << ex.what()
+                                      << " fiber_id=" << cur->getId()
+                                      << std::endl
+                                      << euterpe::BacktraceToString();
+        } catch (...) {
+            cur->m_state = EXCEPT;
+            EUTERPE_LOG_ERROR(g_logger) << "Fiber Except"
+                                      << " fiber_id=" << cur->getId()
+                                      << std::endl
+                                      << euterpe::BacktraceToString();
+        }
 
+        auto raw_ptr = cur.get();
+        cur.reset();
+        raw_ptr->swapOut();
+
+        EUTERPE_ASSERT2(false, "never reach fiber_id=" + std::to_string(raw_ptr->getId()));
+    }
+
+    uint64_t Fiber::GetFiberId() {
+        if(t_fiber){
+            return t_fiber->getId();
+        }
+        return 0;
     };
 }

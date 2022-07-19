@@ -15,5 +15,6 @@
 #include "thread/euterpe_thread.h"
 #include "thread/mutex.h"
 #include "utils/macro.h"
+#include "coroutines/fiber.h"
 
 #endif //EUTERPE_EUTERPE_H

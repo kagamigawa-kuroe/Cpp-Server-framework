@@ -49,6 +49,7 @@ namespace euterpe {
         /// 抢占线程和让出线程
         void swapIn();
         void swapOut();
+        uint64_t getId(){return m_id;};
 
     public:
         /// 返回当前协程
@@ -66,6 +67,7 @@ namespace euterpe {
 
         /// 协程执行函数 执行完成返回到线程主协程
         static void MainFunc();
+        static uint64_t GetFiberId();
 
     private:
         /// 协程id

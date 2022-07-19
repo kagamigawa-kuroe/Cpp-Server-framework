@@ -4,6 +4,6 @@
 
 #include "../src/euterpe.h"
 
-int main(){
-    EUTERPE_ASSERT(0);
-}
+//int main(){
+//    EUTERPE_ASSERT(0);
+//}

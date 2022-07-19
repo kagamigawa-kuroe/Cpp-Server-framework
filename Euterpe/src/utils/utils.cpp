@@ -10,6 +10,7 @@
 #include <vector>
 #include <dirent.h>
 #include <execinfo.h>
+#include "../coroutines/fiber.h"
 #include "../Log/log.h"
 
 namespace euterpe{
@@ -26,7 +27,7 @@ namespace euterpe{
         return tid;
     };
     uint32_t GetFiberId(){
-        return 0;
+        return euterpe::Fiber::GetFiberId();
     };
 
     /// 获取函数的原型
