@@ -6,6 +6,7 @@
 #include "../Log/log.h"
 #include "../config/config.h"
 #include "../utils/macro.h"
+#include "../scheduler/scheduler.h"
 #include <atomic>
 namespace euterpe{
 
@@ -48,10 +49,12 @@ namespace euterpe{
         t_fiber = f;
     }
 
-    Fiber::Fiber(std::function<void()> cb, size_t stacksize):m_id(++s_fiber_id)
-    ,m_cb(cb){
+    Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller)
+            :m_id(++s_fiber_id)
+            ,m_cb(cb) {
         ++s_fiber_count;
         m_stacksize = stacksize ? stacksize : g_fiber_stack_size->getValue();
+
         m_stack = StackAllocator::Alloc(m_stacksize);
         if(getcontext(&m_ctx)) {
             EUTERPE_ASSERT2(false, "getcontext");
@@ -60,9 +63,14 @@ namespace euterpe{
         m_ctx.uc_stack.ss_sp = m_stack;
         m_ctx.uc_stack.ss_size = m_stacksize;
 
-        makecontext(&m_ctx, &Fiber::MainFunc, 0);
+        if(!use_caller) {
+            makecontext(&m_ctx, &Fiber::MainFunc, 0);
+        } else {
+            makecontext(&m_ctx, &Fiber::CallerMainFunc, 0);
+        }
+
         EUTERPE_LOG_DEBUG(g_logger) << "Fiber::Fiber id=" << m_id;
-    };
+    }
 
     Fiber::~Fiber(){
         --s_fiber_count;
@@ -104,26 +112,6 @@ namespace euterpe{
 
         makecontext(&m_ctx, &Fiber::MainFunc, 0);
         m_state = INIT;
-    };
-
-    /// 抢占线程和让出线程
-    void Fiber::swapIn(){
-        SetThis(this);
-        EUTERPE_ASSERT(m_state != EXEC);
-        m_state = EXEC;
-
-        /// swap context
-        if(swapcontext(&t_threadFiber->m_ctx,&m_ctx)){
-            EUTERPE_ASSERT2(false, "swapcontext");
-        }
-    };
-
-    void Fiber::swapOut(){
-        SetThis(t_threadFiber.get());
-        if(swapcontext(&m_ctx,&t_threadFiber->m_ctx)){
-            EUTERPE_ASSERT2(false, "swapcontext");
-        }
-
     };
 
     /// 返回当前协程
@@ -188,10 +176,72 @@ namespace euterpe{
         EUTERPE_ASSERT2(false, "never reach fiber_id=" + std::to_string(raw_ptr->getId()));
     }
 
+    /// 执行完成返回到线程调度协程
+    void Fiber::CallerMainFunc() {
+        Fiber::ptr cur = GetThis();
+        EUTERPE_ASSERT(cur);
+        try {
+            cur->m_cb();
+            cur->m_cb = nullptr;
+            cur->m_state = TERM;
+        } catch (std::exception& ex) {
+            cur->m_state = EXCEPT;
+            EUTERPE_LOG_ERROR(g_logger) << "Fiber Except: " << ex.what()
+                                      << " fiber_id=" << cur->getId()
+                                      << std::endl
+                                      << euterpe::BacktraceToString();
+        } catch (...) {
+            cur->m_state = EXCEPT;
+            EUTERPE_LOG_ERROR(g_logger) << "Fiber Except"
+                                      << " fiber_id=" << cur->getId()
+                                      << std::endl
+                                      << euterpe::BacktraceToString();
+        }
+
+        auto raw_ptr = cur.get();
+        cur.reset();
+        raw_ptr->back();
+        EUTERPE_ASSERT2(false, "never reach fiber_id=" + std::to_string(raw_ptr->getId()));
+
+    }
+
+    void Fiber::back() {
+        SetThis(t_threadFiber.get());
+        if(swapcontext(&m_ctx, &t_threadFiber->m_ctx)) {
+            EUTERPE_ASSERT2(false, "swapcontext");
+        }
+    }
+
+    /// 切换到当前协程执行
+    void Fiber::swapIn() {
+        SetThis(this);
+        EUTERPE_ASSERT(m_state != EXEC);
+        m_state = EXEC;
+        if(swapcontext(&Scheduler::GetMainFiber()->m_ctx, &m_ctx)) {
+            EUTERPE_ASSERT2(false, "swapcontext");
+        }
+    }
+
+    /// 切换到后台执行
+    void Fiber::swapOut() {
+        SetThis(Scheduler::GetMainFiber());
+        if(swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx)) {
+            EUTERPE_ASSERT2(false, "swapcontext");
+        }
+    }
+
     uint64_t Fiber::GetFiberId() {
         if(t_fiber){
             return t_fiber->getId();
         }
         return 0;
-    };
+    }
+
+    void Fiber::call() {
+        SetThis(this);
+        m_state = EXEC;
+        if(swapcontext(&t_threadFiber->m_ctx, &m_ctx)) {
+            SYLAR_ASSERT2(false, "swapcontext");
+        }
+    }
 }

@@ -24,6 +24,7 @@ namespace euterpe{
         ~Thread();
         const std::string& getName() const { return m_name; }
         void join();
+        pid_t GetId(){return m_id;}
         static Thread* GetThis();
         static const std::string& GetName();
         static void SetName(const std::string& name);

@@ -37,10 +37,13 @@ namespace euterpe {
             EXCEPT
         };
 
+        /// 协程状态
+        State m_state = INIT;
     private:
         Fiber();
     public:
-        Fiber(std::function<void()> cb, size_t stacksize = 0);
+        /// use_caller 是否在MainFiber上调度
+        Fiber(std::function<void()> cb, size_t stacksize = 0, bool use_caller = false);
         ~Fiber();
 
         /// 重置协程函数和状态
@@ -50,6 +53,7 @@ namespace euterpe {
         void swapIn();
         void swapOut();
         uint64_t getId(){return m_id;};
+        State getState() const { return m_state;}
 
     public:
         /// 返回当前协程
@@ -67,15 +71,16 @@ namespace euterpe {
 
         /// 协程执行函数 执行完成返回到线程主协程
         static void MainFunc();
+        void call();
+        static void CallerMainFunc();
         static uint64_t GetFiberId();
+        void back();
 
     private:
         /// 协程id
         uint64_t m_id = 0;
         /// 协程运行栈大小
         uint32_t m_stacksize = 0;
-        /// 协程状态
-        State m_state = INIT;
         /// 协程上下文
         ucontext_t m_ctx;
         /// 协程运行栈指针
