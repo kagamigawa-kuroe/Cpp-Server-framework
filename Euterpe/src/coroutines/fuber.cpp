@@ -241,7 +241,7 @@ namespace euterpe{
         SetThis(this);
         m_state = EXEC;
         if(swapcontext(&t_threadFiber->m_ctx, &m_ctx)) {
-            SYLAR_ASSERT2(false, "swapcontext");
+            EUTERPE_ASSERT2(false, "swapcontext");
         }
     }
 }

@@ -19,10 +19,6 @@ namespace euterpe{
         return name;
     }
 
-    void Scheduler::tickle() {
-
-    }
-
     Scheduler::Scheduler(size_t threads, bool use_caller, const std::string &name) :name(name) {
         EUTERPE_ASSERT(threads > 0);
 
@@ -249,12 +245,21 @@ namespace euterpe{
         }
     }
 
+    void Scheduler::tickle() {
+        EUTERPE_LOG_INFO(g_logger) << "tickle";
+    }
+
     bool Scheduler::stopping() {
-        return false;
+        MutexType::Lock lock(m_mutex);
+        return m_autoStop && m_stopping
+               && m_fibers.empty() && m_activeThreadCount == 0;
     }
 
     void Scheduler::idle() {
-
+        EUTERPE_LOG_INFO(g_logger) << "idle";
+        while(!stopping()) {
+            euterpe::Fiber::YieldToHold();
+        }
     }
 
 
