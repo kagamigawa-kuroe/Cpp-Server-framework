@@ -80,6 +80,7 @@ namespace euterpe{
             m_threadIds.push_back(m_threads[i]->GetId());
         }
         lock.unlock();
+        // m_rootFiber->call();
     }
 
     /// wait for all fibers finish
@@ -117,7 +118,8 @@ namespace euterpe{
         }
 
         if(m_rootFiber) {
-
+            /// 在最初线程的rootfiber 也就是调度协程中 我们判断是否已经可以结束
+            /// 若可以 我们将rootfiber跑起来 然后run函数就被执行 在两轮没有任务后就结束
             if(!stopping()) {
                 m_rootFiber->call();
             }
@@ -255,6 +257,9 @@ namespace euterpe{
                && m_fibers.empty() && m_activeThreadCount == 0;
     }
 
+    /// stopping只有在stop方法开始后 所有任务处理完 才返回1
+    /// 也就是说 只有当我们主动调用stop结束后 idle fiber才能结束
+    /// 不然就会一直在切换 让出 探测别的任务协程，有就去做 三者中循环
     void Scheduler::idle() {
         EUTERPE_LOG_INFO(g_logger) << "idle";
         while(!stopping()) {
