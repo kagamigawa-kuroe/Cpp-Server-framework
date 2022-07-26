@@ -5,6 +5,7 @@
 #include <string>
 #include "scheduler.h"
 #include "../Log/log.h"
+#include "../utils/utils.h"
 
 namespace euterpe{
     static euterpe::Logger::ptr g_logger = EUTERPE_LOG_NAME("system");
@@ -137,7 +138,7 @@ namespace euterpe{
     }
 
     void Scheduler::run() {
-        EUTERPE_LOG_DEBUG(g_logger) << name << " run";
+        /// EUTERPE_LOG_DEBUG(g_logger) << name << " run";
         /// set_hook_enable(true);
 
         /// 先把当前的schedule置为自己
@@ -146,8 +147,8 @@ namespace euterpe{
             /// 这里会创建并设置t_fiber 就是之前的当前执行携程 并且赋值给调度协程
             t_scheduler_fiber = Fiber::GetThis().get();
         }
-
         Fiber::ptr idle_fiber(new Fiber(std::bind(&Scheduler::idle, this)));
+        EUTERPE_LOG_INFO(g_logger) << "A idle fiber has been created";
         Fiber::ptr cb_fiber;
 
         FiberAndThread ft;
@@ -261,7 +262,7 @@ namespace euterpe{
     /// 也就是说 只有当我们主动调用stop结束后 idle fiber才能结束
     /// 不然就会一直在切换 让出 探测别的任务协程，有就去做 三者中循环
     void Scheduler::idle() {
-        EUTERPE_LOG_INFO(g_logger) << "idle";
+        EUTERPE_LOG_INFO(g_logger) << "Thread " << GetThreadId() << " has nothing todo, get into " << "idle";
         while(!stopping()) {
             euterpe::Fiber::YieldToHold();
         }

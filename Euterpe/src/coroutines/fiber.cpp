@@ -38,16 +38,17 @@ namespace euterpe {
     using StackAllocator = MallocStackAllocator;
 
     Fiber::Fiber() {
+
         m_state = EXEC;
         SetThis(this);
 
         if(getcontext(&m_ctx)) {
             EUTERPE_ASSERT2(false, "getcontext");
         }
-
+        m_id = ++s_fiber_id;
         ++s_fiber_count;
-
-        EUTERPE_LOG_DEBUG(g_logger) << "Fiber::Fiber main";
+        EUTERPE_LOG_INFO(g_logger) << "A new main fiber is created: id = " << s_fiber_id << ",now there are " << s_fiber_count << " fibers";
+        // EUTERPE_LOG_DEBUG(g_logger) << "Fiber::Fiber main";
     }
 
     /// 设置当前协程
@@ -56,25 +57,28 @@ namespace euterpe {
     }
 
     Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller)
-            : m_id(++s_fiber_id), m_cb(cb) {
+            :m_id(++s_fiber_id)
+            ,m_cb(cb) {
+
         ++s_fiber_count;
+        EUTERPE_LOG_INFO(g_logger) << "A new fiber is created: id = " << s_fiber_id << ",now there are " << s_fiber_count << " fibers";
         m_stacksize = stacksize ? stacksize : g_fiber_stack_size->getValue();
 
         m_stack = StackAllocator::Alloc(m_stacksize);
-        if (getcontext(&m_ctx)) {
+        if(getcontext(&m_ctx)) {
             EUTERPE_ASSERT2(false, "getcontext");
         }
         m_ctx.uc_link = nullptr;
         m_ctx.uc_stack.ss_sp = m_stack;
         m_ctx.uc_stack.ss_size = m_stacksize;
 
-        if (!use_caller) {
+        if(!use_caller) {
             makecontext(&m_ctx, &Fiber::MainFunc, 0);
         } else {
             makecontext(&m_ctx, &Fiber::CallerMainFunc, 0);
         }
 
-        EUTERPE_LOG_DEBUG(g_logger) << "Fiber::Fiber id=" << m_id;
+        // EUTERPE_LOG_DEBUG(g_logger) << "Fiber::Fiber id=" << m_id;
     }
 
     Fiber::~Fiber() {
