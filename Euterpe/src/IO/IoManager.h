@@ -26,6 +26,10 @@ namespace euterpe{
             WRITE   = 0x004,
         };
     private:
+        /// 一个FdContext代表一个IO描述符 拥有两种内容 一种为读 一种写
+        /// 分别对应了两种 EventContext 对应读写的触发 储存了不同的函数
+        /// events记录了当前的触发的事件
+        /// 会根据event的内容 调用不同的EventContext的内容
         struct FdContext {
             typedef Mutex MutexType;
             struct EventContext {
@@ -37,7 +41,7 @@ namespace euterpe{
                 std::function<void()> cb;
             };
 
-            /// 返回当前时间中的内容
+            /// 根据当前事件中的状态 返回当前事件中的内容read/write
             EventContext& getContext(Event event);
 
             /// 重置当前事件中的内容
@@ -95,9 +99,10 @@ namespace euterpe{
     private:
         /// epoll 文件句柄
         int m_epfd = 0;
-        /// pipe 文件句柄
+        /// pipe 文件句柄 也会被注册进epoll中
+        /// idle epoll_wait 陷入沉睡的时候 可以用这个管道来唤醒
         int m_tickleFds[2];
-        /// 当前等待执行的事件数量
+        /// 当前等待执行的事件数量  EventContext
         std::atomic<size_t> m_pendingEventCount = {0};
         /// IOManager的Mutex
         RWMutexType m_mutex;
