@@ -17,5 +17,6 @@
 #include "utils/macro.h"
 #include "coroutines/fiber.h"
 #include "scheduler/scheduler.h"
+#include "IO/IoManager.h"
 
 #endif //EUTERPE_EUTERPE_H

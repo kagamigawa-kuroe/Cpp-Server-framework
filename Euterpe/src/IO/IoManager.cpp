@@ -127,6 +127,7 @@ euterpe::IOManager::IOManager(size_t threads, bool use_caller, const std::string
 /// 释放所有的内容 包括epoll 管道 所有注册时间
 euterpe::IOManager::~IOManager() {
     stop();
+    /// epoll描述符关闭时 会触发17 1+2+4+10 也就是读+写+紧急事件+挂起
     close(m_epfd);
     close(m_tickleFds[0]);
     close(m_tickleFds[1]);
@@ -340,7 +341,7 @@ void euterpe::IOManager::tickle() {
     if(!hasIdleThreads()) {
         return;
     }
-    /// 向管道写一个数据 告诉manage idle 会处理
+    /// 向管道写一个数据 告诉manage 用于唤醒epollwait
     int rt = write(m_tickleFds[1], "T", 1);
     EUTERPE_ASSERT(rt == 1);
 }
@@ -358,8 +359,8 @@ void euterpe::IOManager::idle() {
     });
 
     while(true) {
-        uint64_t next_timeout = 0;
-        if(EUTERPE_UNLIKELY(stopping(next_timeout))) {
+        // uint64_t next_timeout = 0;
+        if(stopping()) {
             EUTERPE_LOG_INFO(g_logger) << "name=" << getName()
                                      << " idle stopping exit";
             break;
@@ -368,13 +369,13 @@ void euterpe::IOManager::idle() {
         int rt = 0;
         do {
             static const int MAX_TIMEOUT = 3000;
-            if(next_timeout != ~0ull) {
-                next_timeout = (int)next_timeout > MAX_TIMEOUT
-                               ? MAX_TIMEOUT : next_timeout;
-            } else {
-                next_timeout = MAX_TIMEOUT;
-            }
-            rt = epoll_wait(m_epfd, events, MAX_EVNETS, (int)next_timeout);
+//            if(next_timeout != ~0ull) {
+//                next_timeout = (int)next_timeout > MAX_TIMEOUT
+//                               ? MAX_TIMEOUT : next_timeout;
+//            } else {
+//                next_timeout = MAX_TIMEOUT;
+//            }
+            rt = epoll_wait(m_epfd, events, MAX_EVNETS, MAX_TIMEOUT);
             if(rt < 0 && errno == EINTR) {
             } else {
                 break;
@@ -409,6 +410,7 @@ void euterpe::IOManager::idle() {
                 event.events |= (EPOLLIN | EPOLLOUT) & fd_ctx->events;
             }
             int real_events = NONE;
+            // std::cout << event.events << std::endl;
             if(event.events & EPOLLIN) {
                 real_events |= READ;
             }
@@ -443,7 +445,7 @@ void euterpe::IOManager::idle() {
             }
         }
 
-        /// 归还调度权给run函数 
+        /// 归还调度权给run函数
         Fiber::ptr cur = Fiber::GetThis();
         auto raw_ptr = cur.get();
         cur.reset();

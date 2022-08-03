@@ -4,8 +4,6 @@
 
 #include <string>
 #include "scheduler.h"
-#include "../Log/log.h"
-#include "../utils/utils.h"
 
 namespace euterpe{
     static euterpe::Logger::ptr g_logger = EUTERPE_LOG_NAME("system");
