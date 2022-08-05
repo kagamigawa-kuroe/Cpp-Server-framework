@@ -27,6 +27,16 @@ namespace euterpe{
         static const char* s_name = abi::__cxa_demangle(typeid(T).name(), nullptr, nullptr, nullptr);
         return s_name;
     }
+
+    /**
+ * @brief 获取当前时间的毫秒
+ */
+    uint64_t GetCurrentMS();
+
+/**
+ * @brief 获取当前时间的微秒
+ */
+    uint64_t GetCurrentUS();
 }
 
 #endif //EUTERPE_UTILS_H

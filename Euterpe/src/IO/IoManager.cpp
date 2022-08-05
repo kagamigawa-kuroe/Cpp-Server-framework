@@ -18,9 +18,9 @@ static std::ostream& operator<< (std::ostream& os, const EpollCtlOp& op) {
 #define XX(ctl) \
         case ctl: \
             return os << #ctl;
-        XX(EPOLL_CTL_ADD);
-        XX(EPOLL_CTL_MOD);
-        XX(EPOLL_CTL_DEL);
+        XX(EPOLL_CTL_ADD)
+        XX(EPOLL_CTL_MOD)
+        XX(EPOLL_CTL_DEL)
         default:
             return os << (int)op;
     }
@@ -40,7 +40,7 @@ static std::ostream& operator<< (std::ostream& os, EPOLL_EVENTS events) {
         os << #E; \
         first = false; \
     }
-    XX(EPOLLIN);
+    XX(EPOLLIN)
     XX(EPOLLPRI);
     XX(EPOLLOUT);
     XX(EPOLLRDNORM);
@@ -87,7 +87,6 @@ void euterpe::IOManager::FdContext::triggerEvent(euterpe::IOManager::Event event
         ctx.scheduler->schedule(&ctx.fiber);
     }
     ctx.scheduler = nullptr;
-    return;
 }
 
 /// ------------------------------------------------------------------------------------------
@@ -101,7 +100,7 @@ euterpe::IOManager::IOManager(size_t threads, bool use_caller, const std::string
     int rt = pipe(m_tickleFds);
     EUTERPE_ASSERT(!rt);
 
-    epoll_event event;
+    epoll_event event{};
     /// 内存初始化
     /// 将某一块内存中的内容全部设置为指定的值
     memset(&event, 0, sizeof(epoll_event));
@@ -235,9 +234,9 @@ bool euterpe::IOManager::delEvent(int fd, euterpe::IOManager::Event event) {
     }
 
     /// 新事件 将传入想要删除的旧事件用位运算删除
-    Event new_events = (Event)(fd_ctx->events & ~event);
+    auto new_events = (Event)(fd_ctx->events & ~event);
     int op = new_events ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
-    epoll_event epevent;
+    epoll_event epevent{};
     epevent.events = EPOLLET | new_events;
     epevent.data.ptr = fd_ctx;
 
@@ -346,9 +345,7 @@ void euterpe::IOManager::tickle() {
     EUTERPE_ASSERT(rt == 1);
 }
 
-bool euterpe::IOManager::stopping() {
-    return Scheduler::stopping()&& m_pendingEventCount==0;
-}
+
 
 void euterpe::IOManager::idle() {
     EUTERPE_LOG_DEBUG(g_logger) << "idle";
@@ -359,8 +356,8 @@ void euterpe::IOManager::idle() {
     });
 
     while(true) {
-        // uint64_t next_timeout = 0;
-        if(stopping()) {
+        uint64_t next_timeout = 0;
+        if(EUTERPE_UNLIKELY(stopping(next_timeout))) {
             EUTERPE_LOG_INFO(g_logger) << "name=" << getName()
                                      << " idle stopping exit";
             break;
@@ -369,26 +366,26 @@ void euterpe::IOManager::idle() {
         int rt = 0;
         do {
             static const int MAX_TIMEOUT = 3000;
-//            if(next_timeout != ~0ull) {
-//                next_timeout = (int)next_timeout > MAX_TIMEOUT
-//                               ? MAX_TIMEOUT : next_timeout;
-//            } else {
-//                next_timeout = MAX_TIMEOUT;
-//            }
-            rt = epoll_wait(m_epfd, events, MAX_EVNETS, MAX_TIMEOUT);
+            if(next_timeout != ~0ull) {
+                next_timeout = (int)next_timeout > MAX_TIMEOUT
+                               ? MAX_TIMEOUT : next_timeout;
+            } else {
+                next_timeout = MAX_TIMEOUT;
+            }
+            rt = epoll_wait(m_epfd, events, MAX_EVNETS, (int)next_timeout);
             if(rt < 0 && errno == EINTR) {
             } else {
                 break;
             }
         } while(true);
 
-//        std::vector<std::function<void()> > cbs;
-//        listExpiredCb(cbs);
-//        if(!cbs.empty()) {
-//            //SYLAR_LOG_DEBUG(g_logger) << "on timer cbs.size=" << cbs.size();
-//            schedule(cbs.begin(), cbs.end());
-//            cbs.clear();
-//        }
+        std::vector<std::function<void()> > cbs;
+        listExpiredCb(cbs);
+        if(!cbs.empty()) {
+            //SYLAR_LOG_DEBUG(g_logger) << "on timer cbs.size=" << cbs.size();
+            schedule(cbs.begin(), cbs.end());
+            cbs.clear();
+        }
 
         //if(SYLAR_UNLIKELY(rt == MAX_EVNETS)) {
         //    SYLAR_LOG_INFO(g_logger) << "epoll wait events=" << rt;
@@ -452,6 +449,23 @@ void euterpe::IOManager::idle() {
 
         raw_ptr->swapOut();
     }
+}
+
+void euterpe::IOManager::onTimerInsertedAtFront(){
+    tickle();
+}
+
+bool euterpe::IOManager::stopping(uint64_t& timeout) {
+    timeout = getNextTimer();
+    return timeout == ~0ull
+           && m_pendingEventCount == 0
+           && Scheduler::stopping();
+
+}
+
+bool euterpe::IOManager::stopping() {
+    uint64_t timeout = 0;
+    return stopping(timeout);
 }
 
 //bool euterpe::IOManager::stopping(uint64_t &timeout) {

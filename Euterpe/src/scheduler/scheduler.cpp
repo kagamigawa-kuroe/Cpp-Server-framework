@@ -12,7 +12,7 @@ namespace euterpe{
 
     void euterpe::Scheduler::setName(const std::__cxx11::basic_string<char> &name) {
         Scheduler::name = name;
-    }
+   }
 
     const std::string &euterpe::Scheduler::getName() const {
         return name;

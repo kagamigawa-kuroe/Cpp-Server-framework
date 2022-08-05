@@ -18,5 +18,5 @@
 #include "coroutines/fiber.h"
 #include "scheduler/scheduler.h"
 #include "IO/IoManager.h"
-
+#include "time/Timer.h"
 #endif //EUTERPE_EUTERPE_H

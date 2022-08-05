@@ -34,7 +34,20 @@ void test1(){
     // int rt = connect(sock, reinterpret_cast<const sockaddr *>(&addr), sizeof(addr));
 }
 
+euterpe::Timer::ptr s_timer;
+
+void test_time(){
+    euterpe::IOManager iom(2);
+    s_timer = iom.addTimer(1000,[](){
+        static int i = 0;
+        EUTERPE_LOG_INFO(fiber_g_logger) << "hello timer i=" << i;
+        if(++i==5){
+            s_timer->cancel();
+        }
+    },1);
+}
+
 int main(int argc, char** argv){
-    test1();
+    test_time();
     return 0;
 }

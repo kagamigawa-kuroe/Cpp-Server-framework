@@ -10,9 +10,24 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/epoll.h>
+#include "../time/Timer.h"
 
+/// IOManager是对普通Scheduler的扩展
+/// 其维护了一个特殊的数据结构 FdContext
+/// 一个FdContext对应了一个文件描述符
+/// 同时 还维护了两个EventContext read和write
+/// 分别记录了这个文件描述符可读/可写时候 触发的事件
+/// 对应了epoll中发生的变化
+
+/// 在此基础上 我们还需要重写 tickle() stopping() idle() 函数
+/// 因为在idle函数中 或者说idle协程中 我们会调用epoll_wait函数 陷入等待
+///  我们可以用tickle()函数去唤醒等待的epoll
+/// tickle()的原理是向IOManager的管道中写入数据
+/// 而这个管道也被注册到epoll中 所以一旦管道可读 epoll就被唤醒
+
+/// idle中则会不断的循环epoll_wait过程 然后把触发的协程或者函数 加入到任务队列中
 namespace euterpe{
-    class IOManager:public Scheduler{
+    class IOManager:public Scheduler,public TimerManager{
     public:
         typedef std::shared_ptr<IOManager> ptr;
         typedef RWMutex RWMutexType;
@@ -101,7 +116,7 @@ namespace euterpe{
         int m_epfd = 0;
         /// pipe 文件句柄 也会被注册进epoll中
         /// idle epoll_wait 陷入沉睡的时候 可以用这个管道来唤醒
-        int m_tickleFds[2];
+        int m_tickleFds[2]{};
         /// 当前等待执行的事件数量  EventContext
         std::atomic<size_t> m_pendingEventCount = {0};
         /// IOManager的Mutex
@@ -109,6 +124,7 @@ namespace euterpe{
         /// socket所有的注册事件
         std::vector<FdContext*> m_fdContexts;
 
+        void onTimerInsertedAtFront() override;
     };
 }
 
