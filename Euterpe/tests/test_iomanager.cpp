@@ -38,6 +38,18 @@ euterpe::Timer::ptr s_timer;
 
 void test_time(){
     euterpe::IOManager iom(2);
+
+    int sock = socket(AF_INET,SOCK_STREAM,0);
+    fcntl(sock,F_SETFL,O_NONBLOCK);
+
+    sockaddr_in addr;
+    memset(&addr,0,sizeof(addr));
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(80);
+    inet_pton(AF_INET,"127.0.0.1",&addr.sin_addr.s_addr);
+    iom.addEvent(sock,euterpe::IOManager::READ,[](){
+        EUTERPE_LOG_INFO(fiber_g_logger) << "function be used";
+    });
     s_timer = iom.addTimer(1000,[](){
         static int i = 0;
         EUTERPE_LOG_INFO(fiber_g_logger) << "hello timer i=" << i;

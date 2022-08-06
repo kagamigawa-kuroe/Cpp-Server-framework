@@ -44,7 +44,7 @@ namespace euterpe{
                               std::list<std::pair<std::string, const YAML::Node> >& output) {
         if(prefix.find_first_not_of("abcdefghikjlmnopqrstuvwxyz._012345678")
         != std::string::npos) {
-            EUTERPE_LOG_ERROR(g_logger) << "Config invalid name: " << prefix << " : " << node;
+            EUTERPE_LOG_ERROR(g_logger) << "config invalid name: " << prefix << " : " << node;
             return;
         }
         output.push_back(std::make_pair(prefix, node));

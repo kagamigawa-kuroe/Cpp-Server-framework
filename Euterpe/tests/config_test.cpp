@@ -112,8 +112,8 @@ namespace euterpe {
         // print_yaml(root,0);
     }
 
-    // euterpe::ConfigVar<int>::ptr port = euterpe::Config::Lookup("port",(int)8080,"port");
-    // euterpe::ConfigVar<std::string>::ptr name = euterpe::Config::Lookup("name",std::string("tomcat"),"server");
+    // euterpe::ConfigVar<int>::ptr port = euterpe::config::Lookup("port",(int)8080,"port");
+    // euterpe::ConfigVar<std::string>::ptr name = euterpe::config::Lookup("name",std::string("tomcat"),"server");
     void yaml_read_test_2(){
         std::vector<int> temp = {1,2,3};
         std::list<int> t2 = {1,2,3};
@@ -146,7 +146,7 @@ namespace euterpe {
          YAML::Node root = YAML::LoadFile("/Users/whz/learning/Cpp-Server-framework/Euterpe/bin/conf/log.yml");
          euterpe::Config::LoadFromYaml(root);
          // std::set<euterpe::LogDefine> temp = {};
-         // euterpe::ConfigVar<std::set<euterpe::LogDefine>>::ptr a = euterpe::Config::Lookup("logs", temp, "system person");
+         // euterpe::ConfigVar<std::set<euterpe::LogDefine>>::ptr a = euterpe::config::Lookup("logs", temp, "system person");
          // EUTERPE_LOG_INFO(EUTERPE_LOG_ROOT()) << ((a->getValue()).begin()->appenders)[0].file << " - " << a->toString();
          auto l = euterpe::LoggerMgr::GetInstance()->getLogger("root");
          auto l2 = euterpe::LoggerMgr::GetInstance()->getLogger("system");

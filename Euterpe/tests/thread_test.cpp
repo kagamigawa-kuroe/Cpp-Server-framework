@@ -18,7 +18,7 @@ void fun2() {
 //int main(){
 //    EUTERPE_LOG_INFO(g_logger) << "thread test begin";
 //    YAML::Node root = YAML::LoadFile("/home/hongzhe/code/c++/Cpp-Server-framework/Euterpe/bin/conf/log.yml");
-//    euterpe::Config::LoadFromYaml(root);
+//    euterpe::config::LoadFromYaml(root);
 //
 //    std::vector<euterpe::Thread::ptr> thrs;
 //    for(int i = 0; i < 5; ++i) {
