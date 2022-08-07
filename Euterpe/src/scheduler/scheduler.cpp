@@ -3,6 +3,7 @@
 //
 
 #include <string>
+#include "../hook/hook.h"
 #include "scheduler.h"
 
 namespace euterpe{
@@ -137,7 +138,7 @@ namespace euterpe{
 
     void Scheduler::run() {
         /// EUTERPE_LOG_DEBUG(g_logger) << name << " run";
-        /// set_hook_enable(true);
+        set_hook_enable(true);
 
         /// 先把当前的schedule置为自己
         setThis();

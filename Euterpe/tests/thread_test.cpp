@@ -7,13 +7,13 @@
 
 using namespace std;
 
-euterpe::Logger::ptr g_logger = EUTERPE_LOG_ROOT();
+// euterpe::Logger::ptr g_logger = EUTERPE_LOG_ROOT();
 
-void fun2() {
-
-    EUTERPE_LOG_INFO(g_logger) << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-
-}
+//void fun2() {
+//
+//    EUTERPE_LOG_INFO(g_logger) << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+//
+//}
 //
 //int main(){
 //    EUTERPE_LOG_INFO(g_logger) << "thread test begin";

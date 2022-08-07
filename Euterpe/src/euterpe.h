@@ -19,4 +19,5 @@
 #include "scheduler/scheduler.h"
 #include "IO/IoManager.h"
 #include "time/Timer.h"
+#include "hook/hook.h"
 #endif //EUTERPE_EUTERPE_H
