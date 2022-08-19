@@ -20,5 +20,6 @@
 #include "time/Timer.h"
 #include "hook/hook.h"
 #include "fd_manager/fd_manager.h"
+#include "Network_Base/address.h"
 
 #endif //EUTERPE_EUTERPE_H
