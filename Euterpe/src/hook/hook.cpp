@@ -268,83 +268,7 @@ namespace euterpe {
         return fd;
     }
 
-    int connect_with_timeout(int fd, const struct sockaddr* addr, socklen_t addrlen, uint64_t timeout_ms) {
-        /// 如果没有启动hook则直接调用原生connect
-        if(!euterpe::t_hook_enable) {
-            return connect_f(fd, addr, addrlen);
-        }
-
-        /// 拿到文件描述符 没有则新建
-        euterpe::FdCtx::ptr ctx = euterpe::FdMgr::GetInstance()->get(fd);
-        if(!ctx || ctx->isClose()) {
-            errno = EBADF;
-            return -1;
-        }
-
-        if(!ctx->isSocket()) {
-            return connect_f(fd, addr, addrlen);
-        }
-
-        if(ctx->getUserNonblock()) {
-            return connect_f(fd, addr, addrlen);
-        }
-
-        int n = connect_f(fd, addr, addrlen);
-        if(n == 0) {
-            return 0;
-        } else if(n != -1 || errno != EINPROGRESS) {
-            return n;
-        }
-
-        /// 如果connect阻塞 返回-1 则会继续往下
-        euterpe::IOManager* iom = euterpe::IOManager::GetThis();
-        euterpe::Timer::ptr timer;
-        std::shared_ptr<timer_info> tinfo(new timer_info);
-        std::weak_ptr<timer_info> winfo(tinfo);
-
-        /// 如果有过期时间 添加一个定时的取消任务
-        if(timeout_ms != (uint64_t)-1) {
-            timer = iom->addConditionTimer(timeout_ms, [winfo, fd, iom]() {
-                auto t = winfo.lock();
-                if(!t || t->cancelled) {
-                    return;
-                }
-                t->cancelled = ETIMEDOUT;
-                iom->cancelEvent(fd, euterpe::IOManager::WRITE);
-            }, winfo);
-        }
-
-        /// 在epoll注册一个写事件 当这个文件描述符可写 也就是与服务器之间的连接建立 就会触发
-        /// 然后就会切换回当前协程
-        int rt = iom->addEvent(fd, euterpe::IOManager::WRITE);
-        if(rt == 0) {
-            euterpe::Fiber::YieldToHold();
-            if(timer) {
-                timer->cancel();
-            }
-            if(tinfo->cancelled) {
-                errno = tinfo->cancelled;
-                return -1;
-            }
-        } else {
-            if(timer) {
-                timer->cancel();
-            }
-            EUTERPE_LOG_ERROR(g_logger) << "connect addEvent(" << fd << ", WRITE) error";
-        }
-
-        int error = 0;
-        socklen_t len = sizeof(int);
-        if(-1 == getsockopt(fd, SOL_SOCKET, SO_ERROR, &error, &len)) {
-            return -1;
-        }
-        if(!error) {
-            return 0;
-        } else {
-            errno = error;
-            return -1;
-        }
-    }
+    int connect_with_timeout(int fd, const struct sockaddr* addr, socklen_t addrlen, uint64_t timeout_ms);
 
     int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen) {
         return connect_with_timeout(sockfd, addr, addrlen, euterpe::s_connect_timeout);
@@ -553,5 +477,83 @@ namespace euterpe {
         return setsockopt_f(sockfd, level, optname, optval, optlen);
     }
 
+    }
+
+    int connect_with_timeout(int fd, const struct sockaddr *addr, socklen_t addrlen, uint64_t timeout_ms) {
+        /// 如果没有启动hook则直接调用原生connect
+        if(!euterpe::t_hook_enable) {
+            return connect_f(fd, addr, addrlen);
+        }
+
+        /// 拿到文件描述符 没有则新建
+        euterpe::FdCtx::ptr ctx = euterpe::FdMgr::GetInstance()->get(fd);
+        if(!ctx || ctx->isClose()) {
+            errno = EBADF;
+            return -1;
+        }
+
+        if(!ctx->isSocket()) {
+            return connect_f(fd, addr, addrlen);
+        }
+
+        if(ctx->getUserNonblock()) {
+            return connect_f(fd, addr, addrlen);
+        }
+
+        int n = connect_f(fd, addr, addrlen);
+        if(n == 0) {
+            return 0;
+        } else if(n != -1 || errno != EINPROGRESS) {
+            return n;
+        }
+
+        /// 如果connect阻塞 返回-1 则会继续往下
+        euterpe::IOManager* iom = euterpe::IOManager::GetThis();
+        euterpe::Timer::ptr timer;
+        std::shared_ptr<timer_info> tinfo(new timer_info);
+        std::weak_ptr<timer_info> winfo(tinfo);
+
+        /// 如果有过期时间 添加一个定时的取消任务
+        if(timeout_ms != (uint64_t)-1) {
+            timer = iom->addConditionTimer(timeout_ms, [winfo, fd, iom]() {
+                auto t = winfo.lock();
+                if(!t || t->cancelled) {
+                    return;
+                }
+                t->cancelled = ETIMEDOUT;
+                iom->cancelEvent(fd, euterpe::IOManager::WRITE);
+            }, winfo);
+        }
+
+        /// 在epoll注册一个写事件 当这个文件描述符可写 也就是与服务器之间的连接建立 就会触发
+        /// 然后就会切换回当前协程
+        int rt = iom->addEvent(fd, euterpe::IOManager::WRITE);
+        if(rt == 0) {
+            euterpe::Fiber::YieldToHold();
+            if(timer) {
+                timer->cancel();
+            }
+            if(tinfo->cancelled) {
+                errno = tinfo->cancelled;
+                return -1;
+            }
+        } else {
+            if(timer) {
+                timer->cancel();
+            }
+            EUTERPE_LOG_ERROR(g_logger) << "connect addEvent(" << fd << ", WRITE) error";
+        }
+
+        int error = 0;
+        socklen_t len = sizeof(int);
+        if(-1 == getsockopt(fd, SOL_SOCKET, SO_ERROR, &error, &len)) {
+            return -1;
+        }
+        if(!error) {
+            return 0;
+        } else {
+            errno = error;
+            return -1;
+        }
     };
 }
