@@ -9,9 +9,12 @@
 #define EUTERPE_LITTLE_ENDIAN 1
 #define EUTERPE_BIG_ENDIAN 2
 
+/// byteswap库用于大小端转换
 #include <byteswap.h>
 #include <cstdint>
 #include <type_traits>
+/// endian.h库中 BYTE_ORDER宏 可以用来判断大小端
+#include <bits/endian.h>
 
 namespace euterpe {
 
@@ -25,11 +28,13 @@ namespace euterpe {
      * @brief 4字节类型的字节序转化
      */
      /// enable_if 元模板用法 只有当判断条件为true T类型才有效 否则产生编译错误
+     /// ::type返回T类型
      /// bswap_32/bswap_64用于大小端的转换
      /// 大端方式将高位存放在低地址(人类正常用法)，小端方式将低位存放在高地址
     template<class T>
     typename std::enable_if<sizeof(T) == sizeof(uint32_t), T>::type
     byteswap(T value) {
+        /// 转换32位大小端
         return (T) bswap_32((uint32_t) value);
     }
 
@@ -39,16 +44,17 @@ namespace euterpe {
     template<class T>
     typename std::enable_if<sizeof(T) == sizeof(uint16_t), T>::type
     byteswap(T value) {
+        /// 转换16位大小端
         return (T) bswap_16((uint16_t) value);
     }
 
 #if BYTE_ORDER == BIG_ENDIAN
-#define SYLAR_BYTE_ORDER SYLAR_BIG_ENDIAN
+#define EUTERPE_BYTE_ORDER EUTERPE_BIG_ENDIAN
 #else
-#define SYLAR_BYTE_ORDER SYLAR_LITTLE_ENDIAN
+#define EUTERPE_BYTE_ORDER EUTERPE_LITTLE_ENDIAN
 #endif
 
-#if SYLAR_BYTE_ORDER == SYLAR_BIG_ENDIAN
+#if EUTERPE_BYTE_ORDER == EUTERPE_BIG_ENDIAN
 
     /**
      * @brief 只在小端机器上执行byteswap, 在大端机器上什么都不做
