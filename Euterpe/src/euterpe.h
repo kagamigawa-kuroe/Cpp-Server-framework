@@ -21,5 +21,6 @@
 #include "hook/hook.h"
 #include "fd_manager/fd_manager.h"
 #include "Network_Base/address.h"
+#include "Network_Base/Socket.h"
 
 #endif //EUTERPE_EUTERPE_H

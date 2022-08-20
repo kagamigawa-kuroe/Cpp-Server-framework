@@ -168,6 +168,8 @@ namespace euterpe {
         /// 设置端口号
         void setPort(uint16_t v) override;
 
+        sockaddr_in get_maddr(){return m_addr;};
+
     private:
         sockaddr_in m_addr;
     };

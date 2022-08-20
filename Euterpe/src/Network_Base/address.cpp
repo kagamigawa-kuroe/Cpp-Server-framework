@@ -15,6 +15,7 @@ namespace euterpe {
 
     static euterpe::Logger::ptr g_logger = EUTERPE_LOG_NAME("system");
 
+    /// 创建掩码
     template<class T>
     static T CreateMask(uint32_t bits) {
         return (1 << (sizeof(T) * 8 - bits)) - 1;
@@ -32,16 +33,6 @@ namespace euterpe {
     /// --------------------------------------------------------------------------------------------------
     /// ------------------------------------- Address 基类 ------------------------------------------------
     /// --------------------------------------------------------------------------------------------------
-
-    /**
-     * @brief 通过host地址返回对应条件的所有Address
-     * @param[out] result 保存满足条件的Address
-     * @param[in] host 域名,服务器名等.举例: www.sylar.top[:80] (方括号为可选内容)
-     * @param[in] family 协议族(AF_INT, AF_INT6, AF_UNIX)
-     * @param[in] type socketl类型SOCK_STREAM、SOCK_DGRAM 等
-     * @param[in] protocol 协议,IPPROTO_TCP、IPPROTO_UDP 等
-     * @return 返回是否转换成功
-     */
     Address::ptr Address::LookupAny(const std::string& host,
                                     int family, int type, int protocol) {
         std::vector<Address::ptr> result;
@@ -51,14 +42,6 @@ namespace euterpe {
         return nullptr;
     }
 
-    /**
-     * @brief 通过host地址返回对应条件的任意Address
-     * @param[in] host 域名,服务器名等.举例: www.sylar.top[:80] (方括号为可选内容)
-     * @param[in] family 协议族(AF_INT, AF_INT6, AF_UNIX)
-     * @param[in] type socketl类型SOCK_STREAM、SOCK_DGRAM 等
-     * @param[in] protocol 协议,IPPROTO_TCP、IPPROTO_UDP 等
-     * @return 返回满足条件的任意Address,失败返回nullptr
-     */
     IPAddress::ptr Address::LookupAnyIPAddress(const std::string& host,
                                                int family, int type, int protocol) {
         std::vector<Address::ptr> result;
@@ -76,15 +59,7 @@ namespace euterpe {
         return nullptr;
     }
 
-    /**
-     * @brief 通过host地址返回对应条件的所有Address
-     * @param[out] result 保存满足条件的Address
-     * @param[in] host 域名,服务器名等.举例: www.sylar.top[:80] (方括号为可选内容)
-     * @param[in] family 协议族(AF_INT, AF_INT6, AF_UNIX)
-     * @param[in] type socketl类型SOCK_STREAM、SOCK_DGRAM 等
-     * @param[in] protocol 协议,IPPROTO_TCP、IPPROTO_UDP 等
-     * @return 返回是否转换成功
-     */
+    /// 用于寻找域名对应的ip
     bool Address::Lookup(std::vector<Address::ptr>& result, const std::string& host,
                          int family, int type, int protocol) {
         addrinfo hints, *results, *next;
@@ -126,6 +101,7 @@ namespace euterpe {
         if(node.empty()) {
             node = host;
         }
+        /// getaddrinfo用法 查找对应域名的ip
         int error = getaddrinfo(node.c_str(), service, &hints, &results);
         if(error) {
             EUTERPE_LOG_DEBUG(g_logger) << "Address::Lookup getaddress(" << host << ", "
@@ -163,16 +139,12 @@ namespace euterpe {
         return !result.empty();
     }
 
-    /**
-     * @brief 返回本机所有网卡的<网卡名, 地址, 子网掩码位数>
-     * @param[out] result 保存本机所有地址
-     * @param[in] family 协议族(AF_INT, AF_INT6, AF_UNIX)
-     * @return 是否获取成功
-     */
+    /// 获取本机所有的网卡地址
     bool Address::GetInterfaceAddresses(std::multimap<std::string
             ,std::pair<Address::ptr, uint32_t> >& result,
                                         int family) {
         struct ifaddrs *next, *results;
+        /// 核心函数getidaddrs
         if(getifaddrs(&results) != 0) {
             EUTERPE_LOG_DEBUG(g_logger) << "Address::GetInterfaceAddresses getifaddrs "
                                          " err=" << errno << " errstr=" << strerror(errno);
@@ -387,10 +359,10 @@ namespace euterpe {
      */
     std::ostream &IPv4Address::insert(std::ostream &os) const {
         uint32_t addr = byteswapOnLittleEndian(m_addr.sin_addr.s_addr);
-        os << ((addr & 0xff) & 0xff) << "."
-           << ((addr >> 8) & 0xff) << "."
+        os << (addr >> 24) << "."
            << ((addr >> 16) & 0xff) << "."
-           << (addr >> 24);
+           << ((addr >> 8) & 0xff) << "."
+           << ((addr & 0xff) & 0xff);
         os << ":" << byteswapOnLittleEndian(m_addr.sin_port);
         return os;
     }
