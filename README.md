@@ -4,7 +4,7 @@
 
 #### 主要功能
 
-从零开始造轮子，写一套cpp写的服务器框架，参考了java或者go中的一系列框架设计。
+从零开始造轮子，写一套cpp写的服务器框架，参考了java或者go中的一系列框架设计，以及一些c++的开源框架和库(boost，YAZI，sylar，libco等)。
 
 有些组件是照着开源项目敲的，有些是从零开始自己写的。
 
@@ -57,32 +57,76 @@ IDEA Clion+vim
 
 #### 目前项目结构
 
-./Euterpe/src    
-├── config   
-│   ├── config.cpp   
-│   ├── config.h   
-│   └── config.md   
-├── coroutines   
-│   ├── fiber.h   
-│   └── fuber.cpp   
-├── euterpe.h   
-├── image   
-│   └── Log_usgae.jpg   
-├── Log   
-│   ├── log.cpp   
-│   ├── log.h   
-│   └── Log_note.md   
-├── thread   
-│   ├── euterpe_thread.cpp   
-│   ├── euterpe_thread.h   
-│   ├── mutex.cpp   
-│   ├── mutex.h   
-│   ├── Thread.md  
-│   └── 锁的封装.md   
-└── utils   
-    ├── macro.h   
-    ├── noncopyable.h   
-    ├── singleton.h   
-    ├── utils.cpp   
-    └── utils.h    
+```bash
+├── src
+│   ├── config
+│   │   ├── config.cpp
+│   │   ├── config.h
+│   │   └── config.md
+│   ├── coroutines
+│   │   ├── fiber.cpp
+│   │   ├── fiber.h
+│   │   └── fiber.md
+│   ├── euterpe.h
+│   ├── fd_manager
+│   │   ├── fd_manager.cpp
+│   │   └── fd_manager.h
+│   ├── hook
+│   │   ├── hook.cpp
+│   │   └── hook.h
+│   ├── image
+│   │   └── Log_usgae.jpg
+│   ├── IO
+│   │   ├── IoManager.cpp
+│   │   └── IoManager.h
+│   ├── Log
+│   │   ├── log.cpp
+│   │   ├── log.h
+│   │   └── Log_note.md
+│   ├── Network_Base
+│   │   ├── address.cpp
+│   │   ├── address.h
+│   │   ├── Socket.cpp
+│   │   └── Socket.h
+│   ├── scheduler
+│   │   ├── scheduler.cpp
+│   │   ├── scheduler.h
+│   │   └── Scheduler.md
+│   ├── thread
+│   │   ├── euterpe_thread.cpp
+│   │   ├── euterpe_thread.h
+│   │   ├── mutex.cpp
+│   │   ├── mutex.h
+│   │   ├── Thread.md
+│   │   └── 锁的封装.md
+│   ├── time
+│   │   ├── Timer.cpp
+│   │   └── Timer.h
+│   └── utils
+│       ├── endian.h
+│       ├── macro.h
+│       ├── noncopyable.h
+│       ├── singleton.h
+│       ├── utils.cpp
+│       └── utils.h
+└── tests
+    ├── config_test.cpp
+    ├── fiber_test.cpp
+    ├── lock_test.cpp
+    ├── log_test.cpp
+    ├── log.txt
+    ├── root.log
+    ├── system.log
+    ├── test_assert.cpp
+    ├── test_hook.cpp
+    ├── test_iomanager.cpp
+    ├── test_ip_addr.cpp
+    ├── test_scheduler.cpp
+    ├── test_socket.cpp
+    ├── thread_test.cpp
+    └── timer.cpp
+```
 
+
+
+ 
