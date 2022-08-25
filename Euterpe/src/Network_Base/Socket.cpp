@@ -14,6 +14,9 @@
 namespace euterpe {
     static euterpe::Logger::ptr g_logger = EUTERPE_LOG_NAME("system");
 
+    /// 一系列方法 直接返回一个指向一个Socket类的只能指针
+    /// 注意这里的Socket类只是我们自己的Socket封装类
+    /// 此时还并没有调用socket系统函数创造套接字 只是将协议之类的成员函数传进去了
     Socket::ptr Socket::CreateTCP(euterpe::Address::ptr address) {
         Socket::ptr sock(new Socket(address->getFamily(), TCP, 0));
         return sock;
@@ -72,8 +75,8 @@ namespace euterpe {
         close();
     }
 
+    /// 先去FdMgr中拿到文件描述符 然后获取其过期事件
     int64_t Socket::getSendTimeout() {
-        /// 先去FdMgr中拿到文件描述符 或者注册
         FdCtx::ptr ctx = FdMgr::GetInstance()->get(m_sock);
         if(ctx) {
             return ctx->getTimeout(SO_SNDTIMEO);
@@ -81,6 +84,8 @@ namespace euterpe {
         return -1;
     }
 
+    /// 设置过期事件
+    /// setOption 底层是 setsockopt 在hook中已经被重写过了
     void Socket::setSendTimeout(int64_t v) {
         struct timeval tv{int(v / 1000), int(v % 1000 * 1000)};
         setOption(SOL_SOCKET, SO_SNDTIMEO, tv);
@@ -136,6 +141,7 @@ namespace euterpe {
         return nullptr;
     }
 
+    /// 通过一个socket描述符 初始化一个Socket类
     bool Socket::init(int sock) {
         FdCtx::ptr ctx = FdMgr::GetInstance()->get(sock);
         if(ctx && ctx->isSocket() && !ctx->isClose()) {
@@ -150,9 +156,11 @@ namespace euterpe {
     }
 
     bool Socket::bind(const Address::ptr addr) {
-        //m_localAddress = addr;
+        /// 如果该Socket类封装的文件描述符非法
+        /// 重新初始化
         if(!isValid()) {
             newSock();
+            /// 如果无法成功初始化 则报错
             if(EUTERPE_UNLIKELY(!isValid())) {
                 return false;
             }
@@ -175,6 +183,7 @@ namespace euterpe {
             }
         }
 
+        /// 调用经过hook修改之后的bind函数
         if(::bind(m_sock, addr->getAddr(), addr->getAddrLen())) {
             EUTERPE_LOG_ERROR(g_logger) << "bind error errrno=" << errno
                                       << " errstr=" << strerror(errno);
@@ -225,6 +234,8 @@ namespace euterpe {
                 return false;
             }
         }
+
+        /// 建立连接之后 储存双方地址
         m_isConnected = true;
         getRemoteAddress();
         getLocalAddress();
@@ -264,6 +275,9 @@ namespace euterpe {
     }
 
     // msghdr和iovec 用于向多段缓冲区写入或者发送数据
+    // iovec可以看作是一段缓存区域 其中有起始地址以及长度
+    // msghdr可以看作是一个iovec数组 记录了第一个iovec的地址 以及总iovec个数
+    // 相当于msdhdr记录了n段不同的缓冲区
     int Socket::send(const iovec* buffers, size_t length, int flags) {
         if(isConnected()) {
             msghdr msg;
@@ -464,6 +478,7 @@ namespace euterpe {
         }
     }
 
+    /// 通过内部的参数 初始化成员变量套接字
     void Socket::newSock() {
         m_sock = socket(m_family, m_type, m_protocol);
         if(EUTERPE_LIKELY(m_sock != -1)) {
