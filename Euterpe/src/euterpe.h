@@ -22,5 +22,6 @@
 #include "fd_manager/fd_manager.h"
 #include "Network_Base/address.h"
 #include "Network_Base/Socket.h"
+#include "ByteArray/ByteArray.h"
 
 #endif //EUTERPE_EUTERPE_H
