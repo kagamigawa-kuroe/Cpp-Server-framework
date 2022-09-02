@@ -23,5 +23,10 @@
 #include "Network_Base/address.h"
 #include "Network_Base/Socket.h"
 #include "ByteArray/ByteArray.h"
+#include "http/http.h"
+#include "http/http11_common.h"
+#include "http/http11_parser.h"
+#include "http/httpclient_parser.h"
+#include "http/http_parser.h"
 
 #endif //EUTERPE_EUTERPE_H
