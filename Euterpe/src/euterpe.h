@@ -28,5 +28,9 @@
 #include "http/http11_parser.h"
 #include "http/httpclient_parser.h"
 #include "http/http_parser.h"
+#include "tcp_server/tcp_server.h"
+#include "HttpServer/HttpServer.h"
+#include "stream/SocketStream.h"
+#include "stream/Stream.h"
 
 #endif //EUTERPE_EUTERPE_H

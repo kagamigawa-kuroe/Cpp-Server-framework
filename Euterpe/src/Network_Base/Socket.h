@@ -208,7 +208,7 @@ namespace euterpe {
         /// 远端地址
         Address::ptr m_remoteAddress;
     };
-
+    std::ostream& operator<<(std::ostream& os, const Socket& sock);
 } // euterpe
 
 #endif //EUTERPE_SOCKET_H
