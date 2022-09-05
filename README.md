@@ -34,10 +34,10 @@
   - 主要用于对原生的库函数进行一系列的拓展 定制更细致化的功能
   - 该hook是线程级别的 每个线程都有启动hook单独的开关
   - 重写系统读写函数 通过定时器和epoll实现异步处理 减少阻塞消耗的时间 从而提高性能
-- [ ] socket封装(WIP)
-  - 基于socket原生api封装的类，实现更简单的socket通信
-  - 实现tcp模块的封装
-  - 实现http协议的解析 以及http服务器快速搭建的框架
+- [x] socket封装
+  - 基于socket原生api封装的类，实现面向对象的, 更为简洁的socket api
+  - 简易tcp服务器的封装
+  - http服务器类的封装 实现http协议的解析 以及http服务器的快速搭建api
   - 实现类似servlet的url定向功能
 - [ ] rpc模块
   - 从底层实现一套rpc调用接口
@@ -58,73 +58,86 @@ IDEA Clion+vim
 #### 目前项目结构
 
 ```bash
-├── src
-│   ├── config
-│   │   ├── config.cpp
-│   │   ├── config.h
-│   │   └── config.md
-│   ├── coroutines
-│   │   ├── fiber.cpp
-│   │   ├── fiber.h
-│   │   └── fiber.md
-│   ├── euterpe.h
-│   ├── fd_manager
-│   │   ├── fd_manager.cpp
-│   │   └── fd_manager.h
-│   ├── hook
-│   │   ├── hook.cpp
-│   │   └── hook.h
-│   ├── image
-│   │   └── Log_usgae.jpg
-│   ├── IO
-│   │   ├── IoManager.cpp
-│   │   └── IoManager.h
-│   ├── Log
-│   │   ├── log.cpp
-│   │   ├── log.h
-│   │   └── Log_note.md
-│   ├── Network_Base
-│   │   ├── address.cpp
-│   │   ├── address.h
-│   │   ├── Socket.cpp
-│   │   └── Socket.h
-│   ├── scheduler
-│   │   ├── scheduler.cpp
-│   │   ├── scheduler.h
-│   │   └── Scheduler.md
-│   ├── thread
-│   │   ├── euterpe_thread.cpp
-│   │   ├── euterpe_thread.h
-│   │   ├── mutex.cpp
-│   │   ├── mutex.h
-│   │   ├── Thread.md
-│   │   └── 锁的封装.md
-│   ├── time
-│   │   ├── Timer.cpp
-│   │   └── Timer.h
-│   └── utils
-│       ├── endian.h
-│       ├── macro.h
-│       ├── noncopyable.h
-│       ├── singleton.h
-│       ├── utils.cpp
-│       └── utils.h
-└── tests
-    ├── config_test.cpp
-    ├── fiber_test.cpp
-    ├── lock_test.cpp
-    ├── log_test.cpp
-    ├── log.txt
-    ├── root.log
-    ├── system.log
-    ├── test_assert.cpp
-    ├── test_hook.cpp
-    ├── test_iomanager.cpp
-    ├── test_ip_addr.cpp
-    ├── test_scheduler.cpp
-    ├── test_socket.cpp
-    ├── thread_test.cpp
-    └── timer.cpp
+./Euterpe/src
+├── ByteArray
+│   ├── ByteArray.cpp
+│   └── ByteArray.h
+├── config
+│   ├── config.cpp
+│   ├── config.h
+│   └── config.md
+├── coroutines
+│   ├── fiber.cpp
+│   ├── fiber.h
+│   └── fiber.md
+├── euterpe.h
+├── fd_manager
+│   ├── fd_manager.cpp
+│   └── fd_manager.h
+├── hook
+│   ├── hook.cpp
+│   └── hook.h
+├── http
+│   ├── http11_common.h
+│   ├── http11_parser.h
+│   ├── http11_parser.rl
+│   ├── http11_parser.rl.cpp
+│   ├── httpclient_parser.h
+│   ├── httpclient_parser.rl
+│   ├── httpclient_parser.rl.cpp
+│   ├── http.cpp
+│   ├── http.h
+│   ├── http_parser.cpp
+│   ├── http_parser.h
+│   ├── HttpSession.cpp
+│   └── HttpSession.h
+├── HttpServer
+│   ├── HttpServer.cpp
+│   └── HttpServer.h
+├── image
+│   └── Log_usgae.jpg
+├── IO
+│   ├── IoManager.cpp
+│   └── IoManager.h
+├── Log
+│   ├── log.cpp
+│   ├── log.h
+│   └── Log_note.md
+├── Network_Base
+│   ├── address.cpp
+│   ├── address.h
+│   ├── Socket.cpp
+│   └── Socket.h
+├── scheduler
+│   ├── scheduler.cpp
+│   ├── scheduler.h
+│   └── Scheduler.md
+├── stream
+│   ├── SocketStream.cpp
+│   ├── SocketStream.h
+│   ├── Stream.cpp
+│   └── Stream.h
+├── tcp_server
+│   ├── tcp_server.cpp
+│   └── tcp_server.h
+├── thread
+│   ├── euterpe_thread.cpp
+│   ├── euterpe_thread.h
+│   ├── mutex.cpp
+│   ├── mutex.h
+│   ├── Thread.md
+│   └── 锁的封装.md
+├── time
+│   ├── Timer.cpp
+│   └── Timer.h
+└── utils
+    ├── endian.h
+    ├── macro.h
+    ├── noncopyable.h
+    ├── singleton.h
+    ├── utils.cpp
+    └── utils.h
+
 ```
 
 
