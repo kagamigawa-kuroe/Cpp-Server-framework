@@ -16,6 +16,10 @@ namespace euterpe {
          * @brief 通过这各类从Socket描述符中读取信息解析为HttpRequest类
          * @brief 以及通过HttpResponse类向socket描述符中发送http协议请求
          */
+
+        /**
+         * @brief 本质就是封装了一个socket描述符 也就是一个tcp连接 负责从其中读出一个个httprequest 并写入response
+         */
         class HttpSession: public SocketStream {
         public:
             typedef std::shared_ptr<HttpSession> ptr;

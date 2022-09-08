@@ -7,6 +7,8 @@
 #include "../tcp_server/tcp_server.h"
 #include "../http/HttpSession.h"
 #include <memory>
+#include "../servlet/Servlet.h"
+
 namespace euterpe {
     namespace http{
         class HttpServer: public TcpServer{
@@ -19,12 +21,25 @@ namespace euterpe {
 
             void setName(const std::string &mName) override;
 
+            /**
+             * @brief 获取ServletDispatch
+             */
+            ServletDispatch::ptr getServletDispatch() const { return m_dispatch;}
+
+            /**
+             * @brief 设置ServletDispatch
+             */
+            void setServletDispatch(ServletDispatch::ptr v) { m_dispatch = v;}
+
         protected:
+            /// tcp绑定端口 tcp调用start tcp调用startconnect startconnect拿到一个socket -----
+            /// 调用分配一个handleClient任务 任务内通过上面的socket建立一个session 通过session读取请求 处理业务 和响应
             void handleClient(Socket::ptr client) override;
 
         private:
             /// 是否支持长连接
             bool m_isKeepalive;
+            ServletDispatch::ptr m_dispatch;
         };
 
     } // euterpe

@@ -114,6 +114,7 @@ namespace euterpe {
             /// 创建新的连接后 用m_ioWorker将其调度到处理连接的线程上
             if(client) {
                 client->setRecvTimeout(m_recvTimeout);
+                /// 分配handleClient任务 handleClient用来写具体的业务逻辑
                 m_ioWorker->schedule(std::bind(&TcpServer::handleClient,
                                                shared_from_this(), client));
             } else {

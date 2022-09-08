@@ -2,6 +2,7 @@
 // Created by hongzhe on 22-9-4.
 //
 
+
 #include "HttpServer.h"
 
 namespace euterpe {
@@ -14,11 +15,13 @@ namespace euterpe {
                 ,IOManager* accept_worker)
                 :TcpServer(worker, io_worker, accept_worker)
                 ,m_isKeepalive(keepalive) {
+            m_dispatch.reset(new ServletDispatch);
             m_type = "http";
         }
 
         void HttpServer::setName(const std::string &mName) {
             TcpServer::setName(mName);
+            m_dispatch->setDefault(std::make_shared<NotFoundServlet>(mName));
         }
 
         /// 重写tcpserver的处理连接函数
@@ -43,8 +46,9 @@ namespace euterpe {
                         ,req->isClose() || !m_isKeepalive));
 
                 /// 接下来 根据请求的内容 设置HttpResponse中对应的内容 通过Session返回
+                /// 通过servlet去解析url 然后执行对应的操作
                 rsp->setHeader("Server", getName());
-                rsp->setBody("hello euterpe");
+                m_dispatch->handle(req, rsp, session);
                 session->sendResponse(rsp);
 
                 /// 如果为短连接 或者 连接已经断开 则退出循环

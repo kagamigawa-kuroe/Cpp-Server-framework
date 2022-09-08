@@ -3,15 +3,16 @@
 //
 
 #include "HttpSession.h"
-
+#include <iostream>
 #include <utility>
 #include "http.h"
 #include "httpclient_parser.h"
 #include "http_parser.h"
+#include "../Log/log.h"
 
 namespace euterpe {
     namespace http {
-
+        static euterpe::Logger::ptr g_logger = EUTERPE_LOG_ROOT();
         /// 构造函数 传入一个socket
         HttpSession::HttpSession(Socket::ptr sock, bool owner)
                 :SocketStream(std::move(sock), owner) {
@@ -32,11 +33,11 @@ namespace euterpe {
 
             /// 获取内存块
             char* data = buffer.get();
-
             int offset = 0;
             do {
                 /// 从上次独到的地方开始 读取剩下需要的大小
                 int len = read(data + offset, buff_size - offset);
+                /// std::cout << data[0] << data[1] << data[2] << std::endl;
 
                 /// 如果读取失败 就返回
                 if(len <= 0) {
@@ -70,13 +71,14 @@ namespace euterpe {
                 if(parser->isFinished()) {
                     break;
                 }
+
             } while(true);
 
             /// 获取请求体长度
             int64_t length = parser->getContentLength();
 
             // std::cout << length << " " << offset << std::endl;
-
+            // std::cout << *data  << std::endl;
             if(length > 0) {
                 std::string body;
                 body.resize(length);
@@ -101,6 +103,7 @@ namespace euterpe {
                     }
                 }
                 parser->getData()->setBody(body);
+                // EUTERPE_LOG_ERROR(g_logger) << body << " " << body.size();
             }
 
             parser->getData()->init();

@@ -68,6 +68,7 @@ namespace euterpe {
     void ByteArray::writeFuint8 (uint8_t value) {
         write(&value, sizeof(value));
     }
+
     void ByteArray::writeFint16 (int16_t value) {
         if(m_endian != EUTERPE_BYTE_ORDER) {
             value = byteswap(value);
