@@ -9,12 +9,12 @@ This markdown document outlines the development of a C++ server framework from s
 The envisioned functional modules and their current progress include:
 
 - [x] Log System inspired by log4j
-- Modularized output of program runtime logs
-- Customizable output formats
+  - Modularized output of program runtime logs
+  - Customizable output formats
 - [x] Threading Module
   - Wrapper around pthread, providing similar functionality as C++11's thread library
-- Abstraction of locks and implementation of thread safety
-- Thread pool based on coroutine tasks
+  - Abstraction of locks and implementation of thread safety
+  - Thread pool based on coroutine tasks
 - [x] Coroutine Framework
   - Initial plans to leverage C++20's features; however, after comparing with other popular frameworks, the decision is made to implement a custom coroutine framework from the ground up
   - Utilizes the native ucontext.h library for Linux and implements a coroutine framework based on context switching
