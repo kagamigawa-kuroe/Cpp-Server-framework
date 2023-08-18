@@ -15,7 +15,7 @@ The envisioned functional modules and their current progress include:
   - Wrapper around pthread, providing similar functionality as C++11's thread library
 - Abstraction of locks and implementation of thread safety
 - Thread pool based on coroutine tasks
-- [x] 协程框架
+- [x] Coroutine Framework
   - Initial plans to leverage C++20's features; however, after comparing with other popular frameworks, the decision is made to implement a custom coroutine framework from the ground up
   - Utilizes the native ucontext.h library for Linux and implements a coroutine framework based on context switching
   - Support for coroutine scheduling based on a thread pool
