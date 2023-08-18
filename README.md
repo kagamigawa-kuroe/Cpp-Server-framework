@@ -11,7 +11,7 @@ The envisioned functional modules and their current progress include:
 - [x] Log System inspired by log4j
   - Modularized output of program runtime logs
   - Customizable output formats
-- [x] Threading Module
+- [x] Threading Module 
   - Wrapper around pthread, providing similar functionality as C++11's thread library
   - Abstraction of locks and implementation of thread safety
   - Thread pool based on coroutine tasks
